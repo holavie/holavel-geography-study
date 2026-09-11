@@ -3,7 +3,7 @@
 // 国土地理院 地理院地図 住所検索API (地名 / 公共施設データ) on 2026-09-09 (raw responses kept in the task scratch record).
 // Points are representative spots, not designation boundaries.
 window.GEO_VISUAL_LOCATIONS = {
- "version": "0.17.0",
+ "version": "0.18.0",
  "rights": "HOLAVEL_ORIGINAL metadata; coordinates from 国土地理院 地理院地図 住所検索API（地名・公共施設データ）",
  "purpose": "実地図（地理院タイル）上の学習用代表地点。Quiz A の採点には使わない（採点は resource.prefectures / designation scope のみ）。role: REPRESENTATIVE=資源を代表する地点 / LANDMARK=資源そのものである建造物・史跡 / VIEWPOINT=資源（自然現象等）を見るための代表的な地点",
  "point_roles": [
@@ -621,6 +621,185 @@ window.GEO_VISUAL_LOCATIONS = {
     "zoom": 11
    },
    "note": "世界遺産「琉球王国のグスク及び関連遺産群」の構成資産 首里城跡の代表地点。復元建造物の焼失前後の状態を示すものではない"
+  },
+  {
+   "resource_id": "hiraizumi",
+   "map_points": [
+    {
+     "id": "中尊寺",
+     "label": "中尊寺",
+     "lat": 38.99822,
+     "lon": 141.0991,
+     "role": "LANDMARK",
+     "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E4%B8%AD%E5%B0%8A%E5%AF%BA",
+     "source_authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
+     "verified_at": "2026-09-11",
+     "note": "地理院地図の地名「中尊寺境内（特）」（平泉町, addressCode 03402）の地点。逆ジオコーダの町名は「平泉」。金色堂そのものの座標ではなく特別史跡の境内地点。同名の地名点が 2 つある「中尊寺」ではなく、一意に決まる境内点を採用した"
+    },
+    {
+     "id": "毛越寺",
+     "label": "毛越寺",
+     "lat": 38.98718,
+     "lon": 141.10556,
+     "role": "LANDMARK",
+     "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E6%AF%9B%E8%B6%8A%E5%AF%BA",
+     "source_authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
+     "verified_at": "2026-09-11",
+     "note": "地理院地図の地名「毛越寺」（平泉町, addressCode 03402）の地点。逆ジオコーダの町名は「平泉」"
+    }
+   ],
+   "preferred_view": {
+    "zoom": 13
+   },
+   "note": "世界遺産「平泉」の構成資産 5 件のうち、資源名にある 2 か寺。約 1.5km 離れた別々の寺院で、構成資産全体（観自在王院跡・無量光院跡・金鶏山）の範囲を示すものではない"
+  },
+  {
+   "resource_id": "nikko",
+   "map_points": [
+    {
+     "id": "日光東照宮",
+     "label": "東照宮",
+     "lat": 36.75974,
+     "lon": 139.59886,
+     "role": "LANDMARK",
+     "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E6%9D%B1%E7%85%A7%E5%AE%AE",
+     "source_authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
+     "verified_at": "2026-09-11",
+     "note": "地理院地図の地名「東照宮」（日光市, addressCode 09206）の地点。逆ジオコーダの町名は「山内」＝日光山内"
+    },
+    {
+     "id": "日光二荒山神社",
+     "label": "二荒山神社",
+     "lat": 36.76127,
+     "lon": 139.59635,
+     "role": "LANDMARK",
+     "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E4%BA%8C%E8%8D%92%E5%B1%B1%E7%A5%9E%E7%A4%BE",
+     "source_authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
+     "verified_at": "2026-09-11",
+     "note": "地理院地図の地名「二荒山神社」（日光市, addressCode 09206）のうち、逆ジオコーダの町名が「山内」＝日光山内の地点。中禅寺湖畔の中宮祠、および同市内の別の同名点（約 13km 南東）とは区別している"
+    },
+    {
+     "id": "日光山輪王寺",
+     "label": "輪王寺",
+     "lat": 36.75519,
+     "lon": 139.59833,
+     "role": "LANDMARK",
+     "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E8%BC%AA%E7%8E%8B%E5%AF%BA",
+     "source_authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
+     "verified_at": "2026-09-11",
+     "note": "地理院地図の地名「輪王寺」（日光市, addressCode 09206）の地点。逆ジオコーダの町名は「山内」。仙台市の同名寺院とは市区町村コードで区別した"
+    }
+   ],
+   "preferred_view": {
+    "zoom": 15
+   },
+   "note": "世界遺産「日光の社寺」は二社一寺（東照宮・二荒山神社・輪王寺）と周辺の遺跡からなる。3 か所とも日光山内にあり、まとめて 1 つの世界遺産を構成する"
+  },
+  {
+   "resource_id": "shirakawago",
+   "map_points": [
+    {
+     "id": "荻町集落",
+     "label": "荻町（白川郷）",
+     "lat": 36.25973,
+     "lon": 136.90922,
+     "role": "REPRESENTATIVE",
+     "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E8%8D%BB%E7%94%BA",
+     "source_authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
+     "verified_at": "2026-09-11",
+     "note": "地理院地図の地名「荻町合掌造り集落」（白川村, addressCode 21604）の地点。逆ジオコーダの町名は「大字荻町」。市町村の代表点ではなく集落の地点"
+    },
+    {
+     "id": "相倉集落",
+     "label": "相倉（五箇山）",
+     "lat": 36.42631,
+     "lon": 136.93555,
+     "role": "REPRESENTATIVE",
+     "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E7%9B%B8%E5%80%89",
+     "source_authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
+     "verified_at": "2026-09-11",
+     "note": "地理院地図の地名「越中五箇山相倉集落」（南砺市, addressCode 16210）の地点。逆ジオコーダの町名は「相倉」"
+    },
+    {
+     "id": "菅沼集落",
+     "label": "菅沼（五箇山）",
+     "lat": 36.40435,
+     "lon": 136.88679,
+     "role": "REPRESENTATIVE",
+     "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E8%8F%85%E6%B2%BC",
+     "source_authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
+     "verified_at": "2026-09-11",
+     "note": "地理院地図の地名「越中五箇山菅沼集落」（南砺市, addressCode 16210）の地点。逆ジオコーダの町名は「菅沼」"
+    }
+   ],
+   "preferred_view": {
+    "zoom": 10
+   },
+   "note": "岐阜県の荻町と富山県の相倉・菅沼の計 3 集落で 1 つの世界遺産。県境をまたいで庄川沿いに離れて位置することが要点"
+  },
+  {
+   "resource_id": "asuka",
+   "map_points": [
+    {
+     "id": "飛鳥宮跡",
+     "label": "飛鳥宮跡",
+     "lat": 34.47326,
+     "lon": 135.82129,
+     "role": "LANDMARK",
+     "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E4%BC%9D%E9%A3%9B%E9%B3%A5%E6%9D%BF%E8%93%8B%E5%AE%AE%E8%B7%A1",
+     "source_authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
+     "verified_at": "2026-09-11",
+     "note": "地理院地図の地名「伝飛鳥板蓋宮跡」（明日香村, addressCode 29402）の地点。逆ジオコーダの大字は「大字岡」で、明日香村公式の史跡「飛鳥宮跡」の所在地「明日香村大字岡」（指定 昭和47年4月10日）と一致する"
+    },
+    {
+     "id": "石舞台古墳",
+     "label": "石舞台古墳",
+     "lat": 34.46685,
+     "lon": 135.82644,
+     "role": "LANDMARK",
+     "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E7%9F%B3%E8%88%9E%E5%8F%B0%E5%8F%A4%E5%A2%B3",
+     "source_authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
+     "verified_at": "2026-09-11",
+     "note": "地理院地図の地名「石舞台古墳（特）」（明日香村, addressCode 29402）の地点。逆ジオコーダの大字は「大字祝戸」"
+    },
+    {
+     "id": "高松塚古墳",
+     "label": "高松塚古墳",
+     "lat": 34.46228,
+     "lon": 135.80664,
+     "role": "LANDMARK",
+     "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E9%AB%98%E6%9D%BE%E5%A1%9A%E5%8F%A4%E5%A2%B3",
+     "source_authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
+     "verified_at": "2026-09-11",
+     "note": "地理院地図の地名「高松塚古墳(特)」（明日香村, addressCode 29402）の地点。逆ジオコーダの大字は「大字平田」"
+    },
+    {
+     "id": "キトラ古墳",
+     "label": "キトラ古墳",
+     "lat": 34.45082,
+     "lon": 135.80523,
+     "role": "LANDMARK",
+     "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E3%82%AD%E3%83%88%E3%83%A9%E5%8F%A4%E5%A2%B3",
+     "source_authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
+     "verified_at": "2026-09-11",
+     "note": "地理院地図の地名「キトラ古墳（特）」（明日香村, addressCode 29402）の地点。逆ジオコーダの大字は「大字阿部山」"
+    },
+    {
+     "id": "藤原宮跡",
+     "label": "藤原宮跡",
+     "lat": 34.50219,
+     "lon": 135.80752,
+     "role": "LANDMARK",
+     "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E8%97%A4%E5%8E%9F%E5%AE%AE%E8%B7%A1",
+     "source_authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
+     "verified_at": "2026-09-11",
+     "note": "地理院地図の地名「藤原宮跡(特)」（橿原市, addressCode 29205）の地点。逆ジオコーダの町名は「高殿町」。飛鳥地域（明日香村）から北へ約 4km の別の宮都"
+    }
+   ],
+   "preferred_view": {
+    "zoom": 12
+   },
+   "note": "構成資産 19 件のうち、飛鳥（明日香村）と藤原（橿原市）の 2 つの宮都と代表的な古墳 3 基を主要学習地点として表示している。19 件すべての範囲を示すものではない"
   }
  ]
 };
