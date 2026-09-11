@@ -3,7 +3,7 @@
 // 国土地理院 地理院地図 住所検索API (地名 / 公共施設データ) on 2026-09-09 (raw responses kept in the task scratch record).
 // Points are representative spots, not designation boundaries.
 window.GEO_VISUAL_LOCATIONS = {
- "version": "0.18.0",
+ "version": "0.19.0",
  "rights": "HOLAVEL_ORIGINAL metadata; coordinates from 国土地理院 地理院地図 住所検索API（地名・公共施設データ）",
  "purpose": "実地図（地理院タイル）上の学習用代表地点。Quiz A の採点には使わない（採点は resource.prefectures / designation scope のみ）。role: REPRESENTATIVE=資源を代表する地点 / LANDMARK=資源そのものである建造物・史跡 / VIEWPOINT=資源（自然現象等）を見るための代表的な地点",
  "point_roles": [
@@ -800,6 +800,108 @@ window.GEO_VISUAL_LOCATIONS = {
     "zoom": 12
    },
    "note": "構成資産 19 件のうち、飛鳥（明日香村）と藤原（橿原市）の 2 つの宮都と代表的な古墳 3 基を主要学習地点として表示している。19 件すべての範囲を示すものではない"
+  },
+  {
+   "resource_id": "toya",
+   "map_points": [
+    {
+     "id": "洞爺湖",
+     "label": "洞爺湖",
+     "lat": 42.61503,
+     "lon": 140.85376,
+     "role": "REPRESENTATIVE",
+     "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E6%B4%9E%E7%88%BA%E6%B9%96",
+     "source_authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
+     "verified_at": "2026-09-12",
+     "note": "地理院地図の地名「洞爺湖」（洞爺湖町, addressCode 01584）の地点。**学習用の代表地点であり、湖の区域全体を示すものではない**。展望地点は環境省の公園紹介に固有名の記載が無いため置いていない"
+    }
+   ],
+   "preferred_view": {
+    "zoom": 11
+   },
+   "note": "湖の代表地点を 1 点だけ置いている。湖面やカルデラの範囲、支笏洞爺国立公園の区域を示すものではない"
+  },
+  {
+   "resource_id": "izunuma",
+   "map_points": [
+    {
+     "id": "伊豆沼",
+     "label": "伊豆沼",
+     "lat": 38.71792,
+     "lon": 141.10206,
+     "role": "REPRESENTATIVE",
+     "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E4%BC%8A%E8%B1%86%E6%B2%BC",
+     "source_authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
+     "verified_at": "2026-09-12",
+     "note": "地理院地図の地名「伊豆沼」（登米市, addressCode 04212）の地点。逆ジオコーダの町名は「迫町新田」。沼の代表地点で、ラムサール登録区域を示すものではない"
+    },
+    {
+     "id": "内沼",
+     "label": "内沼",
+     "lat": 38.71225,
+     "lon": 141.07591,
+     "role": "REPRESENTATIVE",
+     "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E5%86%85%E6%B2%BC",
+     "source_authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
+     "verified_at": "2026-09-12",
+     "note": "地理院地図の地名「内沼」（栗原市, addressCode 04213）の地点。逆ジオコーダの町名は「築館」。同名の別地物（青森県六ヶ所村・新潟市北区の「内沼」）とは市区町村コードで区別した"
+    }
+   ],
+   "preferred_view": {
+    "zoom": 13
+   },
+   "note": "「伊豆沼」と「内沼」は別々の沼で、登米市と栗原市にまたがる。2 点はそれぞれの沼の代表地点で、ラムサール条約湿地の区域（559ha）全体を示すものではない"
+  },
+  {
+   "resource_id": "yakushima",
+   "map_points": [
+    {
+     "id": "屋久島",
+     "label": "屋久島",
+     "lat": 30.34613,
+     "lon": 130.52067,
+     "role": "REPRESENTATIVE",
+     "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E5%B1%8B%E4%B9%85%E5%B3%B6",
+     "source_authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
+     "verified_at": "2026-09-12",
+     "note": "地理院地図の地名「屋久島」（屋久島町, addressCode 46505）の地点。**島の代表地点であり、島全体や世界自然遺産区域（環境省: 10,747ha、島の約 2 割）を示すものではない**。宮之浦岳・縄文杉の地名点はこの地点から 2km 前後しか離れておらず、マーカーが重なるだけなので置いていない"
+    }
+   ],
+   "preferred_view": {
+    "zoom": 10
+   },
+   "note": "島の代表地点を 1 点だけ置いている。島全体でも、世界自然遺産区域（10,747ha＝島の約 2 割・環境省）でもない"
+  },
+  {
+   "resource_id": "daisen",
+   "map_points": [
+    {
+     "id": "大山（弥山）",
+     "label": "大山（弥山）",
+     "lat": 35.37109,
+     "lon": 133.53999,
+     "role": "REPRESENTATIVE",
+     "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E5%BC%A5%E5%B1%B1",
+     "source_authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
+     "verified_at": "2026-09-12",
+     "note": "地理院地図の地名「弥山」（大山町, addressCode 31386）の地点。環境省（中国四国地方環境事務所）が「中国地方の最高峰である大山の1709mの弥山山頂」と記載する峰。最高峰の剣ヶ峰（1,729m）ではなく、山体の範囲でもない。地名「大山」は同名の点が 2 つあり一意に決まらないため採用していない"
+    },
+    {
+     "id": "鍵掛峠",
+     "label": "鍵掛峠（大山南壁の展望）",
+     "lat": 35.34618,
+     "lon": 133.54949,
+     "role": "VIEWPOINT",
+     "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E9%8D%B5%E6%8E%9B%E5%B3%A0",
+     "source_authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
+     "verified_at": "2026-09-12",
+     "note": "地理院地図の地名「鍵掛峠」（鳥取県, addressCode 31386）の地点。江府町公式は所在地を「江府町大字大河原字鍵掛1531-29」標高約910m「江府町側、南壁を眺める一番の絶景ポイント」と記載する。峠は町境の尾根にあり、地理院の逆ジオコーダはこの点について大山町大字大山を返す。同名の峠（岩手県雫石町・秋田県大館市・山梨県笛吹市）とは市区町村コードで区別した"
+    }
+   ],
+   "preferred_view": {
+    "zoom": 13
+   },
+   "note": "山頂部と、南壁を望む展望地点の 2 点。山体や大山隠岐国立公園の区域を示すものではない"
   }
  ]
 };
