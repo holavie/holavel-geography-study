@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Geography Study</title>
+<link rel="icon" href="data:," />
+<link rel="stylesheet" href="vendor/leaflet-1.9.4/leaflet.css" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="top">
+  <div><h1>Geography Study</h1><div class="sub">国内観光地理 詳細30 + 高速暗記70 = 100資源（2026-09-24 国内試験対策）</div></div>
+  <div class="modes" id="modes"><button data-view="cards" class="on">カード</button><button data-view="quiz">クイズ</button><button data-view="rapid">高速暗記</button></div>
+  <div class="status" id="status"></div>
+</header>
+<main class="wrap">
+  <section class="filters" id="filters">
+    <label>学習分類 <select id="fRegion"><option value="">すべて</option></select></label>
+    <label>都道府県 <select id="fPref"><option value="">すべて</option></select></label>
+    <label>カテゴリ <select id="fCat"><option value="">すべて</option></select></label>
+    <label>優先度 <select id="fPri"><option value="">すべて</option><option value="A">A</option><option value="B">B</option><option value="C">C</option></select></label>
+    <label class="chk"><input type="checkbox" id="fWrong" /> 誤答履歴あり</label>
+    <label>検索 <input type="search" id="fSearch" placeholder="資源名・よみ・都道府県・市町村" /></label>
+    <span class="count" id="count"></span>
+  </section>
+  <section id="view"></section>
+</main>
+<div class="toast" id="toast"></div>
+<script src="data/resources.js"></script>
+<script src="data/broad_shallow.js"></script>
+<script src="map/locator.js"></script>
+<script src="data/visual_assets.js"></script>
+<script src="data/visual_locations.js"></script>
+<script src="vendor/leaflet-1.9.4/leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

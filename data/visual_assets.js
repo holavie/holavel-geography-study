@@ -1,0 +1,133 @@
+// Geography Study visual assets (PHOTO-READY contract, TASK-012G; photo pilot TASK-012M).
+// Kept separate from the factual data in resources.js. Photos are stored locally (no hotlinking) and every entry records
+// the Wikimedia Commons File page, creator, license and attribution verified on that page. Shape:
+//   { asset_id, resource_id, type: "PHOTO" | "ILLUSTRATION", local_path (under apps/geography-study/assets/),
+//     source_url, creator, license, license_url, attribution, verified_at,
+//     original_file_url?, caption?, alt?, note?, width?, height?, original_size? }
+window.GEO_VISUAL_ASSETS = {
+ "version": "0.16",
+ "rights": "PER_ASSET (see each entry's license); container is HOLAVEL_ORIGINAL metadata",
+ "allowed_types": [
+  "PHOTO",
+  "ILLUSTRATION"
+ ],
+ "required_fields": [
+  "asset_id",
+  "resource_id",
+  "type",
+  "local_path",
+  "source_url",
+  "creator",
+  "license",
+  "license_url",
+  "attribution",
+  "verified_at"
+ ],
+ "optional_fields": [
+  "original_file_url",
+  "caption",
+  "alt",
+  "note",
+  "width",
+  "height",
+  "original_size"
+ ],
+ "policy": "Wikimedia Commons の各 File page で個別にライセンスを確認した再利用可能な写真のみ。local 保存し runtime hotlink しない。旅行・ガイドサイトの画像は使わない。1 資源 1 枚の pilot",
+ "assets": [
+  {
+   "asset_id": "photo-shiretoko-01",
+   "resource_id": "shiretoko",
+   "type": "PHOTO",
+   "local_path": "assets/photos/pilot/shiretoko.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Hokkaido-Drift_ice,_Shiretoko_Peninsula-xl.jpg",
+   "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Hokkaido-Drift_ice%2C_Shiretoko_Peninsula-xl.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "creator": "kkawamura",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0",
+   "attribution": "kkawamura / CC BY 4.0（Wikimedia Commons）",
+   "verified_at": "2026-09-09",
+   "caption": "オホーツク海の流氷と知床半島の海岸断崖",
+   "alt": "知床：流氷に覆われたオホーツク海と、雪をかぶった海岸断崖・山地",
+   "note": "知床半島の代表的な冬景観。世界遺産・国立公園の区域全体を示すものではない",
+   "width": 1280,
+   "height": 853,
+   "original_size": "5400x3600"
+  },
+  {
+   "asset_id": "photo-fuji-01",
+   "resource_id": "fuji",
+   "type": "PHOTO",
+   "local_path": "assets/photos/pilot/fuji.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Mount_Fuji_from_Lake_Yamanaka.JPG",
+   "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/3/36/Mount_Fuji_from_Lake_Yamanaka.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "creator": "Alpsdake",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "attribution": "Alpsdake / CC BY-SA 4.0（Wikimedia Commons）",
+   "verified_at": "2026-09-09",
+   "caption": "山中湖から望む冠雪の富士山",
+   "alt": "富士山：湖越しに見る、雪をいただいた円錐形の山体",
+   "note": "山梨県側（山中湖）からの眺望。構成資産の位置を示すものではない",
+   "width": 1280,
+   "height": 853,
+   "original_size": "5184x3456"
+  },
+  {
+   "asset_id": "photo-himeji-01",
+   "resource_id": "himeji",
+   "type": "PHOTO",
+   "local_path": "assets/photos/pilot/himeji-castle.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Himeji_Castle_0804_1.jpg",
+   "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/3/37/Himeji_Castle_0804_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "creator": "Gorgo",
+   "license": "Public domain",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "attribution": "Gorgo（Wikimedia Commons, パブリックドメイン）",
+   "verified_at": "2026-09-09",
+   "caption": "白漆喰の大天守と連なる小天守",
+   "alt": "姫路城：白い漆喰壁の大天守と小天守、石垣",
+   "note": "天守群の外観。世界遺産登録範囲を示すものではない",
+   "width": 1280,
+   "height": 955,
+   "original_size": "2256x1684"
+  },
+  {
+   "asset_id": "photo-dogo-01",
+   "resource_id": "dogo",
+   "type": "PHOTO",
+   "local_path": "assets/photos/pilot/dogo-onsen.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Dogo_Onsen_Honkan_(Main_building),_%E9%81%93%E5%BE%8C%E6%B8%A9%E6%B3%89_%E6%9C%AC%E9%A4%A8_-_panoramio.jpg",
+   "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/5/57/Dogo_Onsen_Honkan_%28Main_building%29%2C_%E9%81%93%E5%BE%8C%E6%B8%A9%E6%B3%89_%E6%9C%AC%E9%A4%A8_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "creator": "z tanuki",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0",
+   "attribution": "z tanuki / CC BY 3.0（Wikimedia Commons）",
+   "verified_at": "2026-09-09",
+   "caption": "道後温泉本館の外観",
+   "alt": "道後温泉：木造三層の道後温泉本館の外観と門前の通り",
+   "note": "重要文化財の道後温泉本館。撮影者により通行人の顔がぼかされている",
+   "width": 1280,
+   "height": 566,
+   "original_size": "3620x1600"
+  },
+  {
+   "asset_id": "photo-naruto-01",
+   "resource_id": "naruto",
+   "type": "PHOTO",
+   "local_path": "assets/photos/pilot/naruto-whirlpool.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Naruto_whirlpools_20170609-1.jpg",
+   "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/7/79/Naruto_whirlpools_20170609-1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "creator": "Suicasmo",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "attribution": "Suicasmo / CC BY-SA 4.0（Wikimedia Commons）",
+   "verified_at": "2026-09-09",
+   "caption": "鳴門海峡に発生する渦潮",
+   "alt": "鳴門の渦潮：海峡の潮流が生む渦と白波、対岸の陸地",
+   "note": "渦潮そのものの景観。大鳴門橋は写っていない",
+   "width": 1280,
+   "height": 853,
+   "original_size": "5184x3456"
+  }
+ ]
+};
