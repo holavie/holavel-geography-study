@@ -65,6 +65,19 @@ details.photod{margin:6px 0;font-size:13px}details.photod summary{cursor:pointer
 .result details.mapd{margin-top:8px}
 .locator .inset rect{fill:none;stroke:#9aa8b2;stroke-width:1;stroke-dasharray:3 2}.locator .inset text{fill:#6a7a84;font-family:inherit}
 /* v0.5 (TASK-012H): real map (GSI tiles via Leaflet) + locator switch */
+/* v0.20.1 (TASK-014E) 地図セクション内の Google マップ検索リンクと、画面下部の関連学習リンク。
+   どちらも外部サイトへの導線で、Holavel 側にデータを持たない */
+.gmap{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:8px 10px 10px}
+.gmlink{display:inline-flex;align-items:center;min-height:44px;padding:6px 14px;border:1px solid var(--locline);border-radius:999px;background:#fff;color:var(--loc);font-size:13px;font-weight:700;text-decoration:none}
+.gmlink:hover{border-color:var(--loc)}
+.gmap .rd{font-size:11px;flex:1;min-width:12em}
+.related{max-width:1100px;margin:28px auto 0;padding:0 18px 28px;font-size:13px;color:var(--muted)}
+.related>summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:700;color:var(--loc)}
+.related .rl2{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 6px}
+.related a{display:inline-flex;align-items:center;min-height:44px;padding:6px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--loc);text-decoration:none;font-weight:700}
+.related a:hover{border-color:var(--loc)}
+.related p{margin:6px 0;line-height:1.6}
+@media(max-width:900px){.related{padding:0 12px 28px}.related a{width:100%;justify-content:center}.gmap .rd{min-width:100%}}
 .mapsel{display:flex;gap:6px;align-items:center;flex-wrap:wrap;padding:6px 10px 0}.mtab{border:1px solid var(--locline);background:#fff;color:var(--loc);border-radius:999px;padding:4px 12px;font-size:13px;font-weight:700;min-height:36px}.mtab.on{background:var(--loc);color:#fff}.mtab:disabled{opacity:.5}.mrole{font-size:11px;color:var(--muted);margin-left:4px}
 .realwrap{padding:6px 10px 8px}.realmap{height:340px;border:1px solid var(--locline);border-radius:6px;background:#eef2f5}.mattr{font-size:11px;color:#2d4a5e;margin-top:4px}.mattr a{color:var(--loc)}.mfail{font-size:13px;color:var(--attn);background:#fff8f3;border:1px solid #e0a58f;border-radius:6px;padding:6px 8px;margin-top:6px}
 .leaflet-container{font-family:inherit;font-size:13px}.leaflet-popup-content{margin:8px 10px;font-size:13px;line-height:1.4}

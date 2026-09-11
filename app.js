@@ -3,6 +3,9 @@
 // 追加。Rapid は DEEP 30 とは別レイヤーで、資源名 → 都道府県・カテゴリ・一言特徴だけを高速反復する。
 //   pool: LIGHTWEIGHT 70 のみ（v0.1 では DEEP を混ぜない）。写真 0 / 地図 0 / Quiz 採点対象外。
 //   state: localStorage "holavel_geography_rapid_v1"（version 1）。DEEP の "holavel_geography_study_v2" は読み書きしない。
+// v0.20.1 (TASK-014E): (1) 詳細カードの地図セクションに「Google Mapsで見る ↗」を追加。公式 Maps URL（api=1 の検索）への
+//   外部リンクだけで、JavaScript API / Embed / Places / API key / 課金・新しい座標データは一切使わない。高速暗記には出さない。
+//   (2) 画面下部に「過去問・他科目」を追加（index.html）。ANTA・JATA の公式ページへのリンクのみで、問題本文は持たない。
 // v0.19.4 (TASK-014B): 高速暗記の答えに「全国のどこか（都道府県の俯瞰）」を追加。既存 locatorSVG をそのまま呼ぶだけで、
 //   位置データ・座標・visual_locations・外部リクエストは 0。答えを見る前は details ごと生成しない（front の hint leak 契約）。
 //   既定は閉じた状態。実地図（DEEP 13 資源 30 地点）とは別物で、実地点・座標は主張しない。
@@ -141,7 +144,14 @@ function mapHTML(r,label){const mp=mapPoints(r);const hasPoints=mp.points.length
  const legend=hasReal?`<div class="mlegend2"><span class="mlt">学習地点</span>${mp.points.length>1?`<ol class="mpts">${mp.points.map((p,i)=>`<li><button type="button" class="mpt" data-for="${id}" data-i="${i}" aria-label="${i+1} ${esc(p.label)} の位置へ"><span class="mno">${i+1}</span><span>${esc(p.label)}</span></button></li>`).join('')}</ol>`:`<span class="mpt1">${esc(mp.points[0].label)}</span>`}</div>`:'';
  const real=hasReal?`<div class="realwrap" data-for="${id}"><div class="realmap" id="${id}" data-rid="${esc(r.resource_id)}"></div>${legend}<div class="mattr">${esc(GSI.attr)}　<a href="${GSI.list}" target="_blank" rel="noopener">地理院タイル一覧</a><div class="zl58"><b>${esc(GSI.zl58note)}</b> ${esc(GSI.zl58src)}</div><div class="rd">関連指定区域（国立公園等）の正確な境界は未表示。マーカーは学習用の代表地点で、区域全体ではありません。</div></div><div class="mfail" hidden>実地図を読み込めません（ネットワークまたは地図ライブラリ）。全国俯瞰をご利用ください。</div></div>`:'';
  const loc=`<div class="locwrap" data-for="${id}" ${hasReal?'hidden':''}>${locatorSVG(r)}</div>`;
- return `<details class="mapd" data-mid="${id}"><summary>${esc(label)}</summary>${sel}${real}${loc}</details>`}
+ return `<details class="mapd" data-mid="${id}"><summary>${esc(label)}</summary>${sel}${real}${loc}${gmapHTML(r)}</details>`}
+// Google マップは「外部の検索結果へ渡す補助導線」であって、Holavel の地点データではない。
+// 公式の Maps URL（api=1 の検索）だけを使う: JavaScript API / Embed / Places / API key / 課金は一切使わない。
+// 座標も Place ID も新しく持たない。単一県資源は 資源名＋県名、複数県資源は県を並べると検索が散らかるので資源名のみ。
+const gmapQuery=r=>{const P=prefs(r);return P.length===1?`${r.name} ${P[0]}`:r.name};
+function gmapHTML(r){const q=gmapQuery(r);
+ const url='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
+ return `<div class="gmap"><a class="gmlink" href="${esc(url)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(r.name)} を Google マップで検索（外部サイトが開きます）">Google Mapsで見る ↗</a><span class="rd">Google マップの検索結果（「${esc(q)}」）を新しいタブで開きます。Holavel の学習地点とは別です</span></div>`}
 function initRealMap(el){if(!el||el.dataset.ready||!window.L)return;const r=R.find(x=>x.resource_id===el.dataset.rid);const mp=mapPoints(r);if(!mp.points.length)return;
  try{const m=L.map(el,{scrollWheelZoom:false,attributionControl:false,zoomControl:true,minZoom:GSI.minZoom,maxZoom:GSI.maxZoom});
   const wrap=el.parentElement;const fail=wrap.querySelector('.mfail');let okTiles=0,badTiles=0;
