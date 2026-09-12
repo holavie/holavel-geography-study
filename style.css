@@ -65,6 +65,48 @@ details.photod{margin:6px 0;font-size:13px}details.photod summary{cursor:pointer
 .result details.mapd{margin-top:8px}
 .locator .inset rect{fill:none;stroke:#9aa8b2;stroke-width:1;stroke-dasharray:3 2}.locator .inset text{fill:#6a7a84;font-family:inherit}
 /* v0.5 (TASK-012H): real map (GSI tiles via Leaflet) + locator switch */
+/* v0.21.0 (TASK-014H) 全国MAP。既存の locator タイルと Leaflet を再利用し、新しい地図アセットは持たない */
+.nmap{max-width:1100px}
+.nmfil{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:14px}
+.nchips{display:flex;gap:8px;flex-wrap:wrap}
+.nchip{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);font-size:13px;font-weight:700}
+.nchip .nn{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.nchip.on{background:var(--loc);border-color:var(--loc);color:#fff}
+.nchip.on .nn{color:#dce9f3}
+.nchip.on::before{content:"✓ ";font-size:12px}
+.nmrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px;font-size:13px;color:var(--muted)}
+.nmrow select{font:inherit;font-size:13px;padding:4px 6px;border:1px solid var(--line);border-radius:6px;background:#fff;min-height:44px}
+.nmrow .chk{display:inline-flex;align-items:center;gap:6px;min-height:44px}
+.btn.nsm{min-height:44px;padding:6px 14px;font-size:13px}
+.nmsum{margin:10px 0 0;font-size:15px;color:var(--ink)}.nmsum b{color:var(--loc);font-size:17px}
+.nmh{font-size:14px;color:var(--loc);margin:16px 0 6px}
+.nmapdist svg{max-width:520px}
+.nmapdist .nt rect{fill:#eef0f2;stroke:#c9d2d9;stroke-width:1}
+.nmapdist .nt text{fill:#5a6a74;text-anchor:middle;font-family:inherit}
+.nmapdist .nt.z1 rect{fill:#cfe0ee;stroke:#8fb4d0}.nmapdist .nt.z2 rect{fill:#7fadd0;stroke:#4c86b0}
+.nmapdist .nt.z2 text{fill:#fff;font-weight:700}
+.nmapdist .nt.z3 rect{fill:var(--loc);stroke:#164a6e}.nmapdist .nt.z3 text{fill:#fff;font-weight:800}
+.nmleg{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:#2d4a5e;margin-top:6px}
+.nmleg .sw{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:4px;border:1px solid #c9d2d9}
+.nmleg .sw.z0{background:#eef0f2}.nmleg .sw.z1{background:#cfe0ee}.nmleg .sw.z2{background:#7fadd0}.nmleg .sw.z3{background:var(--loc)}
+.nprefs{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 0}
+.npref{font-size:13px;background:#fff;border:1px solid var(--locline);border-radius:999px;padding:3px 10px;color:#22333d}
+.npref b{color:var(--loc)}
+.nmreal .realmap{height:420px;border:1px solid var(--locline);border-radius:6px;background:#eef2f5}
+.nlist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:6px}
+.nitem{display:grid;grid-template-columns:minmax(8em,1.4fr) minmax(6em,1fr) minmax(7em,1.2fr) 5em 7em;gap:10px;align-items:center;width:100%;text-align:left;
+ border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 12px;min-height:44px;font-size:13px;color:var(--ink)}
+button.nitem:hover{border-color:var(--loc)}
+.nitem.flat{background:#fbfcfd}
+.nitem .nnm{font-weight:700;font-size:14px}
+.nitem .npf{color:var(--loc)}
+.nitem .ngn,.nitem .nac{color:var(--muted);font-size:12px}
+.nly{font-size:11px;border-radius:999px;padding:1px 8px;text-align:center}
+.nly.deep{background:#eef4fa;color:var(--loc);border:1px solid var(--locline)}
+.nly.light{background:#f3f5f7;color:var(--muted);border:1px solid var(--line)}
+@media(max-width:900px){.nmapdist svg{max-width:100%}.nmreal .realmap{height:300px}
+ .nitem{grid-template-columns:1fr auto;grid-auto-rows:min-content;row-gap:4px}
+ .nitem .ngn,.nitem .nac{grid-column:1/-1}}
 /* v0.20.1 (TASK-014E) 地図セクション内の Google マップ検索リンクと、画面下部の関連学習リンク。
    どちらも外部サイトへの導線で、Holavel 側にデータを持たない */
 .gmap{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:8px 10px 10px}
