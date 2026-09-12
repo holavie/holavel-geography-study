@@ -65,6 +65,18 @@ details.photod{margin:6px 0;font-size:13px}details.photod summary{cursor:pointer
 .result details.mapd{margin-top:8px}
 .locator .inset rect{fill:none;stroke:#9aa8b2;stroke-width:1;stroke-dasharray:3 2}.locator .inset text{fill:#6a7a84;font-family:inherit}
 /* v0.5 (TASK-012H): real map (GSI tiles via Leaflet) + locator switch */
+/* v0.22.0 (TASK-015A) 過去問リンク。Exam Sprint はローカル専用なので、公開ホストではリンクを描画しない */
+.pastex{margin:8px 0 0;font-size:13px}
+.pxh{font-size:12px;font-weight:700;color:var(--loc);margin-bottom:4px}
+.pxlist{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.pxlist li{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pxq{font-weight:700;color:var(--ink);min-width:5.5em}
+.pxrel{font-size:11px;border-radius:999px;padding:1px 8px;border:1px solid var(--line)}
+.pxrel.direct{background:#eef4fa;color:var(--loc);border-color:var(--locline)}
+.pxrel.related{background:#f6f7f8;color:var(--muted)}
+.pxgo{display:inline-flex;align-items:center;min-height:44px;padding:4px 12px;border:1px solid var(--locline);border-radius:999px;background:#fff;color:var(--loc);text-decoration:none;font-weight:700;font-size:12px}
+.pxgo:hover{border-color:var(--loc)}
+.nex{margin-left:8px;font-size:11px;font-weight:700;color:var(--loc);background:#eef4fa;border:1px solid var(--locline);border-radius:999px;padding:1px 8px}
 /* v0.21.0 (TASK-014H) 全国MAP。既存の locator タイルと Leaflet を再利用し、新しい地図アセットは持たない */
 .nmap{max-width:1100px}
 .nmfil{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:14px}

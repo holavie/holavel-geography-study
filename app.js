@@ -7,6 +7,10 @@
 //   (M1) 保存 state の region / prefecture を own property だけで検証し、toString / constructor / __proto__ を弾く。
 //   (M2) 全国MAP のフィルタ操作で focus が body へ落ちないよう、操作していた control へ再描画後に戻す。
 //   (L1) Leaflet が無いときは空の地図枠を出さず、Card と同じ失敗理由を表示する。仕様拡張はしていない。
+// v0.22.0 (TASK-015A): Exam Sprint との相互リンク。過去問の対応は resources.js の past_exam_links が唯一の正本で、
+//   対応表を別データへ複製しない。Card の過去問欄を relation 付きの一覧にし、**ローカル環境のときだけ**
+//   「この問題を解く →」（../exam-sprint/index.html?question=<id>）を出す。公開ホストでは件数表示のみでリンクを作らない。
+//   受け口は ?resource=<resource_id> で、既知 ID に一致したときだけカードを開く（未知は無視）。
 // v0.21.0 (TASK-014H): 第 4 モード「全国MAP」を追加。ジャンルは既存の categories[] をそのまま使い（新しい分類データ 0）、
 //   LAYER 1 = 100 資源の prefectures[] による都道府県単位の分布、LAYER 2 = visual_locations の 30 資源 58 点だけの実地点、
 //   の 2 層に分けて精度差を明示する。県庁所在地・県の中心点・推定座標は作らない。外部 map SDK / API key も増やさない。
@@ -264,8 +268,20 @@ const EMPTY='<div class="msg">該当する観光資源がありません。フ�
 function renderList(list){$('view').innerHTML=list.length?`<div class="list">${list.map(r=>`<button class="tile ${everWrong(r.resource_id)?'wrongish':''}" data-id="${esc(r.resource_id)}"><span class="nm">${typeIcon(primaryType(r),'ticon sm')}${esc(r.name)}</span><span class="pf"><span class="pfb">${esc(prefLabel(r))}</span>　<span class="rd">${esc(TYPE_LABEL[primaryType(r)])}　学習分類: ${esc(r.region)}</span></span><span class="tags"><span class="tag pri-${esc(r.exam_priority)}">${esc(PRI[r.exam_priority]||r.exam_priority)}</span>${r.hot_2026?'<span class="tag hot">2026注目</span>':''}</span></button>`).join('')}</div>`:EMPTY;
  document.querySelectorAll('.tile').forEach(b=>b.onclick=()=>{state.current=b.dataset.id;save();render()})}
 function sourcesHTML(r){const s=(r.sources||[]);return s.length?`<details><summary>根拠（${s.length}）</summary><ul>${s.map(x=>`<li>${x.url?`<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.title)}</a>`:esc(x.title)}（${esc(x.authority)}${x.date?'・'+esc(x.date):''}・LEVEL ${esc(x.level)}）</li>`).join('')}</ul></details>`:''}
-function pastExamHTML(r){const L=r.past_exam_links||[];const d=L.filter(l=>l.relation==='DIRECT'),c=L.filter(l=>l.relation!=='DIRECT');const f=a=>a.map(l=>esc(l.label||l.question_id)).join('、');
- return (d.length?`<div class="rd">過去問に登場: ${f(d)}</div>`:'')+(c.length?`<div class="rd">関連する過去問: ${f(c)}</div>`:'')}
+// 過去問演習（Exam Sprint）は PRIVATE / LOCAL ONLY のアプリ。公開ホストでは「問題を解く」リンクを作らない。
+// 判定は秘密情報ではなく配信元だけを見る（file:// かローカルホストのときだけリンクにする）。
+const LOCAL_APPS=(()=>{try{return location.protocol==='file:'||/^(localhost|127\.0\.0\.1|\[?::1\]?)$/.test(location.hostname)}catch(e){return false}})();
+// 過去問との対応は resources.js の past_exam_links が唯一の正本。ここでは表示するだけで対応表を複製しない。
+const REL_LABEL={DIRECT:'この資源が直接出題',RELATED_CONTEXT:'関連テーマとして復習'};
+function examLinkURL(qid){return '../exam-sprint/index.html?question='+encodeURIComponent(qid)}
+function pastExamHTML(r){const L=(r.past_exam_links||[]).filter(l=>l&&typeof l.question_id==='string');
+ if(!L.length)return '';
+ const row=l=>{const label=esc(l.label||l.question_id);
+  const rel=REL_LABEL[l.relation]?`<span class="pxrel ${l.relation==='DIRECT'?'direct':'related'}">${esc(REL_LABEL[l.relation])}</span>`:'';
+  const go=LOCAL_APPS?`<a class="pxgo" href="${esc(examLinkURL(l.question_id))}">この問題を解く →</a>`:'';
+  return `<li><span class="pxq">${label}</span>${rel}${go}</li>`};
+ return `<div class="pastex"><div class="pxh">過去問（${L.length}）</div><ul class="pxlist">${L.map(row).join('')}</ul>`+
+  (LOCAL_APPS?'':'<div class="rd">過去問演習はこの端末のローカル環境でのみ開けます。</div>')+'</div>'}
 function renderCard(r,list){const i=list.indexOf(r);const att=(r.attention_points||[]).map(a=>`<li><b class="pt">${esc(a.point)}</b>${a.note?'　'+esc(a.note):''}</li>`).join('');
  $('view').innerHTML=`<div class="card"><div class="head"><div><span class="nm">${esc(r.name)}</span> <span class="rd">${esc(r.reading||'')}</span></div><div class="rd">学習分類: ${esc(r.region)}　${i+1} / ${list.length}</div></div>
  <div class="typerow">${typeBadge(r)}<div class="tags">${tags(r)}</div></div>
@@ -581,7 +597,9 @@ function renderNationalMap(){const n=state.nmap;const list=nmapFiltered();const 
    <div class="mfail" hidden>実地図を読み込めません（ネットワークまたは地図ライブラリ）。全国分布をご利用ください。</div></div>`;
  const items=list.map(r=>{const g=r.cats.map(c=>BSCAT[c]||c).join('・');
    const acc=r.layer==='DEEP'?(r.pts?`実地点あり ${r.pts}`:'県単位'):'県単位';
-   const inner=`<span class="nnm">${esc(r.name)}</span><span class="npf">${r.prefs.map(p=>esc(p)).join('・')}</span><span class="ngn">${esc(g)}</span><span class="nly ${r.layer==='DEEP'?'deep':'light'}">${r.layer==='DEEP'?'詳細':'高速暗記'}</span><span class="nac">${esc(acc)}</span>`;
+   // 過去問の有無は件数バッジだけ。ここから直接 Exam Sprint へは飛ばさない（MAP →理解→ Card →問題 の順を保つ）
+   const ex=r.exam?`<span class="nex">過去問 ${r.exam}</span>`:'';
+   const inner=`<span class="nnm">${esc(r.name)}${ex}</span><span class="npf">${r.prefs.map(p=>esc(p)).join('・')}</span><span class="ngn">${esc(g)}</span><span class="nly ${r.layer==='DEEP'?'deep':'light'}">${r.layer==='DEEP'?'詳細':'高速暗記'}</span><span class="nac">${esc(acc)}</span>`;
    return r.layer==='DEEP'
     ? `<li><button type="button" class="nitem" data-rid="${esc(r.id)}" aria-label="${esc(r.name)} のカードを開く">${inner}</button></li>`
     : `<li><span class="nitem flat">${inner}</span></li>`}).join('');
@@ -617,5 +635,16 @@ function renderNationalMap(){const n=state.nmap;const list=nmapFiltered();const 
  const el=libOK?$(mapId):null;if(el){el._pts=pts;initNmapMap(el)}
  nmRestoreFocus();
 }
-initFilters();window.geographyStudy={state,R,metrics,retryLine,buildQuiz,render,filtered,quizScope,STATE_KEY:KEY,primaryType,locatorSVG,TYPE_ORDER,TYPE_LABEL,mapPoints,liveMaps,GSI,disposeLiveMaps,photosFor,BSR,rstate,rapidPool,RAPID_STATE_KEY:RKEY,BSCAT,rapidBack,rapidAdvance,BS_PREF_REGION,BS_ALL_PREFS,bsReading,BSTERMS,termsIn,NMALL,NMGENRES,nmapFiltered,nmapCounts,nmapPoints};render();
+// deep link 受け口: ?resource=<resource_id>。既知の DEEP resource_id と一致したときだけ開く。
+// 不明な値・壊れた query は無視して通常画面へ（文字列を DOM へ出さない）。history は触らない。
+(function openFromQuery(){try{
+ const q=new URLSearchParams(location.search||'');
+ // 同じ param が複数あっても、既知の resource_id に一致する最初の値だけを使う
+ const vals=(typeof q.getAll==='function'?q.getAll('resource'):[q.get('resource')]).filter(Boolean);
+ let r=null;for(const v of vals){const hit=R.find(x=>x.resource_id===v);if(hit){r=hit;break}}
+ if(!r)return;                       // 未知 ID・空・壊れた query は fail-safe（何も変えない）
+ if(!filtered().includes(r)){F.region='';F.prefecture='';F.category='';F.priority='';F.wrongOnly=false;F.search=''}
+ state.view='cards';state.current=r.resource_id;save();
+}catch(e){}})();
+initFilters();window.geographyStudy={state,R,metrics,retryLine,buildQuiz,render,filtered,quizScope,STATE_KEY:KEY,primaryType,locatorSVG,TYPE_ORDER,TYPE_LABEL,mapPoints,liveMaps,GSI,disposeLiveMaps,photosFor,BSR,rstate,rapidPool,RAPID_STATE_KEY:RKEY,BSCAT,rapidBack,rapidAdvance,BS_PREF_REGION,BS_ALL_PREFS,bsReading,BSTERMS,termsIn,NMALL,NMGENRES,nmapFiltered,nmapCounts,nmapPoints,LOCAL_APPS,examLinkURL,pastExamHTML};render();
 })();
