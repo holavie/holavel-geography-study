@@ -104,7 +104,7 @@ details.photod{margin:6px 0;font-size:13px}details.photod summary{cursor:pointer
 .nprefs{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 0}
 .npref{font-size:13px;background:#fff;border:1px solid var(--locline);border-radius:999px;padding:3px 10px;color:#22333d}
 .npref b{color:var(--loc)}
-.nmreal .realmap{height:420px;border:1px solid var(--locline);border-radius:6px;background:#eef2f5}
+.nmreal .realmap{height:min(64vh,560px);min-height:320px;border:1px solid var(--locline);border-radius:6px;background:#eef2f5}
 .nlist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:6px}
 .nitem{display:grid;grid-template-columns:minmax(8em,1.4fr) minmax(6em,1fr) minmax(7em,1.2fr) 5em 7em;gap:10px;align-items:center;width:100%;text-align:left;
  border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 12px;min-height:44px;font-size:13px;color:var(--ink)}
@@ -116,7 +116,60 @@ button.nitem:hover{border-color:var(--loc)}
 .nly{font-size:11px;border-radius:999px;padding:1px 8px;text-align:center}
 .nly.deep{background:#eef4fa;color:var(--loc);border:1px solid var(--locline)}
 .nly.light{background:#f3f5f7;color:var(--muted);border:1px solid var(--line)}
-@media(max-width:900px){.nmapdist svg{max-width:100%}.nmreal .realmap{height:300px}
+.nmap{max-width:1180px}
+/* v0.23.0 (TASK-017A) 実地図を主役にした 2 カラム。狭い画面では地図の下に一覧が来る */
+.nmmain{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:14px;align-items:start}
+.nmmapcol{min-width:0}
+.nmside{min-width:0;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.nmside .nmh{margin:4px 0 6px}
+.nmcam{display:inline-flex;gap:8px;margin-left:auto}
+.nmrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.nmsum{font-size:13px;color:var(--muted);margin:8px 0 0;line-height:1.7}
+.nmsum b{color:var(--ink)}
+.nmzero{margin-top:6px}
+.nmsel{font-size:13px;border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:#fbfcfd;min-height:64px}
+.nmselhd{display:flex;gap:6px;align-items:baseline;flex-wrap:wrap}.nmselhd b{font-size:15px}
+.nmsel .lb{font-size:10px;font-weight:700;color:#fff;background:var(--loc);border-radius:3px;padding:1px 5px;letter-spacing:.03em}
+.nmsel .ngn{display:flex;gap:6px;align-items:baseline;flex-wrap:wrap;margin-top:4px}
+.nmsel .ptsh{display:inline-block;margin:8px 0 2px;background:#6b8298}
+.nmpt .ptn{font-weight:700}
+.nmpt .ptr{margin-left:6px;font-size:11px;color:var(--muted)}
+.nmpt.on .ptr{color:var(--loc)}
+/* 地図のすぐ上に、ジャンル（教材単位）と地図上の学習地点の関係を常時出す */
+.nmmean{font-size:12px;line-height:1.6;color:#2d4a5e;background:#f3f7fb;border:1px solid #b7cde3;border-radius:6px;padding:6px 9px;margin:0 0 6px}
+.nmmean b{color:var(--loc)}
+.leaflet-popup-content .pplb{display:inline-block;min-width:4.5em;font-size:10px;font-weight:700;color:#fff;background:var(--loc);border-radius:3px;padding:0 4px;margin-right:5px;text-align:center}
+.nmpts{list-style:none;margin:6px 0 8px;padding:0;display:grid;gap:4px}
+.nmpt{display:block;width:100%;text-align:left;min-height:36px;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:#fff;font-size:13px}
+.nmpt.on{border-color:var(--loc);background:#eef4fa;font-weight:700}
+.nlistwrap{max-height:min(46vh,430px);overflow:auto;border:1px solid var(--line);border-radius:8px;background:#fff}
+.nlist{list-style:none;margin:0;padding:6px;display:grid;gap:6px}
+.nrow{display:flex;gap:8px;align-items:flex-start;justify-content:space-between;border:1px solid var(--line);border-radius:8px;padding:7px 9px;background:#fff}
+.nrow.on{border-color:var(--loc);background:#eef4fa}
+.nmeta{display:grid;gap:2px;min-width:0}
+.nmeta .nnm{font-weight:700;font-size:14px}
+.nmeta .npf{color:var(--loc);font-size:12px}
+.nmeta .ngn{color:var(--muted);font-size:12px}
+.nmeta .nac{color:var(--muted);font-size:11px}.nmeta .nac.has{color:var(--ok)}
+.nact{display:grid;gap:4px;flex:0 0 auto}
+.nbtn{min-height:36px;padding:4px 10px;border:1px solid var(--line);border-radius:6px;background:#fff;font-size:12px;font-weight:700;color:var(--ink);white-space:nowrap}
+.nbtn.map{border-color:var(--locline);color:var(--loc)}
+.nbtn:hover{border-color:var(--loc)}
+.nmdist{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.nmdist>summary{cursor:pointer;font-size:14px;font-weight:700;color:var(--loc);min-height:36px;display:flex;align-items:center}
+/* 地点名ラベル（Leaflet tooltip）。位置は動かさず表示だけ調整する */
+.leaflet-tooltip.nmlab{background:rgba(255,255,255,.94);border:1px solid var(--locline);color:var(--ink);font-size:11px;font-weight:700;padding:1px 6px;box-shadow:none;white-space:nowrap}
+.leaflet-tooltip.nmlab:before{display:none}
+.leaflet-tooltip.nmlab.sel{background:var(--loc);border-color:var(--loc);color:#fff}
+@media(max-width:900px){.nmapdist svg{max-width:100%}
+ .nmap{max-width:100%}
+ /* 16 ジャンルの chip だけで初期画面を埋めないよう、chip 領域の高さを抑えて中でスクロールさせる（ページは横に伸ばさない） */
+ .nchips{max-height:104px;overflow-y:auto;overflow-x:hidden;padding-right:2px}
+ .nmfil{padding:10px}
+ .nmmain{grid-template-columns:1fr}
+ .nmreal .realmap{height:340px;min-height:0}
+ .nlistwrap{max-height:none;overflow:visible}
+ .nmcam{margin-left:0}
  .nitem{grid-template-columns:1fr auto;grid-auto-rows:min-content;row-gap:4px}
  .nitem .ngn,.nitem .nac{grid-column:1/-1}}
 /* v0.20.1 (TASK-014E) 地図セクション内の Google マップ検索リンクと、画面下部の関連学習リンク。
@@ -205,3 +258,9 @@ details.rmapd>.locator{padding:8px 0 0}
 .rterms{display:flex;flex-wrap:wrap;gap:2px 12px}
 .rterm{font-size:14px;color:#3a4a55;white-space:normal;word-break:break-word}
 @media(max-width:900px){.rterm{font-size:13.5px}}
+/* v0.1 (TASK-015B) 共通ホームへの戻り。ローカル環境のときだけ表示する */
+.homelink{display:inline-flex;align-items:center;min-height:44px;font-size:13px;color:var(--accent);text-decoration:none}
+/* hidden 属性が付いているときは必ず消す。display 指定が UA の [hidden]{display:none} を打ち消してしまうため
+   （公開ホストでは共通ホームへのリンクを描画も Tab 移動もさせない） */
+.homelink[hidden]{display:none}
+.homelink:hover{text-decoration:underline}

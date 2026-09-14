@@ -3,6 +3,10 @@
 // 追加。Rapid は DEEP 30 とは別レイヤーで、資源名 → 都道府県・カテゴリ・一言特徴だけを高速反復する。
 //   pool: LIGHTWEIGHT 70 のみ（v0.1 では DEEP を混ぜない）。写真 0 / 地図 0 / Quiz 採点対象外。
 //   state: localStorage "holavel_geography_rapid_v1"（version 1）。DEEP の "holavel_geography_study_v2" は読み書きしない。
+// v0.23.0 (TASK-017A): 全国MAP を実地図中心の画面にした。タブに入ると追加操作なしで地理院タイルの実地図が出て、
+//   ジャンル・県を変えても地図 instance と背景タイルは作り直さず marker / ラベル / 一覧 / 選択パネルだけ差し替える。
+//   カメラ（中心・縮尺）と選択中の資源はページセッション内だけで保持し、localStorage は増やさない。
+//   県タイル図は「県別の教材分布」として折りたたみへ移動。state.nmap.points は旧 field として boolean のまま残す。
 // v0.21.1 (TASK-014H1): Astra 独立監査の指摘 5 件を修正。(H1) 全国MAP の実地点地図に Card と同じ GSI 追加出所（ZL5〜8）を出す。
 //   (M1) 保存 state の region / prefecture を own property だけで検証し、toString / constructor / __proto__ を弾く。
 //   (M2) 全国MAP のフィルタ操作で focus が body へ落ちないよう、操作していた control へ再描画後に戻す。
@@ -147,7 +151,8 @@ let mapSeq=0;const liveMaps={};
 // Dispose every Leaflet instance we created. Called at the start of each render: the DOM those maps live in is about to
 // be replaced, so presence in the DOM must not decide what to keep (that left one generation alive). Failures here are
 // swallowed so a broken map can never take the app down.
-function disposeLiveMaps(){Object.keys(liveMaps).forEach(k=>{const m=liveMaps[k];try{if(m){m.off();m.remove()}}catch(e){}delete liveMaps[k]})}
+function disposeLiveMaps(){Object.keys(liveMaps).forEach(k=>{const m=liveMaps[k];try{if(m){m.off();m.remove()}}catch(e){}delete liveMaps[k]});
+ if(typeof nmClearMap==='function')nmClearMap()}
 function mapHTML(r,label){const mp=mapPoints(r);const hasPoints=mp.points.length>0;const libOK=!!window.L;const hasReal=hasPoints&&libOK;const id='m'+(++mapSeq);
  const role=hasReal?'実地図＝どんな地形のどこにあるか ／ 全国俯瞰＝日本のどこにあるか'
   :(hasPoints?'実地図を読み込めません（地図ライブラリを読み込めません）。全国俯瞰をご利用ください。':'この資源は実地図ポイント未登録（全国俯瞰のみ）');
@@ -273,6 +278,12 @@ function sourcesHTML(r){const s=(r.sources||[]);return s.length?`<details><summa
 const LOCAL_APPS=(()=>{try{return location.protocol==='file:'||/^(localhost|127\.0\.0\.1|\[?::1\]?)$/.test(location.hostname)}catch(e){return false}})();
 // 過去問との対応は resources.js の past_exam_links が唯一の正本。ここでは表示するだけで対応表を複製しない。
 const REL_LABEL={DIRECT:'この資源が直接出題',RELATED_CONTEXT:'関連テーマとして復習'};
+const PT_ROLE={REPRESENTATIVE:'代表地点',LANDMARK:'目印となる地物',VIEWPOINT:'展望地点'};  // visual_locations の role の表示名
+// 共通ホーム（Travel Study）への戻り導線もローカル環境だけ。公開では壊れたリンクを出さない
+(function(){try{const h=document.getElementById('homeLink');if(h&&LOCAL_APPS)h.hidden=false}catch(e){}})();
+// 過去問演習の案内文もローカルのときだけ現状に合わせる。公開版は「準備中」のままで、private が使えるように見せない
+(function(){try{const p=document.getElementById('pxStatus');
+ if(p&&LOCAL_APPS)p.textContent='Holavel Exam Sprint と連携済みです。カードの「この問題を解く」から該当の過去問を開けます。'}catch(e){}})();
 function examLinkURL(qid){return '../exam-sprint/index.html?question='+encodeURIComponent(qid)}
 function pastExamHTML(r){const L=(r.past_exam_links||[]).filter(l=>l&&typeof l.question_id==='string');
  if(!L.length)return '';
@@ -526,7 +537,8 @@ const NMKEYS=NMGENRES.map(g=>g.key);
  state.nmap={genres:Array.isArray(n.genres)?n.genres.filter(g=>NMKEYS.includes(g)).filter((g,i,a)=>a.indexOf(g)===i):[],
   region:has(BS_REGION_PREFS,n.region)?n.region:'',
   prefecture:has(BS_PREF_REGION,n.prefecture)?n.prefecture:'',
-  points:n.points===true};
+  points:n.points===true};   // 旧仕様「確認済み実地点を表示」のフラグ。実地図が主役になった v0.23.0 以降は表示の判断に使わないが、
+                            // 保存済み state を壊さないよう boolean として残す（false でも地図は出る）
  if(state.nmap.prefecture)state.nmap.region=BS_PREF_REGION[state.nmap.prefecture]})();
 // 絞り込みは カード／クイズ／高速暗記 と同じ意味論: ジャンルは OR、個別都道府県を選んでいる間は県が正
 function nmapFiltered(){const n=state.nmap;
@@ -546,19 +558,51 @@ function nmapDistSVG(cnt){if(!LOC)return '<div class="msg">全国図を読み込
 // 確認済み実地点（LAYER 2）: visual_locations の点だけを使う。1 点も作らない
 function nmapPoints(list){const out=[];
  list.filter(r=>r.layer==='DEEP').forEach(r=>{const res=R.find(x=>x.resource_id===r.id);if(!res)return;
-  mapPoints(res).points.forEach(p=>out.push({lat:p.lat,lon:p.lon,label:p.label,name:res.name}))});
+  // 資源と地点の同定は resource_id ＋ 正本の point id の組で行う（名前や並び順では同定しない）
+  mapPoints(res).points.forEach((p,i)=>out.push({lat:p.lat,lon:p.lon,label:p.label,name:res.name,
+   rid:res.resource_id,pid:(typeof p.id==='string'&&p.id)?p.id:(res.resource_id+'#'+i),role:p.role||''}))});
  return out}
-function initNmapMap(el){if(!el||el.dataset.ready||!window.L)return;
- const pts=(el._pts||[]);if(!pts.length)return;
+// 全国MAP はページセッション内だけで カメラ（中心・縮尺）と選択中の資源／地点を覚える。
+// localStorage へは保存しない（新しい永続 state を増やさない）。reload でカメラは既定へ戻る。
+let nmMap=null,nmMapEl=null,nmMarkers=[],nmCam=null,nmSelRid=null,nmSelPid=null;
+const NM_HOME={center:[37.6,137.4],zoom:5};   // カメラの既定位置。表示用の設定であって資源の座標データではない
+function nmClearMap(){nmMap=null;nmMapEl=null;nmMarkers=[]}
+// 地図は全国MAP に入ったときに 1 度だけ作る。ジャンル・県を変えても instance と背景タイルはそのまま使い、
+// marker / ラベル / 一覧 / 選択パネルだけを差し替える（毎回作り直すとタイルを取り直し、カメラも失われる）。
+function nmMount(el){if(!el||!window.L)return null;
+ if(nmMap&&nmMapEl===el)return nmMap;
  try{const m=L.map(el,{scrollWheelZoom:false,attributionControl:false,zoomControl:true,minZoom:GSI.minZoom,maxZoom:GSI.maxZoom});
   const fail=el.parentElement&&el.parentElement.querySelector('.mfail');let okT=0,badT=0;
   const tl=L.tileLayer(window.GEO_TILE_URL_OVERRIDE||GSI.url,{minZoom:GSI.minZoom,maxZoom:GSI.maxZoom,crossOrigin:false});
+  // marker が 0 件であることと、背景タイルが読めないことは別の状態として扱う
   tl.on('tileload',()=>{okT++;if(fail)fail.hidden=true});tl.on('tileerror',()=>{badT++;if(!okT&&badT>=4&&fail){fail.hidden=false}});tl.addTo(m);
-  const mk=pts.map(p=>L.circleMarker([p.lat,p.lon],{radius:6,color:'#fff',weight:2,fillColor:'#1f5f8b',fillOpacity:.95})
-   .bindPopup(`<b>${esc(p.name)}</b><br>${esc(p.label)}`,{closeButton:false}).addTo(m));
-  m.fitBounds(L.latLngBounds(pts.map(p=>[p.lat,p.lon])),{padding:[20,20],maxZoom:9});
-  el._markers=mk;el.dataset.ready='1';liveMaps[el.id]=m;setTimeout(()=>m.invalidateSize(),50)}
- catch(e){const fail=el.parentElement&&el.parentElement.querySelector('.mfail');if(fail)fail.hidden=false}}
+  const c=nmCam&&nmCam.center?nmCam:NM_HOME;m.setView(c.center,c.zoom);
+  const remember=()=>{try{const ce=m.getCenter();nmCam={center:[ce.lat,ce.lng],zoom:m.getZoom()}}catch(e){}};
+  m.on('moveend',remember);m.on('zoomend',()=>{remember();nmLabels()});
+  el.dataset.ready='1';nmMap=m;nmMapEl=el;liveMaps[el.id]=m;setTimeout(()=>m.invalidateSize(),50);return m}
+ catch(e){const fail=el.parentElement&&el.parentElement.querySelector('.mfail');if(fail)fail.hidden=false;return null}}
+// ラベルは既存 Leaflet の tooltip だけで出す。位置は動かさず、混雑するときは出す数を間引く。
+// 少数なら広域でも名前を出す。多いときは拡大したときだけ出し、混雑する場所では出す数を間引く
+const NM_LABEL_ZOOM=8, NM_LABEL_MAX=26, NM_LABEL_FEW=12;
+function nmLabels(){if(!nmMap)return;
+ let vis=[];try{const b=nmMap.getBounds();vis=nmMarkers.filter(mk=>b.contains(mk.getLatLng()))}catch(e){vis=nmMarkers.slice()}
+ const z=nmMap.getZoom(),show=vis.length<=NM_LABEL_FEW||(z>=NM_LABEL_ZOOM&&vis.length<=NM_LABEL_MAX);
+ nmMarkers.forEach(mk=>{const sel=mk._nm&&mk._nm.pid===nmSelPid;
+  const want=sel||(show&&vis.indexOf(mk)>=0);
+  const t=mk.getTooltip();if(!t)return;
+  if(want!==!!t.options.permanent){mk.unbindTooltip();mk.bindTooltip(mk._nm.label,{permanent:want,direction:'top',offset:[0,-6],className:'nmlab'+(sel?' sel':'')})}
+  else if(sel&&t.options.className.indexOf('sel')<0){mk.unbindTooltip();mk.bindTooltip(mk._nm.label,{permanent:want,direction:'top',offset:[0,-6],className:'nmlab sel'})}
+  else if(!sel&&t.options.className.indexOf('sel')>=0){mk.unbindTooltip();mk.bindTooltip(mk._nm.label,{permanent:want,direction:'top',offset:[0,-6],className:'nmlab'})}})}
+// 絞り込みに該当する地点だけを marker として置き直す。地図・背景タイル・カメラには触らない。
+function nmDrawMarkers(pts){if(!nmMap)return;
+ nmMarkers.forEach(mk=>{try{nmMap.removeLayer(mk)}catch(e){}});nmMarkers=[];
+ pts.forEach(p=>{const mk=L.circleMarker([p.lat,p.lon],{radius:6,color:'#fff',weight:2,fillColor:'#1f5f8b',fillOpacity:.95});
+  mk._nm=p;mk.bindTooltip(p.label,{permanent:false,direction:'top',offset:[0,-6],className:'nmlab'});
+  mk.bindPopup(`<span class="pplb">教材</span><b>${esc(p.name)}</b><br><span class="pplb">学習地点</span>${esc(p.label)}${p.role?`<br><span class="pplb">役割</span>${esc(PT_ROLE[p.role]||p.role)}`:''}`,{closeButton:false});
+  // マーカーを押したら「資源＋地点」を選ぶ。マウス操作では keyboard focus を動かさない
+  mk.on('click',()=>{nmSelect(p.rid,p.pid,{pan:false,scroll:true})});
+  mk.addTo(nmMap);nmMarkers.push(mk)});
+ nmLabels()}
 // 結果一覧から カードを開く。絞り込みで隠れている場合だけ共通フィルタを解除して必ず開けるようにする
 function nmapOpenCard(id){const r=R.find(x=>x.resource_id===id);if(!r)return;
  if(!filtered().includes(r)){F.region='';F.prefecture='';F.category='';F.priority='';F.wrongOnly=false;F.search='';initFilters();toast('カードを開くため絞り込みを解除しました')}
@@ -579,60 +623,134 @@ function nmRestoreFocus(){const k=nmFocus;nmFocus=null;if(!k)return;
  else if(k.indexOf('item:')===0)el=document.querySelector('.nitem[data-rid="'+nmSel(k.slice(5))+'"]');
  else if(k.indexOf('id:')===0)el=document.getElementById(k.slice(3));
  if(el&&typeof el.focus==='function')el.focus()}
-function renderNationalMap(){const n=state.nmap;const list=nmapFiltered();const cnt=nmapCounts(list);
- const prefN=Object.keys(cnt).length;
+// 全国MAP の要約: 教材の数と地点の数を混同しないよう、4 つを別々に数える
+function nmapSummary(list){const withPts=list.filter(r=>r.layer==='DEEP'&&r.pts>0);
+ return {res:list.length,resWithPts:withPts.length,pts:withPts.reduce((a,r)=>a+r.pts,0),
+  prefOnly:list.length-withPts.length,prefN:Object.keys(nmapCounts(list)).length}}
+// 選択中の資源が絞り込みから外れたら選択を解除する（別の資源へ勝手に置き換えない。カメラは保持）
+function nmPruneSelection(list){if(!nmSelRid)return;
+ if(!list.some(r=>r.id===nmSelRid)){nmSelRid=null;nmSelPid=null}}
+function nmSelectedInfo(){if(!nmSelRid)return null;
+ const r=NMALL.find(x=>x.id===nmSelRid);if(!r)return null;
+ const res=R.find(x=>x.resource_id===nmSelRid);
+ const pts=res?nmapPoints([r]):[];
+ return {r,pts}}
+// 資源＋地点を選ぶ。pan=true のときだけカメラを動かす
+function nmSelect(rid,pid,opt){opt=opt||{};
+ nmSelRid=rid||null;nmSelPid=pid||null;
+ if(opt.pan&&nmMap){const mine=nmMarkers.filter(mk=>mk._nm.rid===rid);
+  const one=pid?mine.filter(mk=>mk._nm.pid===pid):[];
+  const use=one.length?one:mine;
+  if(use.length===1)nmMap.setView(use[0].getLatLng(),Math.max(nmMap.getZoom(),11),{animate:false});
+  else if(use.length>1)nmMap.fitBounds(L.latLngBounds(use.map(mk=>mk.getLatLng())),{padding:[40,40],maxZoom:11});}
+ nmPanel();nmListMark(!!opt.scroll);nmLabels();
+ if(nmSelPid&&nmMap){const mk=nmMarkers.find(x=>x._nm.pid===nmSelPid);if(mk)mk.openPopup()}}
+// 選択パネル（資源名・県・ジャンル・地点一覧）
+function nmPanel(){const el=$('nmSel');if(!el)return;
+ const info=nmSelectedInfo();
+ if(!info){el.innerHTML='<div class="rd">地図のマーカー、または一覧の「地図で確認」を選ぶと、ここに資源の情報が出ます。</div>';return}
+ const {r,pts}=info;
+ const g=r.cats.map(c=>BSCAT[c]||c).join('・');
+ const rows=pts.length?pts.map(p=>`<li><button type="button" class="nmpt${p.pid===nmSelPid?' on':''}" data-rid="${esc(p.rid)}" data-pid="${esc(p.pid)}"><span class="ptn">${esc(p.label)}</span>${p.role?`<span class="ptr">${esc(PT_ROLE[p.role]||p.role)}</span>`:''}</button></li>`).join('')
+  :'<li class="rd">この教材は県単位の情報のみで、地図に出せる学習地点は登録されていません。</li>';
+ el.innerHTML=`<div class="nmselhd"><span class="lb">教材</span><b>${esc(r.name)}</b><span class="npf">${r.prefs.map(x=>esc(x)).join('・')}</span></div>
+  <div class="ngn"><span class="lb">教材のジャンル</span>${esc(g)}</div>
+  <div class="rd">${r.layer==='DEEP'?'詳細 30 資源':'高速暗記 70 資源（県単位）'}${pts.length?`・この教材の学習地点 ${pts.length} 地点`:''}</div>
+  ${pts.length?'<div class="lb ptsh">学習地点（教材に関連する地点）</div>':''}
+  <ul class="nmpts">${rows}</ul>
+  ${r.layer==='DEEP'?`<button type="button" class="btn nsm nmcard" data-rid="${esc(r.id)}">カードで学ぶ</button>`:''}`;
+ el.querySelectorAll('.nmpt').forEach(b=>b.onclick=()=>nmSelect(b.dataset.rid,b.dataset.pid,{pan:true}));
+ const cb=el.querySelector('.nmcard');if(cb)cb.onclick=()=>nmapOpenCard(cb.dataset.rid)}
+// 一覧側の強調。必要なときだけ該当行までスクロールする
+function nmListMark(scroll){document.querySelectorAll('.nrow').forEach(li=>{
+  const on=li.dataset.rid===nmSelRid;li.classList.toggle('on',on);
+  if(on&&scroll&&li.scrollIntoView){const box=li.closest('.nlistwrap');
+   if(box){const a=li.getBoundingClientRect(),b=box.getBoundingClientRect();
+    if(a.top<b.top||a.bottom>b.bottom)li.scrollIntoView({block:'nearest'})}}})}
+// 一覧と要約と分布を、地図を作り直さずに更新する
+function nmSync(){const n=state.nmap,list=nmapFiltered(),cnt=nmapCounts(list),sum=nmapSummary(list);
+ nmPruneSelection(list);
+ const pts=nmapPoints(list);
  const gl=n.genres.length?n.genres.map(g=>BSCAT[g]||g).join('・'):'すべてのジャンル';
- const chips=NMGENRES.map(g=>`<button type="button" class="nchip${n.genres.includes(g.key)?' on':''}" data-g="${esc(g.key)}" aria-pressed="${n.genres.includes(g.key)?'true':'false'}">${esc(g.label)} <span class="nn">${g.n}</span></button>`).join('');
- const ranking=Object.entries(cnt).sort((a,b)=>b[1]-a[1]||BS_ALL_PREFS.indexOf(a[0])-BS_ALL_PREFS.indexOf(b[0]))
-  .map(([p,c])=>`<span class="npref"><b>${esc(p)}</b> ${c}</span>`).join('');
- const pts=n.points?nmapPoints(list):[];
- const mapId='nm'+(++mapSeq);const libOK=!!window.L;
- // 出所表記は Card の実地図と同じものを使う（GSI.attr ＋ ZL5〜8 の追加出所）。文言は GSI 定数から取り、新しく作らない
- const ptsec=!libOK
-  ?`<div class="nmreal"><div class="mfail">実地図を読み込めません（地図ライブラリを読み込めません）。全国分布をご利用ください。</div></div>`
-  :`<div class="nmreal"><div class="realmap" id="${mapId}"></div>
-   <div class="mattr">${esc(GSI.attr)}　<a href="${GSI.list}" target="_blank" rel="noopener">地理院タイル一覧</a>
-    <div class="zl58"><b>${esc(GSI.zl58note)}</b> ${esc(GSI.zl58src)}</div>
-    <div class="rd">確認済み実地点 ${pts.length} 地点（詳細 30 資源のうち絞り込みに該当するもの）。マーカーは学習用の代表地点で、区域全体ではありません。</div></div>
-   <div class="mfail" hidden>実地図を読み込めません（ネットワークまたは地図ライブラリ）。全国分布をご利用ください。</div></div>`;
- const items=list.map(r=>{const g=r.cats.map(c=>BSCAT[c]||c).join('・');
-   const acc=r.layer==='DEEP'?(r.pts?`実地点あり ${r.pts}`:'県単位'):'県単位';
-   // 過去問の有無は件数バッジだけ。ここから直接 Exam Sprint へは飛ばさない（MAP →理解→ Card →問題 の順を保つ）
+ const sm=$('nmSum');
+ if(sm)sm.innerHTML=`<b>${esc(gl)}</b>${n.genres.length>1?`<span class="rd">（${n.genres.length}ジャンル選択中・いずれかに該当）</span>`:''}`
+  +`　教材 <b>${sum.res}</b> 資源 / <b>${sum.prefN}</b> 都道府県`
+  +`　うち学習地点あり <b>${sum.resWithPts}</b> 資源・地図に <b>${sum.pts}</b> 地点`
+  +`　県単位のみ <b>${sum.prefOnly}</b> 資源`;
+ const fit=$('nmFit');if(fit){fit.disabled=!pts.length;fit.title=pts.length?'':'この絞り込みに該当する教材には、地図に出せる学習地点がありません'}
+ const zero=$('nmZero');if(zero)zero.hidden=!!pts.length;
+ const dist=$('nmDist');if(dist)dist.innerHTML=nmapDistSVG(cnt)+(Object.keys(cnt).length
+  ?`<div class="nprefs">${Object.entries(cnt).sort((a,b)=>b[1]-a[1]||BS_ALL_PREFS.indexOf(a[0])-BS_ALL_PREFS.indexOf(b[0])).map(([p,c])=>`<span class="npref"><b>${esc(p)}</b> ${c}</span>`).join('')}</div>`
+  :'<div class="msg">該当する資源がありません。ジャンル・学習分類・都道府県を変えてください。</div>');
+ const lw=$('nmList');
+ if(lw)lw.innerHTML=list.length?list.map(r=>{const g=r.cats.map(c=>BSCAT[c]||c).join('・');
    const ex=r.exam?`<span class="nex">過去問 ${r.exam}</span>`:'';
-   const inner=`<span class="nnm">${esc(r.name)}${ex}</span><span class="npf">${r.prefs.map(p=>esc(p)).join('・')}</span><span class="ngn">${esc(g)}</span><span class="nly ${r.layer==='DEEP'?'deep':'light'}">${r.layer==='DEEP'?'詳細':'高速暗記'}</span><span class="nac">${esc(acc)}</span>`;
-   return r.layer==='DEEP'
-    ? `<li><button type="button" class="nitem" data-rid="${esc(r.id)}" aria-label="${esc(r.name)} のカードを開く">${inner}</button></li>`
-    : `<li><span class="nitem flat">${inner}</span></li>`}).join('');
+   const acc=r.layer==='DEEP'&&r.pts?`学習地点 ${r.pts}`:'県単位／地点未登録';
+   const act=r.layer==='DEEP'
+    ?`${r.pts?`<button type="button" class="nbtn map" data-rid="${esc(r.id)}">地図で確認</button>`:''}<button type="button" class="nbtn card" data-rid="${esc(r.id)}">カードで学ぶ</button>`
+    :'';
+   return `<li class="nrow${r.id===nmSelRid?' on':''}" data-rid="${esc(r.id)}">
+    <div class="nmeta"><span class="nnm">${esc(r.name)}${ex}</span><span class="npf">${r.prefs.map(x=>esc(x)).join('・')}</span>
+     <span class="ngn">${esc(g)}</span><span class="nac ${r.layer==='DEEP'&&r.pts?'has':''}">${esc(acc)}</span></div>
+    <div class="nact">${act}</div></li>`}).join('')
+  :'<li class="msg">該当する資源がありません。</li>';
+ const hd=$('nmListH');if(hd)hd.textContent=`該当資源（${list.length}）`;
+ if(lw){lw.querySelectorAll('.nbtn.map').forEach(b=>b.onclick=()=>nmSelect(b.dataset.rid,null,{pan:true}));
+  lw.querySelectorAll('.nbtn.card').forEach(b=>b.onclick=()=>nmapOpenCard(b.dataset.rid))}
+ nmDrawMarkers(pts);nmPanel();nmListMark(false)}
+// 全国MAP の骨組みは 1 度だけ作る。以後の絞り込み操作は nmSync だけで済ませる
+function renderNationalMap(){const n=state.nmap;
+ const chips=NMGENRES.map(g=>`<button type="button" class="nchip${n.genres.includes(g.key)?' on':''}" data-g="${esc(g.key)}" aria-pressed="${n.genres.includes(g.key)?'true':'false'}">${esc(g.label)} <span class="nn">${g.n}</span></button>`).join('');
+ const mapId='nm'+(++mapSeq);const libOK=!!window.L;
+ // 出所表記は Card の実地図と同じものを使う（GSI.attr ＋ ZL5〜8 の追加出所）。折りたたまず常時表示する
+ const attr=`<div class="mattr">${esc(GSI.attr)}　<a href="${GSI.list}" target="_blank" rel="noopener">地理院タイル一覧</a>
+   <div class="zl58"><b>${esc(GSI.zl58note)}</b> ${esc(GSI.zl58src)}</div>
+   <div class="rd">マーカーは学習用の代表地点で、区域全体を示すものではありません。登録教材の分布です。全国の観光資源を網羅した統計ではありません。</div></div>`;
+ const mapcol=libOK
+  ?`<div class="nmreal"><p class="nmmean">ジャンルは<b>教材単位</b>の分類です。地図に出るのは<b>その教材の学習地点</b>で、山・湖・建物などジャンルとは種類が違うことがあります。</p><div class="realmap" id="${mapId}"></div>
+    <div class="msg nmzero" id="nmZero" hidden>この絞り込みに該当する教材には、地図に出せる学習地点が登録されていません（背景地図・県別の教材分布・該当教材一覧は使えます）。</div>
+    <div class="mfail" hidden>実地図を読み込めません（ネットワークまたは地図ライブラリ）。下の「県別の教材分布」と該当資源一覧をご利用ください。</div>
+    ${attr}</div>`
+  :`<div class="nmreal"><p class="nmmean">ジャンルは<b>教材単位</b>の分類です。地図に出るのは<b>その教材の学習地点</b>で、山・湖・建物などジャンルとは種類が違うことがあります。</p><div class="mfail">実地図を読み込めません（地図ライブラリを読み込めません）。下の「県別の教材分布」と該当資源一覧をご利用ください。</div>${attr}</div>`;
  $('view').innerHTML=`<div class="nmap">
   <div class="nmfil">
    <div class="nchips" role="group" aria-label="ジャンルで絞り込む">${chips}</div>
    <div class="nmrow">
-    <button type="button" class="btn nsm" id="nmAll">すべて</button>
-    <button type="button" class="btn nsm" id="nmClear">選択解除</button>
+    <button type="button" class="btn nsm" id="nmAll">ジャンルをすべて選択</button>
+    <button type="button" class="btn nsm" id="nmClear">絞り込みを解除</button>
     <label>学習分類 <select id="nmRegion" aria-label="学習分類で絞り込む"><option value="">全国</option>${BSREG.map(x=>`<option value="${esc(x)}" ${n.region===x?'selected':''}>${esc(x)}</option>`).join('')}</select></label>
     <label>都道府県 <select id="nmPref" aria-label="都道府県で絞り込む"><option value="">すべて</option>${BS_ALL_PREFS.map(x=>`<option value="${esc(x)}" ${n.prefecture===x?'selected':''}>${esc(x)}</option>`).join('')}</select></label>
-    <label class="chk"><input type="checkbox" id="nmPts" ${n.points?'checked':''} /> 確認済み実地点を表示</label>
+    <span class="nmcam"><button type="button" class="btn nsm" id="nmFit">該当地点を表示</button><button type="button" class="btn nsm" id="nmHome">全国に戻る</button></span>
    </div>
-   <p class="nmsum" id="nmSum"><b>${esc(gl)}</b>${n.genres.length>1?`<span class="rd">（${n.genres.length}ジャンル選択中・いずれかに該当）</span>`:''}　<b>${list.length}</b> 資源　<b>${prefN}</b> 都道府県</p>
+   <p class="nmsum" id="nmSum"></p>
   </div>
-  <h3 class="nmh">全国分布（都道府県単位）</h3>
-  ${nmapDistSVG(cnt)}
-  ${ranking?`<div class="nprefs">${ranking}</div>`:'<div class="msg">該当する資源がありません。ジャンル・学習分類・都道府県を変えてください。</div>'}
-  ${n.points?`<h3 class="nmh">確認済み実地点（詳細 30 資源・${pts.length} 地点）</h3>${pts.length?ptsec:'<div class="msg">この絞り込みに、確認済み実地点を持つ資源はありません。</div>'}`:''}
-  <h3 class="nmh">該当資源（${list.length}）</h3>
-  <ul class="nlist">${items}</ul>
+  <div class="nmmain">
+   <div class="nmmapcol">${mapcol}</div>
+   <aside class="nmside">
+    <h3 class="nmh">選択中の資源</h3>
+    <div class="nmsel" id="nmSel"></div>
+    <h3 class="nmh" id="nmListH">該当資源</h3>
+    <div class="nlistwrap"><ul class="nlist" id="nmList"></ul></div>
+   </aside>
+  </div>
+  <details class="nmdist"><summary>県別の教材分布（都道府県単位）</summary><div id="nmDist"></div></details>
  </div>`;
- const apply=()=>{nmFocus=nmFocusKey();save();render()};
+ const apply=()=>{nmFocus=nmFocusKey();save();
+  document.querySelectorAll('.nchip').forEach(b=>{const on=n.genres.includes(b.dataset.g);b.classList.toggle('on',on);b.setAttribute('aria-pressed',on?'true':'false')});
+  nmSync();nmRestoreFocus()};
  $('nmAll').onclick=()=>{n.genres=NMKEYS.slice();apply()};
- $('nmClear').onclick=()=>{n.genres=[];apply()};
+ $('nmClear').onclick=()=>{n.genres=[];n.region='';n.prefecture='';$('nmRegion').value='';$('nmPref').value='';apply()};
  document.querySelectorAll('.nchip').forEach(b=>b.onclick=()=>{const g=b.dataset.g;
   const i=n.genres.indexOf(g);if(i>=0)n.genres.splice(i,1);else n.genres.push(g);apply()});
- $('nmPref').onchange=()=>{const p=$('nmPref').value;n.prefecture=p;if(p)n.region=BS_PREF_REGION[p];apply()};
+ $('nmPref').onchange=()=>{const p=$('nmPref').value;n.prefecture=p;if(p){n.region=BS_PREF_REGION[p];$('nmRegion').value=n.region}apply()};
  $('nmRegion').onchange=()=>{const reg=$('nmRegion').value;n.region=reg;
-  if(reg&&n.prefecture&&BS_PREF_REGION[n.prefecture]!==reg)n.prefecture='';apply()};
- $('nmPts').onchange=()=>{n.points=$('nmPts').checked;apply()};
- document.querySelectorAll('.nitem[data-rid]').forEach(b=>b.onclick=()=>nmapOpenCard(b.dataset.rid));
- const el=libOK?$(mapId):null;if(el){el._pts=pts;initNmapMap(el)}
+  if(reg&&n.prefecture&&BS_PREF_REGION[n.prefecture]!==reg){n.prefecture='';$('nmPref').value=''}apply()};
+ // カメラ操作だけを行うボタン。絞り込みは変えない（「絞り込みを解除」とは別物）
+ $('nmFit').onclick=()=>{const pts=nmapPoints(nmapFiltered());
+  if(!pts.length||!nmMap)return;nmMap.fitBounds(L.latLngBounds(pts.map(p=>[p.lat,p.lon])),{padding:[30,30],maxZoom:10})};
+ $('nmHome').onclick=()=>{if(nmMap)nmMap.setView(NM_HOME.center,NM_HOME.zoom,{animate:false})};
+ const el=libOK?$(mapId):null;if(el)nmMount(el);
+ nmSync();
  nmRestoreFocus();
 }
 // deep link 受け口: ?resource=<resource_id>。既知の DEEP resource_id と一致したときだけ開く。
@@ -646,5 +764,5 @@ function renderNationalMap(){const n=state.nmap;const list=nmapFiltered();const 
  if(!filtered().includes(r)){F.region='';F.prefecture='';F.category='';F.priority='';F.wrongOnly=false;F.search=''}
  state.view='cards';state.current=r.resource_id;save();
 }catch(e){}})();
-initFilters();window.geographyStudy={state,R,metrics,retryLine,buildQuiz,render,filtered,quizScope,STATE_KEY:KEY,primaryType,locatorSVG,TYPE_ORDER,TYPE_LABEL,mapPoints,liveMaps,GSI,disposeLiveMaps,photosFor,BSR,rstate,rapidPool,RAPID_STATE_KEY:RKEY,BSCAT,rapidBack,rapidAdvance,BS_PREF_REGION,BS_ALL_PREFS,bsReading,BSTERMS,termsIn,NMALL,NMGENRES,nmapFiltered,nmapCounts,nmapPoints,LOCAL_APPS,examLinkURL,pastExamHTML};render();
+initFilters();window.geographyStudy={state,R,metrics,retryLine,buildQuiz,render,filtered,quizScope,STATE_KEY:KEY,primaryType,locatorSVG,TYPE_ORDER,TYPE_LABEL,mapPoints,liveMaps,GSI,disposeLiveMaps,photosFor,BSR,rstate,rapidPool,RAPID_STATE_KEY:RKEY,BSCAT,rapidBack,rapidAdvance,BS_PREF_REGION,BS_ALL_PREFS,bsReading,BSTERMS,termsIn,NMALL,NMGENRES,nmapFiltered,nmapCounts,nmapPoints,nmapSummary,nmSelect,nmSync,NM_HOME,get nmMap(){return nmMap},get nmMarkers(){return nmMarkers},get nmCam(){return nmCam},get nmSelRid(){return nmSelRid},get nmSelPid(){return nmSelPid},LOCAL_APPS,examLinkURL,pastExamHTML};render();
 })();

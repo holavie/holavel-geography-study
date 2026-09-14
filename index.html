@@ -10,7 +10,9 @@
 </head>
 <body>
 <header class="top">
-  <div><h1>Geography Study</h1><div class="sub">国内観光地理 詳細30 + 高速暗記70 = 100資源（2026-09-24 国内試験対策）</div></div>
+  <div><h1>Geography Study</h1><div class="sub">国内観光地理 詳細30 + 高速暗記70 = 100資源（2026-09-24 国内試験対策）</div>
+  <!-- 共通ホームはローカル環境だけにあるので、既定は非表示。app.js がローカルと判定したときだけ出す -->
+  <a class="homelink" id="homeLink" href="../travel-study/home.html" hidden>← Travel Study ホーム</a></div>
   <div class="modes" id="modes"><button data-view="cards" class="on">カード</button><button data-view="quiz">クイズ</button><button data-view="rapid">高速暗記</button><button data-view="nmap">全国MAP</button></div>
   <div class="status" id="status"></div>
 </header>
@@ -34,7 +36,8 @@
     <a href="https://www.jata-net.or.jp/seminar/" target="_blank" rel="noopener noreferrer">総合旅行業務取扱管理者試験（JATA 公式）↗</a>
   </div>
   <p>国内＝法令／約款／国内旅行実務。総合＝法令／約款／国内旅行実務／海外旅行実務。</p>
-  <p>Holavel 内での過去問演習との連携は準備中です（この画面からは利用できません）。</p>
+  <!-- 既定は公開向けの文言。ローカル環境のときだけ app.js が連携済みの案内へ差し替える -->
+  <p id="pxStatus">Holavel 内での過去問演習との連携は準備中です（この画面からは利用できません）。</p>
 </details>
 <div class="toast" id="toast"></div>
 <script src="data/resources.js"></script>
