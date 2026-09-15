@@ -1,7 +1,9 @@
-// Geography Study v0.18.0 — 国内観光地理 詳細30 + 高速暗記70 = 100資源 (no build, local first; Leaflet vendored locally).
+// Geography Study v0.24.0 — 国内観光地理 DEEP 30 + LIGHTWEIGHT 70+n (no build, local first; Leaflet vendored locally).
+// v0.24.0 (TASK-018B): LIGHTWEIGHT へ WAVE 2 の 43 件を追加（生成経路: tools/geography_broad_shallow_build.py）。
+//   件数は data から数えて表示する。教材総数をコードに定数で書かない。DEEP 30 資源 58 地点は変更しない。
 // v0.18.0 (TASK-013H): Broad-Shallow WAVE 1 V3 の LIGHTWEIGHT 70 件（data/broad_shallow.js）と Rapid Study Mode v0.1 を
 // 追加。Rapid は DEEP 30 とは別レイヤーで、資源名 → 都道府県・カテゴリ・一言特徴だけを高速反復する。
-//   pool: LIGHTWEIGHT 70 のみ（v0.1 では DEEP を混ぜない）。写真 0 / 地図 0 / Quiz 採点対象外。
+//   pool: LIGHTWEIGHT のみ（v0.1 では DEEP を混ぜない）。写真 0 / 地図 0 / Quiz 採点対象外。
 //   state: localStorage "holavel_geography_rapid_v1"（version 1）。DEEP の "holavel_geography_study_v2" は読み書きしない。
 // v0.23.0 (TASK-017A): 全国MAP を実地図中心の画面にした。タブに入ると追加操作なしで地理院タイルの実地図が出て、
 //   ジャンル・県を変えても地図 instance と背景タイルは作り直さず marker / ラベル / 一覧 / 選択パネルだけ差し替える。
@@ -16,7 +18,7 @@
 //   「この問題を解く →」（../exam-sprint/index.html?question=<id>）を出す。公開ホストでは件数表示のみでリンクを作らない。
 //   受け口は ?resource=<resource_id> で、既知 ID に一致したときだけカードを開く（未知は無視）。
 // v0.21.0 (TASK-014H): 第 4 モード「全国MAP」を追加。ジャンルは既存の categories[] をそのまま使い（新しい分類データ 0）、
-//   LAYER 1 = 100 資源の prefectures[] による都道府県単位の分布、LAYER 2 = visual_locations の 30 資源 58 点だけの実地点、
+//   LAYER 1 = 全資源（DEEP + LIGHTWEIGHT）の prefectures[] による都道府県単位の分布、LAYER 2 = visual_locations の 30 資源 58 点だけの実地点、
 //   の 2 層に分けて精度差を明示する。県庁所在地・県の中心点・推定座標は作らない。外部 map SDK / API key も増やさない。
 // v0.20.1 (TASK-014E): (1) 詳細カードの地図セクションに「Google Mapsで見る ↗」を追加。公式 Maps URL（api=1 の検索）への
 //   外部リンクだけで、JavaScript API / Embed / Places / API key / 課金・新しい座標データは一切使わない。高速暗記には出さない。
@@ -55,7 +57,7 @@
 //   地域を変えたとき、選択中の県がその地域外なら県を「すべて」に戻す。地域「全国」＋個別県は有効な組み合わせ。
 //   保存済み state の矛盾も読み込み時に sanitize する（県があれば県を正）。
 //   読み仮名: 確定した読みフィールド（reading / yomi / kana）が資源にある場合だけ、答え表示後に ruby で出す。
-//   読みをコード側で推測して作らない。LIGHTWEIGHT 70 には現在読みデータが無いため何も表示されない（TASK-013J audit）。
+//   読みをコード側で推測して作らない。読みが無い LIGHTWEIGHT 資源には何も表示されない（TASK-013J audit）。
 // v0.18.1 (TASK-013I, USER UAT): Rapid に「← 前へ」を追加（filtered pool 内だけを移動し、1 件目からは末尾へ loop）。
 //   移動時は必ず front 状態へ戻し、known / review は移動だけでは書き換えない。視覚補強は地域ラベルと細い進捗バーのみ
 //   （写真・地図・アイコン画像・日本地図 SVG・アニメーション・音・スコアは追加しない）。state schema は変更なし。
@@ -151,7 +153,11 @@ let mapSeq=0;const liveMaps={};
 // Dispose every Leaflet instance we created. Called at the start of each render: the DOM those maps live in is about to
 // be replaced, so presence in the DOM must not decide what to keep (that left one generation alive). Failures here are
 // swallowed so a broken map can never take the app down.
-function disposeLiveMaps(){Object.keys(liveMaps).forEach(k=>{const m=liveMaps[k];try{if(m){m.off();m.remove()}}catch(e){}delete liveMaps[k]});
+// 画面を切り替えるときに地図を片付ける。ズームアニメーションの最中に remove() すると、
+// Leaflet が 250ms 後に予約している _onZoomTransitionEnd が、消えた mapPane を触って
+// TypeError: Cannot read properties of undefined (reading '_leaflet_pos') を投げる。
+// Leaflet 側は _animatingZoom が false なら即 return するので、先にその印を下ろしてから remove する。
+function disposeLiveMaps(){Object.keys(liveMaps).forEach(k=>{const m=liveMaps[k];try{if(m){if(m._animatingZoom)m._animatingZoom=false;m.off();m.remove()}}catch(e){}delete liveMaps[k]});
  if(typeof nmClearMap==='function')nmClearMap()}
 function mapHTML(r,label){const mp=mapPoints(r);const hasPoints=mp.points.length>0;const libOK=!!window.L;const hasReal=hasPoints&&libOK;const id='m'+(++mapSeq);
  const role=hasReal?'実地図＝どんな地形のどこにあるか ／ 全国俯瞰＝日本のどこにあるか'
@@ -391,7 +397,7 @@ function render(){disposeLiveMaps();document.querySelectorAll('#modes button').f
 
 // ---- Rapid Study Mode v0.1 (TASK-013H)
 // LIGHTWEIGHT wave 1 (data/broad_shallow.js) only. The DEEP 30 are NOT mixed into this pool in v0.1: the point is to
-// drill the newly verified 70 at speed. Front side shows the resource name alone — prefecture / category / hook stay
+// drill the verified LIGHTWEIGHT set at speed. Front side shows the resource name alone — prefecture / category / hook stay
 // hidden until 答えを見る, so the card can never leak its own answer. Only the current card is rendered.
 const BS=window.GEO_BROAD_SHALLOW&&Array.isArray(window.GEO_BROAD_SHALLOW.resources)?window.GEO_BROAD_SHALLOW:null;
 const BSR=BS?BS.resources.slice():[];
@@ -524,7 +530,7 @@ function renderRapid(){
 // ジャンルは **既存の categories[] そのもの**。新しい分類データも AI による分類判断も作らない
 // （resource_id → categories の値 → ジャンル、で必ず追跡できる）。
 // 情報の層を 2 つに分け、精度差をラベルで明示する:
-//   LAYER 1 全国分布      … 100 資源の prefectures[] を県単位で数える。県庁所在地・県の中心点は作らない
+//   LAYER 1 全国分布      … 全資源の prefectures[] を県単位で数える。県庁所在地・県の中心点は作らない
 //   LAYER 2 確認済み実地点 … visual_locations.js の 30 資源 58 点だけ。LIGHTWEIGHT に架空の点を作らない
 const NMALL=[].concat(
  R.map(r=>({id:r.resource_id,name:r.name,cats:r.categories||[],prefs:prefs(r),region:r.region,layer:'DEEP',pts:mapPoints(r).points.length,exam:(r.past_exam_links||[]).length})),
@@ -655,7 +661,7 @@ function nmPanel(){const el=$('nmSel');if(!el)return;
   :'<li class="rd">この教材は県単位の情報のみで、地図に出せる学習地点は登録されていません。</li>';
  el.innerHTML=`<div class="nmselhd"><span class="lb">教材</span><b>${esc(r.name)}</b><span class="npf">${r.prefs.map(x=>esc(x)).join('・')}</span></div>
   <div class="ngn"><span class="lb">教材のジャンル</span>${esc(g)}</div>
-  <div class="rd">${r.layer==='DEEP'?'詳細 30 資源':'高速暗記 70 資源（県単位）'}${pts.length?`・この教材の学習地点 ${pts.length} 地点`:''}</div>
+  <div class="rd">${r.layer==='DEEP'?`詳細 ${R.length} 資源`:`高速暗記 ${BSR.length} 資源（県単位）`}${pts.length?`・この教材の学習地点 ${pts.length} 地点`:''}</div>
   ${pts.length?'<div class="lb ptsh">学習地点（教材に関連する地点）</div>':''}
   <ul class="nmpts">${rows}</ul>
   ${r.layer==='DEEP'?`<button type="button" class="btn nsm nmcard" data-rid="${esc(r.id)}">カードで学ぶ</button>`:''}`;
@@ -764,5 +770,9 @@ function renderNationalMap(){const n=state.nmap;
  if(!filtered().includes(r)){F.region='';F.prefecture='';F.category='';F.priority='';F.wrongOnly=false;F.search=''}
  state.view='cards';state.current=r.resource_id;save();
 }catch(e){}})();
+// 見出しの件数は data から数える。教材総数を定数で持たず、「試験範囲を網羅」とも書かない。
+(function(){const el=$('sub');if(!el)return;
+ el.textContent=`国内観光地理 詳細${R.length} + 高速暗記${BSR.length} = 教材${R.length+BSR.length}件（2026-09-24 国内試験対策）`;
+ el.title='収録している教材の件数です。試験に出る観光資源を網羅したものではありません';})();
 initFilters();window.geographyStudy={state,R,metrics,retryLine,buildQuiz,render,filtered,quizScope,STATE_KEY:KEY,primaryType,locatorSVG,TYPE_ORDER,TYPE_LABEL,mapPoints,liveMaps,GSI,disposeLiveMaps,photosFor,BSR,rstate,rapidPool,RAPID_STATE_KEY:RKEY,BSCAT,rapidBack,rapidAdvance,BS_PREF_REGION,BS_ALL_PREFS,bsReading,BSTERMS,termsIn,NMALL,NMGENRES,nmapFiltered,nmapCounts,nmapPoints,nmapSummary,nmSelect,nmSync,NM_HOME,get nmMap(){return nmMap},get nmMarkers(){return nmMarkers},get nmCam(){return nmCam},get nmSelRid(){return nmSelRid},get nmSelPid(){return nmSelPid},LOCAL_APPS,examLinkURL,pastExamHTML};render();
 })();
