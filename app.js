@@ -112,8 +112,8 @@ const DREL={IDENTICAL:'資源そのもの',WITHIN:'区域内',COMPONENT_OF:'構�
 // classification label ("学習分類"), never a statement that every prefecture lies in that region.
 // ---- resource type visual system: primary type is derived deterministically from categories[] (most specific
 // physical / built type first; WORLD_HERITAGE / NATIONAL_PARK are designations and come last). Icon + text always.
-const TYPE_ORDER=['CASTLE','TEMPLE_SHRINE','HOT_SPRING','GARDEN','VALLEY_WATERFALL','LAKE_WETLAND','MOUNTAIN_HIGHLAND','HISTORIC_DISTRICT','FESTIVAL_CULTURE','NATIONAL_PARK','WORLD_HERITAGE','OTHER'];
-const TYPE_LABEL={CASTLE:'城',TEMPLE_SHRINE:'寺社',HOT_SPRING:'温泉',GARDEN:'庭園',VALLEY_WATERFALL:'渓谷・滝',LAKE_WETLAND:'湖・湿原',MOUNTAIN_HIGHLAND:'山・高原',HISTORIC_DISTRICT:'史跡・町並み',FESTIVAL_CULTURE:'祭・文化',NATIONAL_PARK:'国立公園',WORLD_HERITAGE:'世界遺産',OTHER:'その他'};
+const TYPE_ORDER=['CASTLE','TEMPLE_SHRINE','HOT_SPRING','GARDEN','VALLEY_WATERFALL','LAKE_WETLAND','MOUNTAIN_HIGHLAND','HISTORIC_DISTRICT','FESTIVAL_CULTURE','NATIONAL_PARK','QUASI_NATIONAL_PARK','WORLD_HERITAGE','OTHER'];
+const TYPE_LABEL={CASTLE:'城',TEMPLE_SHRINE:'寺社',HOT_SPRING:'温泉',GARDEN:'庭園',VALLEY_WATERFALL:'渓谷・滝',LAKE_WETLAND:'湖・湿原',MOUNTAIN_HIGHLAND:'山・高原',HISTORIC_DISTRICT:'史跡・町並み',FESTIVAL_CULTURE:'祭・文化',NATIONAL_PARK:'国立公園',QUASI_NATIONAL_PARK:'国定公園',WORLD_HERITAGE:'世界遺産',OTHER:'その他'};
 const TYPE_SVG={
  CASTLE:'<path d="M4 20V9h3V6h2v3h2V6h2v3h2V6h2v3h3v11z" fill="currentColor"/><path d="M10 20v-5h4v5" fill="#fff"/>',
  TEMPLE_SHRINE:'<path d="M3 6h18v2H3zM5 9h14v2H5zM7 11h2v9H7zM15 11h2v9h-2zM4 20h16v1H4z" fill="currentColor"/>',
@@ -125,6 +125,7 @@ const TYPE_SVG={
  HISTORIC_DISTRICT:'<path d="M3 11l9-7 9 7v9H3z" fill="currentColor"/><path d="M10 20v-6h4v6" fill="#fff"/>',
  FESTIVAL_CULTURE:'<path d="M6 3h2v18H6zM8 4h11l-3 4 3 4H8z" fill="currentColor"/>',
  NATIONAL_PARK:'<path d="M12 2l3 6 5 1-4 4 1 6-5-3-5 3 1-6-4-4 5-1z" fill="currentColor"/>',
+ QUASI_NATIONAL_PARK:'<path d="M12 2l3 6 5 1-4 4 1 6-5-3-5 3 1-6-4-4 5-1z" fill="currentColor"/>',
  WORLD_HERITAGE:'<path d="M12 2l9 5v10l-9 5-9-5V7z" fill="currentColor"/><circle cx="12" cy="12" r="3.5" fill="#fff"/>',
  OTHER:'<circle cx="12" cy="12" r="8" fill="currentColor"/>'};
 function primaryType(r){const cats=r.categories||[];for(const t of TYPE_ORDER){if(cats.includes(t))return t}return 'OTHER'}

@@ -4,6 +4,8 @@
 //   WAVE 1 = docs/geography/BROAD_SHALLOW_WAVE1_V3.json（TASK-013G で entity 同定・所在地を再認証した 70 件）
 //   WAVE 2 = docs/geography/BROAD_SHALLOW_WAVE2.json（TASK-018B で追加した 43 件。TASK-018A の母集団監査で
 //            NOT_COVERED かつ公式過去問 R3〜R7 に複数年登場したもの）
+//   WAVE 3 = docs/geography/BROAD_SHALLOW_WAVE3.json（TASK-018C。残った未収録候補のうち、公式一次情報で
+//            名称・所在地・分類を確認できたもの。作業台帳は docs/geography/WAVE3_LEDGER.json）
 // 旧 WAVE1 / WAVE1_V2 / V3 / V4 candidate pool は KNOWN DEFECTIVE / SUPERSEDED。runtime へは入れない。
 //
 // DEEP（data/resources.js の 30 件）とは役割が違う:
@@ -14,10 +16,10 @@
 // 名称と所在地を確認済み。planning 側の監査フィールド（GSI raw / old_prefectures / second-source diagnostics /
 // exam_* 等）は runtime へ持ち込まず、出典（authority + url）だけを保持する。
 window.GEO_BROAD_SHALLOW = {
- "version": "wave1-v3+wave2-v1",
+ "version": "v3+wave2-v1+wave3-v1",
  "generated_at": "2026-09-15",
- "task": "TASK-018B",
- "source": "docs/geography/BROAD_SHALLOW_WAVE1_V3.json + docs/geography/BROAD_SHALLOW_WAVE2.json",
+ "task": "TASK-018C",
+ "source": "docs/geography/BROAD_SHALLOW_WAVE1_V3.json + docs/geography/BROAD_SHALLOW_WAVE2.json + docs/geography/BROAD_SHALLOW_WAVE3.json",
  "coverage_level": "LIGHTWEIGHT",
  "rights": "HOLAVEL_ORIGINAL metadata。公式一次情報で確認した名称・所在都道府県・カテゴリ・短い特徴のみ。市販教材・PRIVATE_REFERENCE・公式試験本文は含まない",
  "regions": [
@@ -35,7 +37,8 @@ window.GEO_BROAD_SHALLOW = {
   "LOCAL_FOOD_SPECIALTY": "郷土料理",
   "TRADITIONAL_CRAFT": "伝統的工芸品",
   "LEISURE_STRUCTURE_BRIDGE": "橋・構造物",
-  "MUSEUM_CULTURAL_FACILITY": "美術館・博物館"
+  "MUSEUM_CULTURAL_FACILITY": "美術館・博物館",
+  "QUASI_NATIONAL_PARK": "国定公園"
  },
  "reading_terms": [
   {
@@ -142,6 +145,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "国土地理院／佐呂間町（公式）",
      "url": "https://www.town.saroma.hokkaido.jp/kakuka/keizaika/tenboudai.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3-001",
+   "name": "大雪山国立公園",
+   "region": "北海道",
+   "prefectures": [
+    "北海道"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "北海道の山岳公園。日本一大きな国立公園で、北海道最高峰の旭岳がある",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省 北海道地方環境事務所（管内の国立公園）",
+     "url": "https://hokkaido.env.go.jp/park.html"
     }
    ]
   },
@@ -301,6 +326,50 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3-020",
+   "name": "豊富温泉",
+   "region": "北海道",
+   "prefectures": [
+    "北海道"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "北海道の温泉地。環境大臣が指定する国民保養温泉地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（国民保養温泉地）",
+     "url": "https://www.env.go.jp/nature/onsen/area/"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3-002",
+   "name": "阿寒摩周国立公園",
+   "region": "北海道",
+   "prefectures": [
+    "北海道"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "北海道の国立公園。マリモが生育する阿寒湖、摩周湖、屈斜路湖がある",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省 北海道地方環境事務所（管内の国立公園）",
+     "url": "https://hokkaido.env.go.jp/park.html"
+    }
+   ]
+  },
+  {
    "id": "food-004",
    "name": "いちご煮",
    "region": "東北",
@@ -350,6 +419,30 @@ window.GEO_BROAD_SHALLOW = {
    "reading": "じゅうさんこ"
   },
   {
+   "id": "exam-w3-003",
+   "name": "十和田八幡平国立公園",
+   "region": "東北",
+   "prefectures": [
+    "青森県",
+    "岩手県",
+    "秋田県"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "青森・岩手・秋田にまたがる国立公園（昭和11年指定）",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省 東北地方環境事務所（管内の国立公園）",
+     "url": "https://tohoku.env.go.jp/park.html"
+    }
+   ]
+  },
+  {
    "id": "exam-w2-029",
    "name": "弘前城",
    "region": "東北",
@@ -394,6 +487,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "文化庁（重要伝統的建造物群保存地区一覧）",
      "url": "https://www.bunka.go.jp/seisaku/bunkazai/shokai/hozonchiku/judenken_ichiran.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3-021",
+   "name": "酸ヶ湯温泉",
+   "region": "東北",
+   "prefectures": [
+    "青森県"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "青森県の温泉地。環境大臣が指定する国民保養温泉地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（国民保養温泉地）",
+     "url": "https://www.env.go.jp/nature/onsen/area/"
     }
    ]
   },
@@ -745,6 +860,74 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3-019",
+   "name": "結城紬",
+   "region": "関東",
+   "prefectures": [
+    "茨城県",
+    "栃木県"
+   ],
+   "categories": [
+    "TRADITIONAL_CRAFT"
+   ],
+   "recognition_hook": "茨城・栃木にまたがって指定されている経済産業大臣指定 伝統的工芸品",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "CRAFT",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "一般財団法人 伝統的工芸品産業振興協会（経済産業大臣指定 伝統的工芸品 都道府県別一覧）",
+     "url": "https://kyokai.kougeihin.jp/wp/wp-content/uploads/2025/10/shitei-area_20251027.pdf"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3-022",
+   "name": "奥日光湯元温泉",
+   "region": "関東",
+   "prefectures": [
+    "栃木県"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "栃木県の温泉地。環境大臣が指定する国民保養温泉地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（国民保養温泉地）",
+     "url": "https://www.env.go.jp/nature/onsen/area/"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3-033",
+   "name": "日光東照宮",
+   "region": "関東",
+   "prefectures": [
+    "栃木県"
+   ],
+   "categories": [
+    "TEMPLE_SHRINE",
+    "WORLD_HERITAGE"
+   ],
+   "recognition_hook": "世界文化遺産「日光の社寺」の構成資産",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化遺産オンライン（文化庁 日光の社寺）",
+     "url": "https://online.bunka.go.jp/special_content/hlink8"
+    }
+   ]
+  },
+  {
    "id": "craft-001",
    "name": "益子焼",
    "region": "関東",
@@ -774,7 +957,8 @@ window.GEO_BROAD_SHALLOW = {
     "栃木県"
    ],
    "categories": [
-    "TEMPLE_SHRINE"
+    "TEMPLE_SHRINE",
+    "WORLD_HERITAGE"
    ],
    "recognition_hook": "日光山輪王寺。天台宗の大本山で、世界文化遺産「日光の社寺」の構成資産",
    "priority": "B",
@@ -954,6 +1138,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3-038",
+   "name": "高山社跡",
+   "region": "関東",
+   "prefectures": [
+    "群馬県"
+   ],
+   "categories": [
+    "HISTORIC_DISTRICT",
+    "WORLD_HERITAGE"
+   ],
+   "recognition_hook": "世界文化遺産「富岡製糸場と絹産業遺産群」の構成資産",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化遺産オンライン（文化庁 富岡製糸場と絹産業遺産群）",
+     "url": "https://online.bunka.go.jp/special_content/hlinkE"
+    }
+   ]
+  },
+  {
    "id": "des-064",
    "name": "川越市川越",
    "region": "関東",
@@ -972,6 +1179,31 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "文化庁（重要伝統的建造物群保存地区一覧）",
      "url": "https://www.bunka.go.jp/seisaku/bunkazai/shokai/hozonchiku/judenken_ichiran.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3-004",
+   "name": "秩父多摩甲斐国立公園",
+   "region": "関東",
+   "prefectures": [
+    "埼玉県",
+    "東京都",
+    "山梨県",
+    "長野県"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "埼玉・東京・山梨・長野にまたがる国立公園（昭和25年指定）",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省 関東地方環境事務所（管内の国立公園）",
+     "url": "https://kanto.env.go.jp/park.html"
     }
    ]
   },
@@ -1023,6 +1255,31 @@ window.GEO_BROAD_SHALLOW = {
     }
    ],
    "reading": "としま"
+  },
+  {
+   "id": "exam-w3-005",
+   "name": "富士箱根伊豆国立公園",
+   "region": "関東",
+   "prefectures": [
+    "東京都",
+    "神奈川県",
+    "山梨県",
+    "静岡県"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "東京・神奈川・山梨・静岡にまたがる国立公園（昭和11年指定）",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省 関東地方環境事務所（管内の国立公園）",
+     "url": "https://kanto.env.go.jp/park.html"
+    }
+   ]
   },
   {
    "id": "exam-059",
@@ -1099,6 +1356,76 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3-006",
+   "name": "中部山岳国立公園",
+   "region": "中部",
+   "prefectures": [
+    "新潟県",
+    "富山県",
+    "長野県",
+    "岐阜県"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "新潟・富山・長野・岐阜にまたがる国立公園（昭和9年指定）",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省 中部地方環境事務所（管内の国立公園）",
+     "url": "https://chubu.env.go.jp/park.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3-007",
+   "name": "妙高戸隠連山国立公園",
+   "region": "中部",
+   "prefectures": [
+    "新潟県",
+    "長野県"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "新潟・長野にまたがる国立公園（平成27年指定）",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省 中部地方環境事務所（管内の国立公園）",
+     "url": "https://chubu.env.go.jp/park.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3-023",
+   "name": "岩室温泉",
+   "region": "中部",
+   "prefectures": [
+    "新潟県"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "新潟県の温泉地。環境大臣が指定する国民保養温泉地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（国民保養温泉地）",
+     "url": "https://www.env.go.jp/nature/onsen/area/"
+    }
+   ]
+  },
+  {
    "id": "exam-w2-003",
    "name": "宇奈月温泉",
    "region": "中部",
@@ -1146,6 +1473,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "環境省（国立公園一覧）",
      "url": "https://www.env.go.jp/park/parks/index.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3-013",
+   "name": "九谷焼",
+   "region": "中部",
+   "prefectures": [
+    "石川県"
+   ],
+   "categories": [
+    "TRADITIONAL_CRAFT"
+   ],
+   "recognition_hook": "石川県の経済産業大臣指定 伝統的工芸品",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "CRAFT",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "一般財団法人 伝統的工芸品産業振興協会（経済産業大臣指定 伝統的工芸品 都道府県別一覧）",
+     "url": "https://kyokai.kougeihin.jp/wp/wp-content/uploads/2025/10/shitei-area_20251027.pdf"
     }
    ]
   },
@@ -1202,6 +1551,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3-012",
+   "name": "能登半島国定公園",
+   "region": "中部",
+   "prefectures": [
+    "石川県",
+    "富山県"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "石川・富山にまたがる国定公園。日本海最大の半島の海岸景観",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ]
+  },
+  {
    "id": "exam-035",
    "name": "明通寺",
    "region": "中部",
@@ -1224,6 +1596,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "国土地理院／小浜市（公式）",
      "url": "https://www1.city.obama.fukui.jp/kanko-bunka/jisha-shiseki/96.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3-024",
+   "name": "下部温泉",
+   "region": "中部",
+   "prefectures": [
+    "山梨県"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "山梨県の温泉地。環境大臣が指定する国民保養温泉地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（国民保養温泉地）",
+     "url": "https://www.env.go.jp/nature/onsen/area/"
     }
    ]
   },
@@ -1287,7 +1681,8 @@ window.GEO_BROAD_SHALLOW = {
     "山梨県"
    ],
    "categories": [
-    "LAKE_WETLAND"
+    "LAKE_WETLAND",
+    "WORLD_HERITAGE"
    ],
    "recognition_hook": "富士五湖の一つ。世界文化遺産「富士山」の構成資産",
    "priority": "B",
@@ -1519,6 +1914,28 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3-016",
+   "name": "常滑焼",
+   "region": "中部",
+   "prefectures": [
+    "愛知県"
+   ],
+   "categories": [
+    "TRADITIONAL_CRAFT"
+   ],
+   "recognition_hook": "愛知県の経済産業大臣指定 伝統的工芸品",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "CRAFT",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "一般財団法人 伝統的工芸品産業振興協会（経済産業大臣指定 伝統的工芸品 都道府県別一覧）",
+     "url": "https://kyokai.kougeihin.jp/wp/wp-content/uploads/2025/10/shitei-area_20251027.pdf"
+    }
+   ]
+  },
+  {
    "id": "exam-026",
    "name": "犬山城",
    "region": "中部",
@@ -1541,6 +1958,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "国土地理院／愛知県公式観光サイト",
      "url": "https://aichinow.pref.aichi.jp/spots/detail/20/"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3-008",
+   "name": "伊勢志摩国立公園",
+   "region": "近畿",
+   "prefectures": [
+    "三重県"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "三重県の国立公園（昭和21年指定）",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省 中部地方環境事務所（管内の国立公園）",
+     "url": "https://chubu.env.go.jp/park.html"
     }
    ]
   },
@@ -1598,6 +2037,28 @@ window.GEO_BROAD_SHALLOW = {
     }
    ],
    "reading": "かしこじま"
+  },
+  {
+   "id": "exam-w3-014",
+   "name": "信楽焼",
+   "region": "近畿",
+   "prefectures": [
+    "滋賀県"
+   ],
+   "categories": [
+    "TRADITIONAL_CRAFT"
+   ],
+   "recognition_hook": "滋賀県の経済産業大臣指定 伝統的工芸品",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "CRAFT",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "一般財団法人 伝統的工芸品産業振興協会（経済産業大臣指定 伝統的工芸品 都道府県別一覧）",
+     "url": "https://kyokai.kougeihin.jp/wp/wp-content/uploads/2025/10/shitei-area_20251027.pdf"
+    }
+   ]
   },
   {
    "id": "exam-094",
@@ -1757,6 +2218,42 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3-009",
+   "name": "瀬戸内海国立公園",
+   "region": "近畿",
+   "prefectures": [
+    "大阪府",
+    "兵庫県",
+    "和歌山県",
+    "岡山県",
+    "広島県",
+    "山口県",
+    "徳島県",
+    "香川県",
+    "愛媛県",
+    "福岡県",
+    "大分県"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "11 府県にまたがる国立公園（昭和9年指定）",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省 近畿地方環境事務所（管内の国立公園）",
+     "url": "https://kinki.env.go.jp/park.html"
+    },
+    {
+     "authority": "環境省 中国四国地方環境事務所（管内の国立公園）",
+     "url": "https://chushikoku.env.go.jp/park.html"
+    }
+   ]
+  },
+  {
    "id": "craft-003",
    "name": "出石焼",
    "region": "近畿",
@@ -1831,6 +2328,75 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3-032",
+   "name": "春日大社",
+   "region": "近畿",
+   "prefectures": [
+    "奈良県"
+   ],
+   "categories": [
+    "TEMPLE_SHRINE",
+    "WORLD_HERITAGE"
+   ],
+   "recognition_hook": "世界文化遺産「古都奈良の文化財」の構成資産",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化遺産オンライン（文化庁 古都奈良の文化財）",
+     "url": "https://online.bunka.go.jp/special_content/hlink7"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3-030",
+   "name": "法起寺",
+   "region": "近畿",
+   "prefectures": [
+    "奈良県"
+   ],
+   "categories": [
+    "TEMPLE_SHRINE",
+    "WORLD_HERITAGE"
+   ],
+   "recognition_hook": "世界文化遺産「法隆寺地域の仏教建造物」の構成資産",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化遺産オンライン（文化庁 法隆寺地域の仏教建造物）",
+     "url": "https://online.bunka.go.jp/special_content/hlink1"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3-031",
+   "name": "興福寺",
+   "region": "近畿",
+   "prefectures": [
+    "奈良県"
+   ],
+   "categories": [
+    "TEMPLE_SHRINE",
+    "WORLD_HERITAGE"
+   ],
+   "recognition_hook": "世界文化遺産「古都奈良の文化財」の構成資産",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化遺産オンライン（文化庁 古都奈良の文化財）",
+     "url": "https://online.bunka.go.jp/special_content/hlink7"
+    }
+   ]
+  },
+  {
    "id": "exam-065",
    "name": "若草山",
    "region": "近畿",
@@ -1879,6 +2445,30 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "国土交通省（国土数値情報 観光資源データ P12-14）",
      "url": "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P12-v2_2.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3-010",
+   "name": "大山隠岐国立公園",
+   "region": "中国",
+   "prefectures": [
+    "鳥取県",
+    "島根県",
+    "岡山県"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "鳥取・島根・岡山にまたがる国立公園（昭和11年指定）",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省 中国四国地方環境事務所（管内の国立公園）",
+     "url": "https://chushikoku.env.go.jp/park.html"
     }
    ]
   },
@@ -2065,6 +2655,52 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3-036",
+   "name": "石見銀山遺跡",
+   "region": "中国",
+   "prefectures": [
+    "島根県"
+   ],
+   "categories": [
+    "HISTORIC_DISTRICT",
+    "WORLD_HERITAGE"
+   ],
+   "recognition_hook": "世界文化遺産「石見銀山遺跡とその文化的景観」",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化遺産オンライン（文化庁 石見銀山遺跡とその文化的景観）",
+     "url": "https://online.bunka.go.jp/special_content/hlinkB"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3-037",
+   "name": "羅漢寺五百羅漢",
+   "region": "中国",
+   "prefectures": [
+    "島根県"
+   ],
+   "categories": [
+    "TEMPLE_SHRINE",
+    "WORLD_HERITAGE"
+   ],
+   "recognition_hook": "世界文化遺産「石見銀山遺跡とその文化的景観」の構成資産",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化遺産オンライン（文化庁 石見銀山遺跡とその文化的景観）",
+     "url": "https://online.bunka.go.jp/special_content/hlinkB"
+    }
+   ]
+  },
+  {
    "id": "exam-015",
    "name": "足立美術館",
    "region": "中国",
@@ -2113,6 +2749,50 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "国土交通省（国土数値情報 観光資源データ P12-14）",
      "url": "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P12-v2_2.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3-025",
+   "name": "奥津温泉",
+   "region": "中国",
+   "prefectures": [
+    "岡山県"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "岡山県の温泉地。環境大臣が指定する国民保養温泉地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（国民保養温泉地）",
+     "url": "https://www.env.go.jp/nature/onsen/area/"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3-026",
+   "name": "湯郷温泉",
+   "region": "中国",
+   "prefectures": [
+    "岡山県"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "岡山県の温泉地。環境大臣が指定する国民保養温泉地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（国民保養温泉地）",
+     "url": "https://www.env.go.jp/nature/onsen/area/"
     }
    ]
   },
@@ -2244,6 +2924,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
      "url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E5%B8%9D%E9%87%88%E5%B3%A1"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3-027",
+   "name": "湯来温泉",
+   "region": "中国",
+   "prefectures": [
+    "広島県"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "広島県の温泉。国民保養温泉地「湯来・湯の山温泉」に含まれる",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（国民保養温泉地）",
+     "url": "https://www.env.go.jp/nature/onsen/area/"
     }
    ]
   },
@@ -2407,6 +3109,28 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3-015",
+   "name": "大谷焼",
+   "region": "四国",
+   "prefectures": [
+    "徳島県"
+   ],
+   "categories": [
+    "TRADITIONAL_CRAFT"
+   ],
+   "recognition_hook": "徳島県の経済産業大臣指定 伝統的工芸品",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "CRAFT",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "一般財団法人 伝統的工芸品産業振興協会（経済産業大臣指定 伝統的工芸品 都道府県別一覧）",
+     "url": "https://kyokai.kougeihin.jp/wp/wp-content/uploads/2025/10/shitei-area_20251027.pdf"
+    }
+   ]
+  },
+  {
    "id": "exam-w2-024",
    "name": "大鳴門橋",
    "region": "四国",
@@ -2535,6 +3259,28 @@ window.GEO_BROAD_SHALLOW = {
    "reading": "てんしゃえん"
   },
   {
+   "id": "exam-w3-018",
+   "name": "砥部焼",
+   "region": "四国",
+   "prefectures": [
+    "愛媛県"
+   ],
+   "categories": [
+    "TRADITIONAL_CRAFT"
+   ],
+   "recognition_hook": "愛媛県の経済産業大臣指定 伝統的工芸品",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "CRAFT",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "一般財団法人 伝統的工芸品産業振興協会（経済産業大臣指定 伝統的工芸品 都道府県別一覧）",
+     "url": "https://kyokai.kougeihin.jp/wp/wp-content/uploads/2025/10/shitei-area_20251027.pdf"
+    }
+   ]
+  },
+  {
    "id": "exam-110",
    "name": "桂浜",
    "region": "四国",
@@ -2632,6 +3378,28 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3-017",
+   "name": "伊万里・有田焼",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "佐賀県"
+   ],
+   "categories": [
+    "TRADITIONAL_CRAFT"
+   ],
+   "recognition_hook": "佐賀県の経済産業大臣指定 伝統的工芸品",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "CRAFT",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "一般財団法人 伝統的工芸品産業振興協会（経済産業大臣指定 伝統的工芸品 都道府県別一覧）",
+     "url": "https://kyokai.kougeihin.jp/wp/wp-content/uploads/2025/10/shitei-area_20251027.pdf"
+    }
+   ]
+  },
+  {
    "id": "exam-093",
    "name": "武雄温泉",
    "region": "九州・沖縄",
@@ -2683,6 +3451,30 @@ window.GEO_BROAD_SHALLOW = {
     }
    ],
    "reading": "はらじょうあと"
+  },
+  {
+   "id": "exam-w3-011",
+   "name": "雲仙天草国立公園",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "長崎県",
+    "熊本県",
+    "鹿児島県"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "長崎・熊本・鹿児島にまたがる国立公園（昭和9年指定）",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省 九州地方環境事務所（管内の国立公園）",
+     "url": "https://kyushu.env.go.jp/park.html"
+    }
+   ]
   },
   {
    "id": "exam-w2-016",
@@ -2760,6 +3552,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "国土交通省（国土数値情報 観光資源データ P12-14）",
      "url": "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P12-v2_2.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3-028",
+   "name": "鉄輪温泉",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "大分県"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "大分県の温泉。国民保養温泉地「鉄輪・明礬・柴石温泉」に含まれる",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（国民保養温泉地）",
+     "url": "https://www.env.go.jp/nature/onsen/area/"
     }
    ]
   },
@@ -2893,6 +3707,28 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3-029",
+   "name": "霧島温泉",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "鹿児島県"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "鹿児島県の温泉地。環境大臣が指定する国民保養温泉地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（国民保養温泉地）",
+     "url": "https://www.env.go.jp/nature/onsen/area/"
+    }
+   ]
+  },
+  {
    "id": "exam-w2-042",
    "name": "霧島神宮",
    "region": "九州・沖縄",
@@ -2997,13 +3833,59 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://online.bunka.go.jp/heritages/detail/140097"
     }
    ]
+  },
+  {
+   "id": "exam-w3-034",
+   "name": "座喜味城跡",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "沖縄県"
+   ],
+   "categories": [
+    "CASTLE",
+    "WORLD_HERITAGE"
+   ],
+   "recognition_hook": "世界文化遺産「琉球王国のグスク及び関連遺産群」の構成資産",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化遺産オンライン（文化庁 琉球王国のグスク及び関連遺産群）",
+     "url": "https://online.bunka.go.jp/special_content/hlink9"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3-035",
+   "name": "識名園",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "沖縄県"
+   ],
+   "categories": [
+    "GARDEN",
+    "WORLD_HERITAGE"
+   ],
+   "recognition_hook": "世界文化遺産「琉球王国のグスク及び関連遺産群」の構成資産",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化遺産オンライン（文化庁 琉球王国のグスク及び関連遺産群）",
+     "url": "https://online.bunka.go.jp/special_content/hlink9"
+    }
+   ]
   }
  ],
  "waves": [
   {
    "wave": 1,
-   "version": "wave1-v3",
-   "task": "TASK-013H",
+   "version": "v3",
+   "task": "TASK-013G",
    "size": 70,
    "source": "docs/geography/BROAD_SHALLOW_WAVE1_V3.json"
   },
@@ -3013,7 +3895,14 @@ window.GEO_BROAD_SHALLOW = {
    "task": "TASK-018B",
    "size": 43,
    "source": "docs/geography/BROAD_SHALLOW_WAVE2.json"
+  },
+  {
+   "wave": 3,
+   "version": "wave3-v1",
+   "task": "TASK-018C",
+   "size": 38,
+   "source": "docs/geography/BROAD_SHALLOW_WAVE3.json"
   }
  ],
- "coverage_note": "この 113 件は公式過去問 R3〜R7 に現れた観光資源の一部であって、試験範囲の全体ではない。TASK-018A の母集団監査では候補 461 件のうち未収録が多数残っている"
+ "coverage_note": "この 151 件は公式過去問 R3〜R7 に現れた観光資源の一部であって、試験範囲の全体ではない。TASK-018A の母集団監査では候補 461 件のうち未収録が多数残っている"
 };

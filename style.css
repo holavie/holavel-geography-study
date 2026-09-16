@@ -51,7 +51,9 @@ details.sup{font-size:12px;color:var(--muted);margin:4px 0}details.sup summary{c
 /* v0.4 (TASK-012G): resource type icons, locator schematic, photo-ready hook. Type colors identify categories only and
    stay away from the semantic colors (blue location / green correct / orange attention / red-orange confusion / yellow memory). */
 .ticon{width:20px;height:20px;vertical-align:-4px;color:#4b5b66}.ticon.sm{width:16px;height:16px;margin-right:4px;vertical-align:-3px}
-.t-MOUNTAIN_HIGHLAND{color:#5a6b4a}.t-LAKE_WETLAND{color:#3f7b8a}.t-TEMPLE_SHRINE{color:#8a4a3a}.t-CASTLE{color:#555}.t-HOT_SPRING{color:#a0603a}.t-GARDEN{color:#4d7a3a}.t-VALLEY_WATERFALL{color:#4a6a8a}.t-HISTORIC_DISTRICT{color:#7a5a3a}.t-FESTIVAL_CULTURE{color:#8a3a6a}.t-NATIONAL_PARK{color:#3a6a4a}.t-WORLD_HERITAGE{color:#6a5a2a}.t-OTHER{color:#666}
+.t-MOUNTAIN_HIGHLAND{color:#5a6b4a}.t-LAKE_WETLAND{color:#3f7b8a}.t-TEMPLE_SHRINE{color:#8a4a3a}.t-CASTLE{color:#555}.t-HOT_SPRING{color:#a0603a}.t-GARDEN{color:#4d7a3a}.t-VALLEY_WATERFALL{color:#4a6a8a}.t-HISTORIC_DISTRICT{color:#7a5a3a}.t-FESTIVAL_CULTURE{color:#8a3a6a}.t-NATIONAL_PARK{color:#3a6a4a}
+/* 国定公園。国立公園とは別の指定なので別コードにしている（TASK-018C1） */
+.t-QUASI_NATIONAL_PARK{color:#3a6a4a}.t-WORLD_HERITAGE{color:#6a5a2a}.t-OTHER{color:#666}
 .tbadge{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);border-radius:999px;padding:2px 10px 2px 6px;font-size:13px;font-weight:700;background:#fff}
 .typerow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 2px}.typerow .tags{margin:0}
 details.mapd{margin:6px 0 8px;border:1px solid var(--locline);border-radius:8px;background:#fff}details.mapd summary{cursor:pointer;padding:6px 10px;font-size:13px;font-weight:700;color:var(--loc);min-height:36px;display:flex;align-items:center}details.mapd[open] summary{border-bottom:1px dashed var(--locline)}
