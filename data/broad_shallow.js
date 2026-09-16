@@ -8,6 +8,7 @@
 //            名称・所在地・分類を確認できたもの。作業台帳は docs/geography/WAVE3_LEDGER.json）
 //   WAVE 3-B = docs/geography/BROAD_SHALLOW_WAVE3B.json（TASK-018D。同じ台帳の続き）
 //   WAVE 3-C = docs/geography/BROAD_SHALLOW_WAVE3C.json（TASK-018E。同じ台帳の続き）
+//   WAVE 3-D = docs/geography/BROAD_SHALLOW_WAVE3D.json（TASK-018F。同じ台帳の続き）
 // 旧 WAVE1 / WAVE1_V2 / V3 / V4 candidate pool は KNOWN DEFECTIVE / SUPERSEDED。runtime へは入れない。
 //
 // DEEP（data/resources.js の 30 件）とは役割が違う:
@@ -18,10 +19,10 @@
 // 名称と所在地を確認済み。planning 側の監査フィールド（GSI raw / old_prefectures / second-source diagnostics /
 // exam_* 等）は runtime へ持ち込まず、出典（authority + url）だけを保持する。
 window.GEO_BROAD_SHALLOW = {
- "version": "v3+wave2-v1+wave3-v1+wave3b-v1+wave3c-v1",
+ "version": "v3+wave2-v1+wave3-v1+wave3b-v1+wave3c-v1+wave3d-v1",
  "generated_at": "2026-09-16",
- "task": "TASK-018E",
- "source": "docs/geography/BROAD_SHALLOW_WAVE1_V3.json + docs/geography/BROAD_SHALLOW_WAVE2.json + docs/geography/BROAD_SHALLOW_WAVE3.json + docs/geography/BROAD_SHALLOW_WAVE3B.json + docs/geography/BROAD_SHALLOW_WAVE3C.json",
+ "task": "TASK-018F",
+ "source": "docs/geography/BROAD_SHALLOW_WAVE1_V3.json + docs/geography/BROAD_SHALLOW_WAVE2.json + docs/geography/BROAD_SHALLOW_WAVE3.json + docs/geography/BROAD_SHALLOW_WAVE3B.json + docs/geography/BROAD_SHALLOW_WAVE3C.json + docs/geography/BROAD_SHALLOW_WAVE3D.json",
  "coverage_level": "LIGHTWEIGHT",
  "rights": "HOLAVEL_ORIGINAL metadata。公式一次情報で確認した名称・所在都道府県・カテゴリ・短い特徴のみ。市販教材・PRIVATE_REFERENCE・公式試験本文は含まない",
  "regions": [
@@ -151,6 +152,28 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3d-003",
+   "name": "三愛の丘展望公園",
+   "region": "北海道",
+   "prefectures": [
+    "北海道"
+   ],
+   "categories": [
+    "OTHER"
+   ],
+   "recognition_hook": "美瑛の丘のパノラマ風景を見る展望公園",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "美瑛町観光協会（公式・三愛の丘展望公園）",
+     "url": "https://www.biei-hokkaido.jp/ja/facility/san-ai-no-oka_view-park"
+    }
+   ]
+  },
+  {
    "id": "exam-w3-001",
    "name": "大雪山国立公園",
    "region": "北海道",
@@ -195,6 +218,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "国土地理院／環境省（大雪山国立公園 見どころ・施設）",
      "url": "https://www.env.go.jp/nature/nationalparks/list/daisetsuzan/spot/"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3d-010",
+   "name": "天都山",
+   "region": "北海道",
+   "prefectures": [
+    "北海道"
+   ],
+   "categories": [
+    "MOUNTAIN_HIGHLAND"
+   ],
+   "recognition_hook": "北海道網走市の山。国の名勝",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化遺産オンライン（文化庁 天都山）",
+     "url": "https://online.bunka.go.jp/heritages/detail/200856"
     }
    ]
   },
@@ -342,6 +387,50 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "農林水産省（うちの郷土料理）",
      "url": "https://www.maff.go.jp/j/keikaku/syokubunka/k_ryouri/search_menu/area/hokkaido.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3d-011",
+   "name": "根室半島",
+   "region": "北海道",
+   "prefectures": [
+    "北海道"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND"
+   ],
+   "recognition_hook": "北海道東端の半島。根室半島チャシ跡群が国の史跡",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化遺産オンライン（文化庁 根室半島チャシ跡群）",
+     "url": "https://online.bunka.go.jp/heritages/detail/200896"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3d-012",
+   "name": "然別湖",
+   "region": "北海道",
+   "prefectures": [
+    "北海道"
+   ],
+   "categories": [
+    "LAKE_WETLAND"
+   ],
+   "recognition_hook": "北海道の湖。オショロコマ生息地が国の天然記念物",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化遺産オンライン（文化庁 然別湖のオショロコマ生息地）",
+     "url": "https://online.bunka.go.jp/heritages/detail/164732"
     }
    ]
   },
@@ -512,6 +601,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "環境省 東北地方環境事務所（管内の国立公園）",
      "url": "https://tohoku.env.go.jp/park.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3d-005",
+   "name": "奥入瀬渓流",
+   "region": "東北",
+   "prefectures": [
+    "青森県"
+   ],
+   "categories": [
+    "VALLEY_WATERFALL"
+   ],
+   "recognition_hook": "青森県十和田市の渓流。散策のネイチャーガイド拠点として奥入瀬渓流館がある",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "十和田市（公式・観光スポット 十和田市奥入瀬渓流館）",
+     "url": "https://www.city.towada.lg.jp/kanko/spot/2021-0401-0830-001.html"
     }
    ]
   },
@@ -1889,6 +2000,28 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3d-007",
+   "name": "三方五湖",
+   "region": "中部",
+   "prefectures": [
+    "福井県"
+   ],
+   "categories": [
+    "LAKE_WETLAND"
+   ],
+   "recognition_hook": "福井県の五つの湖。国の名勝",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化遺産オンライン（文化庁 三方五湖）",
+     "url": "https://online.bunka.go.jp/heritages/detail/162641"
+    }
+   ]
+  },
+  {
    "id": "exam-035",
    "name": "明通寺",
    "region": "中部",
@@ -2682,6 +2815,28 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3d-002",
+   "name": "長浜曳山祭の曳山行事",
+   "region": "近畿",
+   "prefectures": [
+    "滋賀県"
+   ],
+   "categories": [
+    "FESTIVAL_CULTURE"
+   ],
+   "recognition_hook": "滋賀県長浜市の祭礼行事。国指定の無形民俗文化財",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FESTIVAL",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "長浜市（公式・長浜市所在指定文化財一覧）",
+     "url": "https://www.city.nagahama.lg.jp/cmsfiles/contents/0000014/14176/ichiran.pdf"
+    }
+   ]
+  },
+  {
    "id": "exam-w3c-019",
    "name": "仁和寺",
    "region": "近畿",
@@ -2705,6 +2860,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "文化遺産オンライン（文化庁 古都京都の文化財）",
      "url": "https://online.bunka.go.jp/special_content/hlink3"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3d-006",
+   "name": "湯の花温泉",
+   "region": "近畿",
+   "prefectures": [
+    "京都府"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "亀岡市中心部から西へ約7km の山あいにある温泉郷",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "亀岡市（公式・亀岡観光トップページ）",
+     "url": "https://www.city.kameoka.kyoto.jp/site/kankou/"
     }
    ]
   },
@@ -3087,6 +3264,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
      "url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E7%9A%86%E7%94%9F%E6%B8%A9%E6%B3%89"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3d-008",
+   "name": "三瓶山",
+   "region": "中国",
+   "prefectures": [
+    "島根県"
+   ],
+   "categories": [
+    "MOUNTAIN_HIGHLAND"
+   ],
+   "recognition_hook": "島根県の山。三瓶山自然林が国の天然記念物",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化遺産オンライン（文化庁 三瓶山自然林）",
+     "url": "https://online.bunka.go.jp/heritages/detail/139174"
     }
    ]
   },
@@ -3891,6 +4090,28 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3d-013",
+   "name": "小豆島",
+   "region": "四国",
+   "prefectures": [
+    "香川県"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND"
+   ],
+   "recognition_hook": "香川県の島。島内の神懸山（寒霞渓）は国の名勝",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化遺産オンライン（文化庁 神懸山（寒霞渓））",
+     "url": "https://online.bunka.go.jp/heritages/detail/139394"
+    }
+   ]
+  },
+  {
    "id": "exam-w3c-018",
    "name": "琴弾公園",
    "region": "四国",
@@ -4277,6 +4498,28 @@ window.GEO_BROAD_SHALLOW = {
    "reading": "つうじゅんきょう"
   },
   {
+   "id": "exam-w3d-004",
+   "name": "九重“夢”大吊橋",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "大分県"
+   ],
+   "categories": [
+    "LEISURE_STRUCTURE_BRIDGE"
+   ],
+   "recognition_hook": "長さ390m・高さ173m の歩道専用の吊橋",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "九重\"夢\"大吊橋（公式）",
+     "url": "https://www.yumeooturihashi.com/"
+    }
+   ]
+  },
+  {
    "id": "exam-020",
    "name": "宇佐神宮",
    "region": "九州・沖縄",
@@ -4299,6 +4542,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "国土交通省（国土数値情報 観光資源データ P12-14）",
      "url": "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P12-v2_2.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3d-001",
+   "name": "日田祇園の曳山行事",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "大分県"
+   ],
+   "categories": [
+    "FESTIVAL_CULTURE"
+   ],
+   "recognition_hook": "大分県日田市の祭礼行事。国の重要無形民俗文化財で、ユネスコ無形文化遺産「山・鉾・屋台行事」の一つ",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FESTIVAL",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "日田市（公式・ユネスコ無形文化遺産「日田祇園の曳山行事」）",
+     "url": "https://www.city.hita.oita.jp/soshiki/29/1344.html"
     }
    ]
   },
@@ -4438,6 +4703,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "文化遺産オンライン（文化庁 五箇瀬川峡谷（高千穂峡谷））",
      "url": "https://online.bunka.go.jp/heritages/detail/203106"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3d-009",
+   "name": "与論島",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "鹿児島県"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND"
+   ],
+   "recognition_hook": "鹿児島県の島。生産・生活用具が国の重要有形民俗文化財",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化遺産オンライン（文化庁 与論島の生産・生活用具）",
+     "url": "https://online.bunka.go.jp/heritages/detail/288389"
     }
    ]
   },
@@ -4730,7 +5017,14 @@ window.GEO_BROAD_SHALLOW = {
    "task": "TASK-018D",
    "size": 26,
    "source": "docs/geography/BROAD_SHALLOW_WAVE3C.json"
+  },
+  {
+   "wave": 6,
+   "version": "wave3d-v1",
+   "task": "TASK-018D",
+   "size": 13,
+   "source": "docs/geography/BROAD_SHALLOW_WAVE3D.json"
   }
  ],
- "coverage_note": "この 187 件は公式過去問 R3〜R7 に現れた観光資源の一部であって、試験範囲の全体ではない。TASK-018A の母集団監査では候補 461 件のうち未収録が多数残っている"
+ "coverage_note": "この 200 件は公式過去問 R3〜R7 に現れた観光資源の一部であって、試験範囲の全体ではない。TASK-018A の母集団監査では候補 461 件のうち未収録が多数残っている"
 };
