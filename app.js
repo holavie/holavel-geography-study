@@ -1,4 +1,7 @@
-// Geography Study v0.24.0 — 国内観光地理 DEEP 30 + LIGHTWEIGHT 70+n (no build, local first; Leaflet vendored locally).
+// Geography Study v0.25.0 — 国内観光地理 DEEP 30 + LIGHTWEIGHT 70+n (no build, local first; Leaflet vendored locally).
+// v0.25.0 (TASK-018G): 高速暗記の答え側に「別名」行を追加した。出すのは正本の verified_aliases（別名関係そのものを
+//   公式資料または公式過去問本文で確認できたもの）だけで、確認できていない候補（alias_pending）は runtime に出さない。
+//   表側（資源名）には別名を出さないので、答えを見る前に答えが漏れることはない。
 // v0.24.0 (TASK-018B): LIGHTWEIGHT へ WAVE 2 の 43 件を追加（生成経路: tools/geography_broad_shallow_build.py）。
 //   件数は data から数えて表示する。教材総数をコードに定数で書かない。DEEP 30 資源 58 地点は変更しない。
 // v0.18.0 (TASK-013H): Broad-Shallow WAVE 1 V3 の LIGHTWEIGHT 70 件（data/broad_shallow.js）と Rapid Study Mode v0.1 を
@@ -498,6 +501,7 @@ function renderRapid(){
     ${rapidLocatorHTML(r)}
     <div class="rrow"><span class="rl">カテゴリ</span><span class="rv">${esc(bsCatLabel(r))}</span></div>
     <div class="rrow"><span class="rl">一言特徴</span><span class="rv">${esc(r.recognition_hook)}</span></div>
+    ${(r.aliases&&r.aliases.length)?`<div class="rrow"><span class="rl">別名</span><span class="rv">${r.aliases.map(a=>esc(a)).join('・')}</span></div>`:''}
     ${r.municipalities?`<div class="rrow"><span class="rl">所在</span><span class="rv rd">${esc(r.municipalities)}</span></div>`:''}
     ${(()=>{const th=termsIn(r.recognition_hook);return th.length?`<div class="rrow"><span class="rl">読みの補助</span><span class="rv rterms">${th.map(x=>`<span class="rterm">${esc(x.term)}（${esc(x.reading)}）</span>`).join('')}</span></div>`:''})()}
     ${rapidSourcesHTML(r)}
