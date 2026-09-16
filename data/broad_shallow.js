@@ -6,6 +6,7 @@
 //            NOT_COVERED かつ公式過去問 R3〜R7 に複数年登場したもの）
 //   WAVE 3 = docs/geography/BROAD_SHALLOW_WAVE3.json（TASK-018C。残った未収録候補のうち、公式一次情報で
 //            名称・所在地・分類を確認できたもの。作業台帳は docs/geography/WAVE3_LEDGER.json）
+//   WAVE 3-B = docs/geography/BROAD_SHALLOW_WAVE3B.json（TASK-018D。同じ台帳の続き）
 // 旧 WAVE1 / WAVE1_V2 / V3 / V4 candidate pool は KNOWN DEFECTIVE / SUPERSEDED。runtime へは入れない。
 //
 // DEEP（data/resources.js の 30 件）とは役割が違う:
@@ -16,10 +17,10 @@
 // 名称と所在地を確認済み。planning 側の監査フィールド（GSI raw / old_prefectures / second-source diagnostics /
 // exam_* 等）は runtime へ持ち込まず、出典（authority + url）だけを保持する。
 window.GEO_BROAD_SHALLOW = {
- "version": "v3+wave2-v1+wave3-v1",
- "generated_at": "2026-09-15",
- "task": "TASK-018C",
- "source": "docs/geography/BROAD_SHALLOW_WAVE1_V3.json + docs/geography/BROAD_SHALLOW_WAVE2.json + docs/geography/BROAD_SHALLOW_WAVE3.json",
+ "version": "v3+wave2-v1+wave3-v1+wave3b-v1",
+ "generated_at": "2026-09-16",
+ "task": "TASK-018D",
+ "source": "docs/geography/BROAD_SHALLOW_WAVE1_V3.json + docs/geography/BROAD_SHALLOW_WAVE2.json + docs/geography/BROAD_SHALLOW_WAVE3.json + docs/geography/BROAD_SHALLOW_WAVE3B.json",
  "coverage_level": "LIGHTWEIGHT",
  "rights": "HOLAVEL_ORIGINAL metadata。公式一次情報で確認した名称・所在都道府県・カテゴリ・短い特徴のみ。市販教材・PRIVATE_REFERENCE・公式試験本文は含まない",
  "regions": [
@@ -276,6 +277,28 @@ window.GEO_BROAD_SHALLOW = {
     }
    ],
    "reading": "しこつこ"
+  },
+  {
+   "id": "exam-w3b-004",
+   "name": "昭和新山",
+   "region": "北海道",
+   "prefectures": [
+    "北海道"
+   ],
+   "categories": [
+    "MOUNTAIN_HIGHLAND"
+   ],
+   "recognition_hook": "支笏洞爺国立公園にある新しい火山",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省 北海道地方環境事務所（管内の国立公園）",
+     "url": "https://hokkaido.env.go.jp/park.html"
+    }
+   ]
   },
   {
    "id": "food-005",
@@ -1381,6 +1404,28 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3b-008",
+   "name": "佐渡島",
+   "region": "中部",
+   "prefectures": [
+    "新潟県"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND"
+   ],
+   "recognition_hook": "新潟県の島。世界文化遺産「佐渡島の金山」がある",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（日本の世界遺産一覧）",
+     "url": "https://www.bunka.go.jp/seisaku/bunkazai/shokai/sekai_isan/ichiran/"
+    }
+   ]
+  },
+  {
    "id": "exam-w3-007",
    "name": "妙高戸隠連山国立公園",
    "region": "中部",
@@ -1648,6 +1693,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3b-001",
+   "name": "山中湖",
+   "region": "中部",
+   "prefectures": [
+    "山梨県"
+   ],
+   "categories": [
+    "LAKE_WETLAND",
+    "WORLD_HERITAGE"
+   ],
+   "recognition_hook": "富士五湖の一つ。世界文化遺産「富士山」の構成資産",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "山梨県（公式・世界文化遺産「富士山」の構成資産紹介）",
+     "url": "https://www.pref.yamanashi.jp/fujisan/kouseishisanshoukai.html"
+    }
+   ]
+  },
+  {
    "id": "exam-019",
    "name": "恵林寺",
    "region": "中部",
@@ -1749,6 +1817,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "文化遺産オンライン（文化庁 善光寺本堂）",
      "url": "https://online.bunka.go.jp/heritages/detail/133538"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3b-010",
+   "name": "奈良井宿",
+   "region": "中部",
+   "prefectures": [
+    "長野県"
+   ],
+   "categories": [
+    "HISTORIC_DISTRICT"
+   ],
+   "recognition_hook": "中山道の宿場町。重要伝統的建造物群保存地区「塩尻市奈良井」",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（重要伝統的建造物群保存地区一覧）",
+     "url": "https://www.bunka.go.jp/seisaku/bunkazai/shokai/hozonchiku/judenken_ichiran.html"
     }
    ]
   },
@@ -1884,6 +1974,52 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
      "url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E4%B9%85%E8%83%BD%E5%B1%B1%E6%9D%B1%E7%85%A7%E5%AE%AE"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3b-002",
+   "name": "富士山本宮浅間大社",
+   "region": "中部",
+   "prefectures": [
+    "静岡県"
+   ],
+   "categories": [
+    "TEMPLE_SHRINE",
+    "WORLD_HERITAGE"
+   ],
+   "recognition_hook": "世界文化遺産「富士山」の構成資産。全国の浅間神社の総本宮",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "山梨県（公式・世界文化遺産「富士山」の構成資産紹介）",
+     "url": "https://www.pref.yamanashi.jp/fujisan/kouseishisanshoukai.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3b-003",
+   "name": "白糸ノ滝",
+   "region": "中部",
+   "prefectures": [
+    "静岡県"
+   ],
+   "categories": [
+    "VALLEY_WATERFALL",
+    "WORLD_HERITAGE"
+   ],
+   "recognition_hook": "世界文化遺産「富士山」の構成資産",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "山梨県（公式・世界文化遺産「富士山」の構成資産紹介）",
+     "url": "https://www.pref.yamanashi.jp/fujisan/kouseishisanshoukai.html"
     }
    ]
   },
@@ -2629,6 +2765,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3b-009",
+   "name": "温泉津温泉",
+   "region": "中国",
+   "prefectures": [
+    "島根県"
+   ],
+   "categories": [
+    "HOT_SPRING",
+    "WORLD_HERITAGE"
+   ],
+   "recognition_hook": "世界文化遺産「石見銀山遺跡とその文化的景観」の構成資産「温泉津」にある温泉",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化遺産オンライン（文化庁 石見銀山遺跡とその文化的景観）",
+     "url": "https://online.bunka.go.jp/special_content/hlinkB"
+    }
+   ]
+  },
+  {
    "id": "exam-w2-005",
    "name": "玉造温泉",
    "region": "中国",
@@ -2999,6 +3158,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "文化庁（国指定文化財等データベース）",
      "url": "https://kunishitei.bunka.go.jp/heritage/detail/401/2330"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3b-005",
+   "name": "秋芳洞",
+   "region": "中国",
+   "prefectures": [
+    "山口県"
+   ],
+   "categories": [
+    "OTHER"
+   ],
+   "recognition_hook": "秋吉台国定公園にある鍾乳洞窟",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
     }
    ]
   },
@@ -3556,6 +3737,28 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3b-007",
+   "name": "由布院温泉",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "大分県"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "大分県の温泉。国民保養温泉地「湯布院温泉郷」に含まれる",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（国民保養温泉地）",
+     "url": "https://www.env.go.jp/nature/onsen/area/"
+    }
+   ]
+  },
+  {
    "id": "exam-w3-028",
    "name": "鉄輪温泉",
    "region": "九州・沖縄",
@@ -3574,6 +3777,29 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "環境省（国民保養温泉地）",
      "url": "https://www.env.go.jp/nature/onsen/area/"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3b-006",
+   "name": "日南海岸",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "宮崎県",
+    "鹿児島県"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND"
+   ],
+   "recognition_hook": "宮崎・鹿児島にまたがる日南海岸国定公園の海岸。亜熱帯植物が豊か",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
     }
    ]
   },
@@ -3902,7 +4128,14 @@ window.GEO_BROAD_SHALLOW = {
    "task": "TASK-018C",
    "size": 38,
    "source": "docs/geography/BROAD_SHALLOW_WAVE3.json"
+  },
+  {
+   "wave": 4,
+   "version": "wave3b-v1",
+   "task": "TASK-018D",
+   "size": 10,
+   "source": "docs/geography/BROAD_SHALLOW_WAVE3B.json"
   }
  ],
- "coverage_note": "この 151 件は公式過去問 R3〜R7 に現れた観光資源の一部であって、試験範囲の全体ではない。TASK-018A の母集団監査では候補 461 件のうち未収録が多数残っている"
+ "coverage_note": "この 161 件は公式過去問 R3〜R7 に現れた観光資源の一部であって、試験範囲の全体ではない。TASK-018A の母集団監査では候補 461 件のうち未収録が多数残っている"
 };
