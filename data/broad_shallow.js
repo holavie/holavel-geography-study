@@ -12,6 +12,8 @@
 //   WAVE 3-E = docs/geography/BROAD_SHALLOW_WAVE3E.json（TASK-018G。同じ台帳の続き）
 //   WAVE 3-F = docs/geography/BROAD_SHALLOW_WAVE3F.json（TASK-018H。同じ台帳の続き）
 //   WAVE 3-G = docs/geography/BROAD_SHALLOW_WAVE3G.json（TASK-018I。同じ台帳の続き）
+//   WAVE 4-A = docs/geography/BROAD_SHALLOW_WAVE4A.json（TASK-020A。過去5年の出題には無いが、公式一覧に載る
+//            定番資源。origin フィールドで WAVE 1〜3-G（過去問由来）と区別する）
 // 旧 WAVE1 / WAVE1_V2 / V3 / V4 candidate pool は KNOWN DEFECTIVE / SUPERSEDED。runtime へは入れない。
 //
 // DEEP（data/resources.js の 30 件）とは役割が違う:
@@ -22,10 +24,10 @@
 // 名称と所在地を確認済み。planning 側の監査フィールド（GSI raw / old_prefectures / second-source diagnostics /
 // exam_* 等）は runtime へ持ち込まず、出典（authority + url）だけを保持する。
 window.GEO_BROAD_SHALLOW = {
- "version": "v3+wave2-v1+wave3-v1+wave3b-v1+wave3c-v1+wave3d-v1+wave3e-v1+wave3f-v1+wave3g-v1",
+ "version": "v3+wave2-v1+wave3-v1+wave3b-v1+wave3c-v1+wave3d-v1+wave3e-v1+wave3f-v1+wave3g-v1+wave4a-v1",
  "generated_at": "2026-09-17",
- "task": "TASK-018I",
- "source": "docs/geography/BROAD_SHALLOW_WAVE1_V3.json + docs/geography/BROAD_SHALLOW_WAVE2.json + docs/geography/BROAD_SHALLOW_WAVE3.json + docs/geography/BROAD_SHALLOW_WAVE3B.json + docs/geography/BROAD_SHALLOW_WAVE3C.json + docs/geography/BROAD_SHALLOW_WAVE3D.json + docs/geography/BROAD_SHALLOW_WAVE3E.json + docs/geography/BROAD_SHALLOW_WAVE3F.json + docs/geography/BROAD_SHALLOW_WAVE3G.json",
+ "task": "TASK-020A",
+ "source": "docs/geography/BROAD_SHALLOW_WAVE1_V3.json + docs/geography/BROAD_SHALLOW_WAVE2.json + docs/geography/BROAD_SHALLOW_WAVE3.json + docs/geography/BROAD_SHALLOW_WAVE3B.json + docs/geography/BROAD_SHALLOW_WAVE3C.json + docs/geography/BROAD_SHALLOW_WAVE3D.json + docs/geography/BROAD_SHALLOW_WAVE3E.json + docs/geography/BROAD_SHALLOW_WAVE3F.json + docs/geography/BROAD_SHALLOW_WAVE3G.json + docs/geography/BROAD_SHALLOW_WAVE4A.json",
  "coverage_level": "LIGHTWEIGHT",
  "rights": "HOLAVEL_ORIGINAL metadata。公式一次情報で確認した名称・所在都道府県・カテゴリ・短い特徴のみ。市販教材・PRIVATE_REFERENCE・公式試験本文は含まない",
  "regions": [
@@ -1623,6 +1625,52 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4a-028",
+   "name": "天童将棋駒",
+   "region": "東北",
+   "prefectures": [
+    "山形県"
+   ],
+   "categories": [
+    "TRADITIONAL_CRAFT"
+   ],
+   "recognition_hook": "山形県の伝統的工芸品（その他の工芸品）",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "CRAFT",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "伝統的工芸品産業振興協会（経済産業大臣指定 伝統的工芸品 山形県）",
+     "url": "https://kougeihin.jp/craft_pref/yamagata/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-016",
+   "name": "新庄まつりの山車行事",
+   "region": "東北",
+   "prefectures": [
+    "山形県"
+   ],
+   "categories": [
+    "FESTIVAL_CULTURE"
+   ],
+   "recognition_hook": "山形県新庄市の祭礼行事。国の重要無形民俗文化財",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FESTIVAL",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 新庄まつりの山車行事）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/302/00000853"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3e-013",
    "name": "立石寺",
    "region": "東北",
@@ -1665,6 +1713,29 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://www.meti.go.jp/press/2025/10/20251027001/20251027001.html"
     }
    ]
+  },
+  {
+   "id": "exam-w4a-040",
+   "name": "芋煮",
+   "region": "東北",
+   "prefectures": [
+    "山形県"
+   ],
+   "categories": [
+    "LOCAL_FOOD_SPECIALTY"
+   ],
+   "recognition_hook": "山形県の郷土料理",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FOOD",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "農林水産省（公式・うちの郷土料理 山形県）",
+     "url": "https://www.maff.go.jp/j/keikaku/syokubunka/k_ryouri/search_menu/area/yamagata.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w2-041",
@@ -1876,6 +1947,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4a-042",
+   "name": "そぼろ納豆",
+   "region": "関東",
+   "prefectures": [
+    "茨城県"
+   ],
+   "categories": [
+    "LOCAL_FOOD_SPECIALTY"
+   ],
+   "recognition_hook": "茨城県の郷土料理",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FOOD",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "農林水産省（公式・うちの郷土料理 茨城県）",
+     "url": "https://www.maff.go.jp/j/keikaku/syokubunka/k_ryouri/search_menu/area/ibaraki.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3e-049",
    "name": "偕楽園",
    "region": "関東",
@@ -1918,6 +2012,75 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://www.city.itako.lg.jp/kankou/kankou-itakokankou/kankou-spot/kankou-mainspot/"
     }
    ]
+  },
+  {
+   "id": "exam-w4a-017",
+   "name": "日立風流物",
+   "region": "関東",
+   "prefectures": [
+    "茨城県"
+   ],
+   "categories": [
+    "FESTIVAL_CULTURE"
+   ],
+   "recognition_hook": "茨城県日立市の祭礼行事。国の重要無形民俗文化財",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FESTIVAL",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 日立風流物）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/302/32"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-002",
+   "name": "真壁",
+   "region": "関東",
+   "prefectures": [
+    "茨城県"
+   ],
+   "categories": [
+    "HISTORIC_DISTRICT"
+   ],
+   "recognition_hook": "茨城県桜川市の在郷町。重要伝統的建造物群保存地区",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 桜川市真壁）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/103/00000090"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-030",
+   "name": "真壁石燈籠",
+   "region": "関東",
+   "prefectures": [
+    "茨城県"
+   ],
+   "categories": [
+    "TRADITIONAL_CRAFT"
+   ],
+   "recognition_hook": "茨城県の伝統的工芸品（石工品）",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "CRAFT",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "伝統的工芸品産業振興協会（経済産業大臣指定 伝統的工芸品 茨城県）",
+     "url": "https://kougeihin.jp/craft_pref/ibaraki/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "craft-010",
@@ -2471,6 +2634,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4a-038",
+   "name": "冷や汁／すったて",
+   "region": "関東",
+   "prefectures": [
+    "埼玉県"
+   ],
+   "categories": [
+    "LOCAL_FOOD_SPECIALTY"
+   ],
+   "recognition_hook": "埼玉県の郷土料理",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FOOD",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "農林水産省（公式・うちの郷土料理 埼玉県）",
+     "url": "https://www.maff.go.jp/j/keikaku/syokubunka/k_ryouri/search_menu/area/saitama.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "des-064",
    "name": "川越市川越",
    "region": "関東",
@@ -2491,6 +2677,29 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://www.bunka.go.jp/seisaku/bunkazai/shokai/hozonchiku/judenken_ichiran.html"
     }
    ]
+  },
+  {
+   "id": "exam-w4a-015",
+   "name": "川越氷川祭の山車行事",
+   "region": "関東",
+   "prefectures": [
+    "埼玉県"
+   ],
+   "categories": [
+    "FESTIVAL_CULTURE"
+   ],
+   "recognition_hook": "埼玉県川越市の祭礼行事。国の重要無形民俗文化財",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FESTIVAL",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 川越氷川祭の山車行事）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/302/00000795"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3f-057",
@@ -2540,6 +2749,75 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4a-014",
+   "name": "秩父祭の屋台行事と神楽",
+   "region": "関東",
+   "prefectures": [
+    "埼玉県"
+   ],
+   "categories": [
+    "FESTIVAL_CULTURE"
+   ],
+   "recognition_hook": "埼玉県秩父市の祭礼行事。国の重要無形民俗文化財",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FESTIVAL",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 秩父祭の屋台行事と神楽）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/302/38"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-026",
+   "name": "秩父銘仙",
+   "region": "関東",
+   "prefectures": [
+    "埼玉県"
+   ],
+   "categories": [
+    "TRADITIONAL_CRAFT"
+   ],
+   "recognition_hook": "埼玉県の伝統的工芸品（織物）",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "CRAFT",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "伝統的工芸品産業振興協会（経済産業大臣指定 伝統的工芸品 埼玉県）",
+     "url": "https://kougeihin.jp/craft_pref/saitama/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-037",
+   "name": "なめろう",
+   "region": "関東",
+   "prefectures": [
+    "千葉県"
+   ],
+   "categories": [
+    "LOCAL_FOOD_SPECIALTY"
+   ],
+   "recognition_hook": "千葉県の郷土料理",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FOOD",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "農林水産省（公式・うちの郷土料理 千葉県）",
+     "url": "https://www.maff.go.jp/j/keikaku/syokubunka/k_ryouri/search_menu/area/chiba.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3f-021",
    "name": "九十九里浜",
    "region": "関東",
@@ -2560,6 +2838,75 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://kunishitei.bunka.go.jp/heritage/detail/301/46"
     }
    ]
+  },
+  {
+   "id": "exam-w4a-013",
+   "name": "佐原の山車行事",
+   "region": "関東",
+   "prefectures": [
+    "千葉県"
+   ],
+   "categories": [
+    "FESTIVAL_CULTURE"
+   ],
+   "recognition_hook": "千葉県香取市の祭礼行事。国の重要無形民俗文化財",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FESTIVAL",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 佐原の山車行事）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/302/767"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-057",
+   "name": "屏風ケ浦",
+   "region": "関東",
+   "prefectures": [
+    "千葉県"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND"
+   ],
+   "recognition_hook": "千葉県銚子市の海食崖。国の名勝・天然記念物",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 屏風ケ浦）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/401/00003936"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-025",
+   "name": "房州うちわ",
+   "region": "関東",
+   "prefectures": [
+    "千葉県"
+   ],
+   "categories": [
+    "TRADITIONAL_CRAFT"
+   ],
+   "recognition_hook": "千葉県の伝統的工芸品（その他の工芸品）",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "CRAFT",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "伝統的工芸品産業振興協会（経済産業大臣指定 伝統的工芸品 千葉県）",
+     "url": "https://kougeihin.jp/craft_pref/chiba/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "des-065",
@@ -2680,6 +3027,52 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4a-052",
+   "name": "旧芝離宮庭園",
+   "region": "関東",
+   "prefectures": [
+    "東京都"
+   ],
+   "categories": [
+    "GARDEN"
+   ],
+   "recognition_hook": "東京都港区の庭園。国の名勝",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 旧芝離宮庭園）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/401/731"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-046",
+   "name": "深川めし",
+   "region": "関東",
+   "prefectures": [
+    "東京都"
+   ],
+   "categories": [
+    "LOCAL_FOOD_SPECIALTY"
+   ],
+   "recognition_hook": "東京都の郷土料理",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FOOD",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "農林水産省（公式・うちの郷土料理 東京都）",
+     "url": "https://www.maff.go.jp/j/keikaku/syokubunka/k_ryouri/search_menu/area/tokyo.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3e-040",
    "name": "秋川渓谷",
    "region": "関東",
@@ -2700,6 +3093,52 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://www.city.akiruno.tokyo.jp/kanko/"
     }
    ]
+  },
+  {
+   "id": "exam-w4a-043",
+   "name": "けんちん汁",
+   "region": "関東",
+   "prefectures": [
+    "神奈川県"
+   ],
+   "categories": [
+    "LOCAL_FOOD_SPECIALTY"
+   ],
+   "recognition_hook": "神奈川県の郷土料理",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FOOD",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "農林水産省（公式・うちの郷土料理 神奈川県）",
+     "url": "https://www.maff.go.jp/j/keikaku/syokubunka/k_ryouri/search_menu/area/kanagawa.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-051",
+   "name": "三溪園",
+   "region": "関東",
+   "prefectures": [
+    "神奈川県"
+   ],
+   "categories": [
+    "GARDEN"
+   ],
+   "recognition_hook": "横浜市中区の庭園。国の名勝",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 三溪園）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/401/00003520"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3c-004",
@@ -2744,6 +3183,29 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://kunishitei.bunka.go.jp/heritage/detail/401/810"
     }
    ]
+  },
+  {
+   "id": "exam-w4a-031",
+   "name": "箱根寄木細工",
+   "region": "関東",
+   "prefectures": [
+    "神奈川県"
+   ],
+   "categories": [
+    "TRADITIONAL_CRAFT"
+   ],
+   "recognition_hook": "神奈川県の伝統的工芸品（木工品・竹工品）",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "CRAFT",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "伝統的工芸品産業振興協会（経済産業大臣指定 伝統的工芸品 神奈川県）",
+     "url": "https://kougeihin.jp/craft_pref/kanagawa/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-059",
@@ -3070,6 +3532,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4a-010",
+   "name": "山町筋",
+   "region": "中部",
+   "prefectures": [
+    "富山県"
+   ],
+   "categories": [
+    "HISTORIC_DISTRICT"
+   ],
+   "recognition_hook": "富山県高岡市の商家町。重要伝統的建造物群保存地区",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 高岡市山町筋）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/103/57"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "des-023",
    "name": "白山国立公園",
    "region": "中部",
@@ -3137,6 +3622,29 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://kunishitei.bunka.go.jp/heritage/detail/401/00003842"
     }
    ]
+  },
+  {
+   "id": "exam-w4a-024",
+   "name": "高岡御車山祭の御車山行事",
+   "region": "中部",
+   "prefectures": [
+    "富山県"
+   ],
+   "categories": [
+    "FESTIVAL_CULTURE"
+   ],
+   "recognition_hook": "富山県高岡市の祭礼行事。国の重要無形民俗文化財",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FESTIVAL",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 高岡御車山祭の御車山行事）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/302/56"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3f-051",
@@ -4026,6 +4534,33 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4a-061",
+   "name": "鹿教湯温泉",
+   "region": "中部",
+   "prefectures": [
+    "長野県"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "長野県上田市の温泉地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "信州上田観光協会（上田市公式サイトが観光協会として案内している組織）",
+     "url": "https://ueda-kanko.or.jp/"
+    },
+    {
+     "authority": "上田市（公式・観光課。上記観光協会へのリンク元）",
+     "url": "https://www.city.ueda.nagano.jp/soshiki/kanko/"
+    }
+   ],
+   "origin": "PAST5_HOLD_RESOLUTION"
+  },
+  {
    "id": "exam-w3e-050",
    "name": "下呂温泉",
    "region": "中部",
@@ -4401,6 +4936,75 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4a-056",
+   "name": "名古屋城二之丸庭園",
+   "region": "中部",
+   "prefectures": [
+    "愛知県"
+   ],
+   "categories": [
+    "GARDEN"
+   ],
+   "recognition_hook": "名古屋市中区の庭園。国の名勝",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 名古屋城二之丸庭園）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/401/1447"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-044",
+   "name": "味噌煮込みうどん",
+   "region": "中部",
+   "prefectures": [
+    "愛知県"
+   ],
+   "categories": [
+    "LOCAL_FOOD_SPECIALTY"
+   ],
+   "recognition_hook": "愛知県の郷土料理",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FOOD",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "農林水産省（公式・うちの郷土料理 愛知県）",
+     "url": "https://www.maff.go.jp/j/keikaku/syokubunka/k_ryouri/search_menu/area/aichi.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-019",
+   "name": "尾張津島天王祭の車楽舟行事",
+   "region": "中部",
+   "prefectures": [
+    "愛知県"
+   ],
+   "categories": [
+    "FESTIVAL_CULTURE"
+   ],
+   "recognition_hook": "愛知県津島市の祭礼行事。国の重要無形民俗文化財",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FESTIVAL",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 尾張津島天王祭の車楽舟行事）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/302/86"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3f-027",
    "name": "岡崎城",
    "region": "中部",
@@ -4443,6 +5047,52 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://kyokai.kougeihin.jp/wp/wp-content/uploads/2025/10/shitei-area_20251027.pdf"
     }
    ]
+  },
+  {
+   "id": "exam-w4a-004",
+   "name": "有松",
+   "region": "中部",
+   "prefectures": [
+    "愛知県"
+   ],
+   "categories": [
+    "HISTORIC_DISTRICT"
+   ],
+   "recognition_hook": "名古屋市緑区の染織町。重要伝統的建造物群保存地区",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 名古屋市有松）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/103/00000115"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-036",
+   "name": "有松・鳴海絞",
+   "region": "中部",
+   "prefectures": [
+    "愛知県"
+   ],
+   "categories": [
+    "TRADITIONAL_CRAFT"
+   ],
+   "recognition_hook": "愛知県の伝統的工芸品（染色品）",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "CRAFT",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "伝統的工芸品産業振興協会（経済産業大臣指定 伝統的工芸品 愛知県）",
+     "url": "https://kougeihin.jp/craft_pref/aichi/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3e-035",
@@ -4520,6 +5170,52 @@ window.GEO_BROAD_SHALLOW = {
    "aliases": [
     "白帝城"
    ]
+  },
+  {
+   "id": "exam-w4a-018",
+   "name": "犬山祭の車山行事",
+   "region": "中部",
+   "prefectures": [
+    "愛知県"
+   ],
+   "categories": [
+    "FESTIVAL_CULTURE"
+   ],
+   "recognition_hook": "愛知県犬山市の祭礼行事。国の重要無形民俗文化財",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FESTIVAL",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 犬山祭の車山行事）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/302/00000811"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-003",
+   "name": "足助",
+   "region": "中部",
+   "prefectures": [
+    "愛知県"
+   ],
+   "categories": [
+    "HISTORIC_DISTRICT"
+   ],
+   "recognition_hook": "愛知県豊田市の商家町。重要伝統的建造物群保存地区",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 豊田市足助）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/103/00000094"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3-008",
@@ -5291,6 +5987,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4a-039",
+   "name": "バッテラ",
+   "region": "近畿",
+   "prefectures": [
+    "大阪府"
+   ],
+   "categories": [
+    "LOCAL_FOOD_SPECIALTY"
+   ],
+   "recognition_hook": "大阪府の郷土料理",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FOOD",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "農林水産省（公式・うちの郷土料理 大阪府）",
+     "url": "https://www.maff.go.jp/j/keikaku/syokubunka/k_ryouri/search_menu/area/osaka.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-024",
    "name": "今宮戎神社",
    "region": "近畿",
@@ -5341,6 +6060,75 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P12-v2_2.html"
     }
    ]
+  },
+  {
+   "id": "exam-w4a-027",
+   "name": "堺打刃物",
+   "region": "近畿",
+   "prefectures": [
+    "大阪府"
+   ],
+   "categories": [
+    "TRADITIONAL_CRAFT"
+   ],
+   "recognition_hook": "大阪府の伝統的工芸品（金工品）",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "CRAFT",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "伝統的工芸品産業振興協会（経済産業大臣指定 伝統的工芸品 大阪府）",
+     "url": "https://kougeihin.jp/craft_pref/osaka/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-001",
+   "name": "富田林寺内町",
+   "region": "近畿",
+   "prefectures": [
+    "大阪府"
+   ],
+   "categories": [
+    "HISTORIC_DISTRICT"
+   ],
+   "recognition_hook": "大阪府富田林市の寺内町。重要伝統的建造物群保存地区",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 富田林市富田林）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/103/50"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-053",
+   "name": "岸和田城庭園",
+   "region": "近畿",
+   "prefectures": [
+    "大阪府"
+   ],
+   "categories": [
+    "GARDEN"
+   ],
+   "recognition_hook": "大阪府岸和田市の庭園。国の名勝",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 岸和田城庭園（八陣の庭））",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/401/00003867"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3-009",
@@ -5828,6 +6616,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4a-047",
+   "name": "めはりずし",
+   "region": "近畿",
+   "prefectures": [
+    "和歌山県"
+   ],
+   "categories": [
+    "LOCAL_FOOD_SPECIALTY"
+   ],
+   "recognition_hook": "和歌山県の郷土料理",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FOOD",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "農林水産省（公式・うちの郷土料理 和歌山県）",
+     "url": "https://www.maff.go.jp/j/keikaku/syokubunka/k_ryouri/search_menu/area/wakayama.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3e-011",
    "name": "橋杭岩",
    "region": "近畿",
@@ -5850,6 +6661,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4a-006",
+   "name": "湯浅",
+   "region": "近畿",
+   "prefectures": [
+    "和歌山県"
+   ],
+   "categories": [
+    "HISTORIC_DISTRICT"
+   ],
+   "recognition_hook": "和歌山県湯浅町の醸造町。重要伝統的建造物群保存地区",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 湯浅町湯浅）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/103/00000082"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3g-011",
    "name": "白浜温泉",
    "region": "近畿",
@@ -5870,6 +6704,52 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://www.town.shirahama.wakayama.jp/kanko/onsen/1454046714439.html"
     }
    ]
+  },
+  {
+   "id": "exam-w4a-035",
+   "name": "紀州漆器",
+   "region": "近畿",
+   "prefectures": [
+    "和歌山県"
+   ],
+   "categories": [
+    "TRADITIONAL_CRAFT"
+   ],
+   "recognition_hook": "和歌山県の伝統的工芸品（漆器）",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "CRAFT",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "伝統的工芸品産業振興協会（経済産業大臣指定 伝統的工芸品 和歌山県）",
+     "url": "https://kougeihin.jp/craft_pref/wakayama/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-054",
+   "name": "紅葉溪庭園",
+   "region": "近畿",
+   "prefectures": [
+    "和歌山県"
+   ],
+   "categories": [
+    "GARDEN"
+   ],
+   "recognition_hook": "和歌山市の庭園。国の名勝",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 和歌山城西之丸庭園（紅葉溪庭園））",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/401/2097"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3e-023",
@@ -5898,6 +6778,52 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4a-020",
+   "name": "那智の扇祭り",
+   "region": "近畿",
+   "prefectures": [
+    "和歌山県"
+   ],
+   "categories": [
+    "FESTIVAL_CULTURE"
+   ],
+   "recognition_hook": "和歌山県那智勝浦町の祭礼行事。国の重要無形民俗文化財",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FESTIVAL",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 那智の扇祭り）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/302/00000923"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-059",
+   "name": "三徳山",
+   "region": "中国",
+   "prefectures": [
+    "鳥取県"
+   ],
+   "categories": [
+    "MOUNTAIN_HIGHLAND"
+   ],
+   "recognition_hook": "鳥取県三朝町の山。国の名勝・史跡",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 三徳山）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/401/2114"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-018",
    "name": "三朝温泉",
    "region": "中国",
@@ -5922,6 +6848,52 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P12-v2_2.html"
     }
    ]
+  },
+  {
+   "id": "exam-w4a-032",
+   "name": "因州和紙",
+   "region": "中国",
+   "prefectures": [
+    "鳥取県"
+   ],
+   "categories": [
+    "TRADITIONAL_CRAFT"
+   ],
+   "recognition_hook": "鳥取県の伝統的工芸品（和紙）",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "CRAFT",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "伝統的工芸品産業振興協会（経済産業大臣指定 伝統的工芸品 鳥取県）",
+     "url": "https://kougeihin.jp/craft_pref/tottori/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-045",
+   "name": "大山おこわ",
+   "region": "中国",
+   "prefectures": [
+    "鳥取県"
+   ],
+   "categories": [
+    "LOCAL_FOOD_SPECIALTY"
+   ],
+   "recognition_hook": "鳥取県の郷土料理",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FOOD",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "農林水産省（公式・うちの郷土料理 鳥取県）",
+     "url": "https://www.maff.go.jp/j/keikaku/syokubunka/k_ryouri/search_menu/area/tottori.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3-010",
@@ -5968,6 +6940,52 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://kunishitei.bunka.go.jp/heritage/detail/401/3221"
     }
    ]
+  },
+  {
+   "id": "exam-w4a-005",
+   "name": "打吹玉川",
+   "region": "中国",
+   "prefectures": [
+    "鳥取県"
+   ],
+   "categories": [
+    "HISTORIC_DISTRICT"
+   ],
+   "recognition_hook": "鳥取県倉吉市の商家町。重要伝統的建造物群保存地区",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 倉吉市打吹玉川）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/103/51"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-058",
+   "name": "浦富海岸",
+   "region": "中国",
+   "prefectures": [
+    "鳥取県"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND"
+   ],
+   "recognition_hook": "鳥取県岩美町の海岸。国の名勝・天然記念物",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 浦富海岸）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/401/2105"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w2-034",
@@ -6768,6 +7786,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4a-011",
+   "name": "萩城下町",
+   "region": "中国",
+   "prefectures": [
+    "山口県"
+   ],
+   "categories": [
+    "HISTORIC_DISTRICT"
+   ],
+   "recognition_hook": "山口県萩市の武家町。堀内地区が重要伝統的建造物群保存地区",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 萩市堀内地区）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/103/28"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-001",
    "name": "赤間神宮",
    "region": "中国",
@@ -7292,6 +8333,75 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4a-041",
+   "name": "かつおのたたき",
+   "region": "四国",
+   "prefectures": [
+    "高知県"
+   ],
+   "categories": [
+    "LOCAL_FOOD_SPECIALTY"
+   ],
+   "recognition_hook": "高知県の郷土料理",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FOOD",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "農林水産省（公式・うちの郷土料理 高知県）",
+     "url": "https://www.maff.go.jp/j/keikaku/syokubunka/k_ryouri/search_menu/area/kochi.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-012",
+   "name": "吉良川町",
+   "region": "四国",
+   "prefectures": [
+    "高知県"
+   ],
+   "categories": [
+    "HISTORIC_DISTRICT"
+   ],
+   "recognition_hook": "高知県室戸市の在郷町。重要伝統的建造物群保存地区",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 室戸市吉良川町）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/103/52"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-029",
+   "name": "土佐和紙",
+   "region": "四国",
+   "prefectures": [
+    "高知県"
+   ],
+   "categories": [
+    "TRADITIONAL_CRAFT"
+   ],
+   "recognition_hook": "高知県の伝統的工芸品（和紙）",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "CRAFT",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "伝統的工芸品産業振興協会（経済産業大臣指定 伝統的工芸品 高知県）",
+     "url": "https://kougeihin.jp/craft_pref/kochi/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3f-024",
    "name": "土佐湾",
    "region": "四国",
@@ -7407,6 +8517,52 @@ window.GEO_BROAD_SHALLOW = {
    "reading": "「かみやどるしま」むなかた・おきのしまとかんれんいさんぐん"
   },
   {
+   "id": "exam-w4a-048",
+   "name": "がめ煮",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "福岡県"
+   ],
+   "categories": [
+    "LOCAL_FOOD_SPECIALTY"
+   ],
+   "recognition_hook": "福岡県の郷土料理",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FOOD",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "農林水産省（公式・うちの郷土料理 福岡県）",
+     "url": "https://www.maff.go.jp/j/keikaku/syokubunka/k_ryouri/search_menu/area/fukuoka.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-021",
+   "name": "博多祇園山笠行事",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "福岡県"
+   ],
+   "categories": [
+    "FESTIVAL_CULTURE"
+   ],
+   "recognition_hook": "福岡市の祭礼行事。国の重要無形民俗文化財",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FESTIVAL",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 博多祇園山笠行事）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/302/133"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3e-053",
    "name": "原鶴温泉",
    "region": "九州・沖縄",
@@ -7455,6 +8611,75 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4a-007",
+   "name": "秋月",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "福岡県"
+   ],
+   "categories": [
+    "HISTORIC_DISTRICT"
+   ],
+   "recognition_hook": "福岡県朝倉市の城下町。重要伝統的建造物群保存地区",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 朝倉市秋月）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/103/53"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-049",
+   "name": "ふなんこぐい",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "佐賀県"
+   ],
+   "categories": [
+    "LOCAL_FOOD_SPECIALTY"
+   ],
+   "recognition_hook": "佐賀県の郷土料理",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FOOD",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "農林水産省（公式・うちの郷土料理 佐賀県）",
+     "url": "https://www.maff.go.jp/j/keikaku/syokubunka/k_ryouri/search_menu/area/saga.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-055",
+   "name": "九年庵",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "佐賀県"
+   ],
+   "categories": [
+    "GARDEN"
+   ],
+   "recognition_hook": "佐賀県神埼市の庭園。国の名勝",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 九年庵（旧伊丹氏別邸）庭園）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/401/2733"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3-017",
    "name": "伊万里・有田焼",
    "region": "九州・沖縄",
@@ -7499,6 +8724,52 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4a-022",
+   "name": "唐津くんちの曳山行事",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "佐賀県"
+   ],
+   "categories": [
+    "FESTIVAL_CULTURE"
+   ],
+   "recognition_hook": "佐賀県唐津市の祭礼行事。国の重要無形民俗文化財",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FESTIVAL",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 唐津くんちの曳山行事）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/302/138"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4a-033",
+   "name": "唐津焼",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "佐賀県"
+   ],
+   "categories": [
+    "TRADITIONAL_CRAFT"
+   ],
+   "recognition_hook": "佐賀県の伝統的工芸品（陶磁器）",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "CRAFT",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "伝統的工芸品産業振興協会（経済産業大臣指定 伝統的工芸品 佐賀県）",
+     "url": "https://kougeihin.jp/craft_pref/saga/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3e-054",
    "name": "嬉野温泉",
    "region": "九州・沖縄",
@@ -7519,6 +8790,29 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://www.city.ureshino.lg.jp/kanko/tokusanhin.html"
     }
    ]
+  },
+  {
+   "id": "exam-w4a-008",
+   "name": "有田内山",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "佐賀県"
+   ],
+   "categories": [
+    "HISTORIC_DISTRICT"
+   ],
+   "recognition_hook": "佐賀県有田町の製磁町。重要伝統的建造物群保存地区",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 有田町有田内山）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/103/34"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-093",
@@ -8095,6 +9389,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4a-050",
+   "name": "冷や汁",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "宮崎県"
+   ],
+   "categories": [
+    "LOCAL_FOOD_SPECIALTY"
+   ],
+   "recognition_hook": "宮崎県の郷土料理",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FOOD",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "農林水産省（公式・うちの郷土料理 宮崎県）",
+     "url": "https://www.maff.go.jp/j/keikaku/syokubunka/k_ryouri/search_menu/area/miyazaki.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3b-006",
    "name": "日南海岸",
    "region": "九州・沖縄",
@@ -8144,6 +9461,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4a-034",
+   "name": "都城大弓",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "宮崎県"
+   ],
+   "categories": [
+    "TRADITIONAL_CRAFT"
+   ],
+   "recognition_hook": "宮崎県の伝統的工芸品（その他の工芸品）",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "CRAFT",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "伝統的工芸品産業振興協会（経済産業大臣指定 伝統的工芸品 宮崎県）",
+     "url": "https://kougeihin.jp/craft_pref/miyazaki/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "des-029",
    "name": "霧島錦江湾国立公園",
    "region": "九州・沖縄",
@@ -8168,6 +9508,29 @@ window.GEO_BROAD_SHALLOW = {
    "reading": "きりしまきんこうわんこくりつこうえん"
   },
   {
+   "id": "exam-w4a-009",
+   "name": "飫肥",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "宮崎県"
+   ],
+   "categories": [
+    "HISTORIC_DISTRICT"
+   ],
+   "recognition_hook": "宮崎県日南市の武家町。重要伝統的建造物群保存地区",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 日南市飫肥）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/103/37"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3g-032",
    "name": "飫肥城歴史資料館",
    "region": "九州・沖縄",
@@ -8190,6 +9553,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4a-023",
+   "name": "高千穂の夜神楽",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "宮崎県"
+   ],
+   "categories": [
+    "FESTIVAL_CULTURE"
+   ],
+   "recognition_hook": "宮崎県高千穂町の民俗芸能。国の重要無形民俗文化財",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FESTIVAL",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 高千穂の夜神楽）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/302/148"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3c-016",
    "name": "高千穂峡",
    "region": "九州・沖縄",
@@ -8210,6 +9596,29 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://online.bunka.go.jp/heritages/detail/203106"
     }
    ]
+  },
+  {
+   "id": "exam-w4a-060",
+   "name": "鵜戸",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "宮崎県"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND"
+   ],
+   "recognition_hook": "宮崎県日南市の海岸。国の名勝",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 鵜戸）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/401/00004005"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3d-009",
@@ -8682,7 +10091,14 @@ window.GEO_BROAD_SHALLOW = {
    "task": "TASK-018I",
    "size": 43,
    "source": "docs/geography/BROAD_SHALLOW_WAVE3G.json"
+  },
+  {
+   "wave": 10,
+   "version": "wave4a-v1",
+   "task": "TASK-020A",
+   "size": 61,
+   "source": "docs/geography/BROAD_SHALLOW_WAVE4A.json"
   }
  ],
- "coverage_note": "この 362 件は公式過去問 R3〜R7 に現れた観光資源の一部であって、試験範囲の全体ではない。TASK-018A の母集団監査では候補 461 件のうち未収録が多数残っている"
+ "coverage_note": "この 423 件は公式過去問 R3〜R7 に現れた観光資源の一部であって、試験範囲の全体ではない。TASK-018A の母集団監査では候補 461 件のうち未収録が多数残っている"
 };
