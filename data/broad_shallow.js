@@ -16,6 +16,8 @@
 //            定番資源。origin フィールドで WAVE 1〜3-G（過去問由来）と区別する）
 //   WAVE 4-B = docs/geography/BROAD_SHALLOW_WAVE4B.json（TASK-020B。環境省の国定公園一覧と
 //            文化庁の全国博物館一覧から選んだ定番資源）
+//   WAVE 4-C = docs/geography/BROAD_SHALLOW_WAVE4C.json（TASK-020C。環境省の国立公園一覧・
+//            ラムサール条約湿地一覧と、文化庁の日本遺産構成文化財から選んだ定番資源）
 // 旧 WAVE1 / WAVE1_V2 / V3 / V4 candidate pool は KNOWN DEFECTIVE / SUPERSEDED。runtime へは入れない。
 //
 // DEEP（data/resources.js の 30 件）とは役割が違う:
@@ -26,10 +28,10 @@
 // 名称と所在地を確認済み。planning 側の監査フィールド（GSI raw / old_prefectures / second-source diagnostics /
 // exam_* 等）は runtime へ持ち込まず、出典（authority + url）だけを保持する。
 window.GEO_BROAD_SHALLOW = {
- "version": "v3+wave2-v1+wave3-v1+wave3b-v1+wave3c-v1+wave3d-v1+wave3e-v1+wave3f-v1+wave3g-v1+wave4a-v1+wave4b-v1",
+ "version": "v3+wave2-v1+wave3-v1+wave3b-v1+wave3c-v1+wave3d-v1+wave3e-v1+wave3f-v1+wave3g-v1+wave4a-v1+wave4b-v1+wave4c-v1",
  "generated_at": "2026-09-17",
- "task": "TASK-020B",
- "source": "docs/geography/BROAD_SHALLOW_WAVE1_V3.json + docs/geography/BROAD_SHALLOW_WAVE2.json + docs/geography/BROAD_SHALLOW_WAVE3.json + docs/geography/BROAD_SHALLOW_WAVE3B.json + docs/geography/BROAD_SHALLOW_WAVE3C.json + docs/geography/BROAD_SHALLOW_WAVE3D.json + docs/geography/BROAD_SHALLOW_WAVE3E.json + docs/geography/BROAD_SHALLOW_WAVE3F.json + docs/geography/BROAD_SHALLOW_WAVE3G.json + docs/geography/BROAD_SHALLOW_WAVE4A.json + docs/geography/BROAD_SHALLOW_WAVE4B.json",
+ "task": "TASK-020C",
+ "source": "docs/geography/BROAD_SHALLOW_WAVE1_V3.json + docs/geography/BROAD_SHALLOW_WAVE2.json + docs/geography/BROAD_SHALLOW_WAVE3.json + docs/geography/BROAD_SHALLOW_WAVE3B.json + docs/geography/BROAD_SHALLOW_WAVE3C.json + docs/geography/BROAD_SHALLOW_WAVE3D.json + docs/geography/BROAD_SHALLOW_WAVE3E.json + docs/geography/BROAD_SHALLOW_WAVE3F.json + docs/geography/BROAD_SHALLOW_WAVE3G.json + docs/geography/BROAD_SHALLOW_WAVE4A.json + docs/geography/BROAD_SHALLOW_WAVE4B.json + docs/geography/BROAD_SHALLOW_WAVE4C.json",
  "coverage_level": "LIGHTWEIGHT",
  "rights": "HOLAVEL_ORIGINAL metadata。公式一次情報で確認した名称・所在都道府県・カテゴリ・短い特徴のみ。市販教材・PRIVATE_REFERENCE・公式試験本文は含まない",
  "regions": [
@@ -48,7 +50,8 @@ window.GEO_BROAD_SHALLOW = {
   "TRADITIONAL_CRAFT": "伝統的工芸品",
   "LEISURE_STRUCTURE_BRIDGE": "橋・構造物",
   "MUSEUM_CULTURAL_FACILITY": "美術館・博物館",
-  "QUASI_NATIONAL_PARK": "国定公園"
+  "QUASI_NATIONAL_PARK": "国定公園",
+  "RAMSAR_SITE": "ラムサール条約湿地"
  },
  "reading_terms": [
   {
@@ -107,6 +110,30 @@ window.GEO_BROAD_SHALLOW = {
  },
  "resources": [
   {
+   "id": "exam-w4c-018",
+   "name": "ウトナイ湖",
+   "region": "北海道",
+   "prefectures": [
+    "北海道"
+   ],
+   "categories": [
+    "LAKE_WETLAND",
+    "RAMSAR_SITE"
+   ],
+   "recognition_hook": "北海道のラムサール条約湿地。周囲 9km の淡水・海跡湖で、渡りの中継地として国内有数",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・ラムサール条約湿地／日本の条約湿地）",
+     "url": "https://www.env.go.jp/nature/ramsar/conv/RamsarSites_in_Japan.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-007",
    "name": "オシンコシンの滝",
    "region": "北海道",
@@ -131,6 +158,30 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://hokkaido.env.go.jp/blog/2012/11/1005.html"
     }
    ]
+  },
+  {
+   "id": "exam-w4c-017",
+   "name": "クッチャロ湖",
+   "region": "北海道",
+   "prefectures": [
+    "北海道"
+   ],
+   "categories": [
+    "LAKE_WETLAND",
+    "RAMSAR_SITE"
+   ],
+   "recognition_hook": "北海道のラムサール条約湿地。オホーツク海岸線最大の海跡湖で、日本で越冬するコハクチョウのほとんどが経由する",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・ラムサール条約湿地／日本の条約湿地）",
+     "url": "https://www.env.go.jp/nature/ramsar/conv/RamsarSites_in_Japan.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-013",
@@ -224,6 +275,33 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://www.town.kimobetsu.hokkaido.jp/tourism/"
     }
    ]
+  },
+  {
+   "id": "exam-w4c-001",
+   "name": "利尻礼文サロベツ国立公園",
+   "region": "北海道",
+   "prefectures": [
+    "北海道"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "北海道の国立公園。日本最北の国立公園で、利尻山とサロベツ原野の湿原",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国立公園一覧）",
+     "url": "https://www.env.go.jp/park/parks/index.html"
+    },
+    {
+     "authority": "環境省（公式・日本の国立公園／利尻礼文サロベツ国立公園）",
+     "url": "https://www.env.go.jp/nature/nationalparks/list/rishiri-rebun-sarobetsu/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3g-018",
@@ -459,6 +537,33 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://www.town.teshikaga.hokkaido.jp/"
     }
    ]
+  },
+  {
+   "id": "exam-w4c-003",
+   "name": "支笏洞爺国立公園",
+   "region": "北海道",
+   "prefectures": [
+    "北海道"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "北海道の国立公園。支笏湖・洞爺湖の二大カルデラ湖と羊蹄山・有珠山・樽前山の火山群",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国立公園一覧）",
+     "url": "https://www.env.go.jp/park/parks/index.html"
+    },
+    {
+     "authority": "環境省（公式・日本の国立公園／支笏洞爺国立公園）",
+     "url": "https://www.env.go.jp/nature/nationalparks/list/shikotsu-toya/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-022",
@@ -851,7 +956,8 @@ window.GEO_BROAD_SHALLOW = {
     "北海道"
    ],
    "categories": [
-    "COAST_CAPE_ISLAND"
+    "COAST_CAPE_ISLAND",
+    "RAMSAR_SITE"
    ],
    "recognition_hook": "北海道別海町の湾",
    "priority": "C",
@@ -862,8 +968,63 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "別海町（公式・観光）",
      "url": "https://betsukai.jp/sightseeing/"
+    },
+    {
+     "authority": "環境省（公式・ラムサール条約湿地／日本の条約湿地）",
+     "url": "https://www.env.go.jp/nature/ramsar/conv/RamsarSites_in_Japan.html"
     }
    ]
+  },
+  {
+   "id": "exam-w4c-016",
+   "name": "釧路湿原",
+   "region": "北海道",
+   "prefectures": [
+    "北海道"
+   ],
+   "categories": [
+    "LAKE_WETLAND",
+    "RAMSAR_SITE"
+   ],
+   "recognition_hook": "北海道のラムサール条約湿地。ヨシ・スゲ群落とハンノキ林が広がる低層湿原で、タンチョウの主な繁殖地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・ラムサール条約湿地／日本の条約湿地）",
+     "url": "https://www.env.go.jp/nature/ramsar/conv/RamsarSites_in_Japan.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4c-002",
+   "name": "釧路湿原国立公園",
+   "region": "北海道",
+   "prefectures": [
+    "北海道"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "北海道の国立公園。日本最大の湿原を取り囲む丘陵地からなり、特別天然記念物のタンチョウが生息する",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国立公園一覧）",
+     "url": "https://www.env.go.jp/park/parks/index.html"
+    },
+    {
+     "authority": "環境省（公式・日本の国立公園／釧路湿原国立公園）",
+     "url": "https://www.env.go.jp/nature/nationalparks/list/kushiro-shitsugen/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3-002",
@@ -957,6 +1118,35 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://online.bunka.go.jp/special_content/hlinkK"
     }
    ]
+  },
+  {
+   "id": "exam-w4c-004",
+   "name": "三陸復興国立公園",
+   "region": "東北",
+   "prefectures": [
+    "青森県",
+    "岩手県",
+    "宮城県"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "青森県・岩手県・宮城県の国立公園。北部は「海のアルプス」と呼ばれる大断崖、南部はリアス海岸が続く",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国立公園一覧）",
+     "url": "https://www.env.go.jp/park/parks/index.html"
+    },
+    {
+     "authority": "環境省（公式・日本の国立公園／三陸復興国立公園）",
+     "url": "https://www.env.go.jp/nature/nationalparks/list/sanriku-fukko/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w4b-011",
@@ -1884,6 +2074,35 @@ window.GEO_BROAD_SHALLOW = {
    "origin": "WAVE4_STANDARD"
   },
   {
+   "id": "exam-w4c-005",
+   "name": "磐梯朝日国立公園",
+   "region": "東北",
+   "prefectures": [
+    "山形県",
+    "福島県",
+    "新潟県"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "山形県・福島県・新潟県の国立公園。出羽三山・朝日連峰・飯豊連峰・吾妻連峰・磐梯山・猪苗代湖に及ぶ広大な公園",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国立公園一覧）",
+     "url": "https://www.env.go.jp/park/parks/index.html"
+    },
+    {
+     "authority": "環境省（公式・日本の国立公園／磐梯朝日国立公園）",
+     "url": "https://www.env.go.jp/nature/nationalparks/list/bandai-asahi/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3e-013",
    "name": "立石寺",
    "region": "東北",
@@ -2141,6 +2360,35 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4c-006",
+   "name": "日光国立公園",
+   "region": "東北",
+   "prefectures": [
+    "福島県",
+    "栃木県",
+    "群馬県"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "福島県・栃木県・群馬県の国立公園。日本最初の国立公園の一つ。男体山・日光白根山・那須岳などの山岳が分布する",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国立公園一覧）",
+     "url": "https://www.env.go.jp/park/parks/index.html"
+    },
+    {
+     "authority": "環境省（公式・日本の国立公園／日光国立公園）",
+     "url": "https://www.env.go.jp/nature/nationalparks/list/nikko/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3e-027",
    "name": "東山温泉",
    "region": "東北",
@@ -2183,6 +2431,30 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://www.pref.fukushima.lg.jp/site/edu/bunkazai04.html"
     }
    ]
+  },
+  {
+   "id": "exam-w4c-019",
+   "name": "猪苗代湖",
+   "region": "東北",
+   "prefectures": [
+    "福島県"
+   ],
+   "categories": [
+    "LAKE_WETLAND",
+    "RAMSAR_SITE"
+   ],
+   "recognition_hook": "福島県のラムサール条約湿地。磐梯山麓にある国内 4 番目の大きさの湖で、冬も全面凍結しない不凍湖",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・ラムサール条約湿地／日本の条約湿地）",
+     "url": "https://www.env.go.jp/nature/ramsar/conv/RamsarSites_in_Japan.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3f-040",
@@ -2292,6 +2564,33 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "国指定文化財等データベース（文化庁 日立風流物）",
      "url": "https://kunishitei.bunka.go.jp/heritage/detail/302/32"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4c-020",
+   "name": "渡良瀬遊水地",
+   "region": "関東",
+   "prefectures": [
+    "茨城県",
+    "栃木県",
+    "群馬県",
+    "埼玉県"
+   ],
+   "categories": [
+    "LAKE_WETLAND",
+    "RAMSAR_SITE"
+   ],
+   "recognition_hook": "茨城県・栃木県・群馬県・埼玉県のラムサール条約湿地。本州最大級のヨシ原が広がる遊水地で、足尾銅山の鉱毒被害対策としてつくられた",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・ラムサール条約湿地／日本の条約湿地）",
+     "url": "https://www.env.go.jp/nature/ramsar/conv/RamsarSites_in_Japan.html"
     }
    ],
    "origin": "WAVE4_STANDARD"
@@ -2434,6 +2733,30 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://kunishitei.bunka.go.jp/heritage/detail/401/477"
     }
    ]
+  },
+  {
+   "id": "exam-w4c-021",
+   "name": "奥日光の湿原",
+   "region": "関東",
+   "prefectures": [
+    "栃木県"
+   ],
+   "categories": [
+    "LAKE_WETLAND",
+    "RAMSAR_SITE"
+   ],
+   "recognition_hook": "栃木県のラムサール条約湿地。戦場ヶ原・小田代原・湯ノ湖・湯川からなり、戦場ヶ原は本州最大級の高層湿原",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・ラムサール条約湿地／日本の条約湿地）",
+     "url": "https://www.env.go.jp/nature/ramsar/conv/RamsarSites_in_Japan.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3-022",
@@ -2917,6 +3240,29 @@ window.GEO_BROAD_SHALLOW = {
    "origin": "WAVE4_STANDARD"
   },
   {
+   "id": "exam-w4c-030",
+   "name": "埼玉古墳群",
+   "region": "関東",
+   "prefectures": [
+    "埼玉県"
+   ],
+   "categories": [
+    "HISTORIC_DISTRICT"
+   ],
+   "recognition_hook": "埼玉県行田市の古墳群。国の特別史跡",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・日本遺産ポータルサイト／構成文化財）",
+     "url": "https://japan-heritage.bunka.go.jp/ja/culturalproperties/result/2981/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "des-064",
    "name": "川越市川越",
    "region": "関東",
@@ -3146,6 +3492,29 @@ window.GEO_BROAD_SHALLOW = {
    "origin": "WAVE4_STANDARD"
   },
   {
+   "id": "exam-w4c-033",
+   "name": "佐倉城跡",
+   "region": "関東",
+   "prefectures": [
+    "千葉県"
+   ],
+   "categories": [
+    "CASTLE"
+   ],
+   "recognition_hook": "千葉県佐倉市の城跡。日本遺産「北総四都市江戸紀行」の構成文化財",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・日本遺産ポータルサイト／構成文化財）",
+     "url": "https://japan-heritage.bunka.go.jp/ja/culturalproperties/result/1755/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w4a-013",
    "name": "佐原の山車行事",
    "region": "関東",
@@ -3262,6 +3631,30 @@ window.GEO_BROAD_SHALLOW = {
    "origin": "WAVE4_STANDARD"
   },
   {
+   "id": "exam-w4c-022",
+   "name": "谷津干潟",
+   "region": "関東",
+   "prefectures": [
+    "千葉県"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND",
+    "RAMSAR_SITE"
+   ],
+   "recognition_hook": "千葉県のラムサール条約湿地。住宅地と高速道路に囲まれた干潟で、全国有数のシギ・チドリ類の渡来地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・ラムサール条約湿地／日本の条約湿地）",
+     "url": "https://www.env.go.jp/nature/ramsar/conv/RamsarSites_in_Japan.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "des-065",
    "name": "香取市佐原",
    "region": "関東",
@@ -3282,6 +3675,29 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://www.bunka.go.jp/seisaku/bunkazai/shokai/hozonchiku/judenken_ichiran.html"
     }
    ]
+  },
+  {
+   "id": "exam-w4c-032",
+   "name": "八王子城跡",
+   "region": "関東",
+   "prefectures": [
+    "東京都"
+   ],
+   "categories": [
+    "CASTLE"
+   ],
+   "recognition_hook": "東京都八王子市の北条氏照が築いた山城の跡。国史跡",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・日本遺産ポータルサイト／構成文化財）",
+     "url": "https://japan-heritage.bunka.go.jp/ja/culturalproperties/result/4891/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3c-017",
@@ -3380,6 +3796,33 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4c-007",
+   "name": "小笠原国立公園",
+   "region": "関東",
+   "prefectures": [
+    "東京都"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "東京都の国立公園。大陸と陸続きになったことがない海洋島で、世界自然遺産に登録されている",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国立公園一覧）",
+     "url": "https://www.env.go.jp/park/parks/index.html"
+    },
+    {
+     "authority": "環境省（公式・日本の国立公園／小笠原国立公園）",
+     "url": "https://www.env.go.jp/nature/nationalparks/list/ogasawara/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w4a-052",
    "name": "旧芝離宮庭園",
    "region": "関東",
@@ -3469,6 +3912,53 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://www.city.akiruno.tokyo.jp/kanko/"
     }
    ]
+  },
+  {
+   "id": "exam-w4c-023",
+   "name": "葛西海浜公園",
+   "region": "関東",
+   "prefectures": [
+    "東京都"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND",
+    "RAMSAR_SITE"
+   ],
+   "recognition_hook": "東京都のラムサール条約湿地。東京湾に流入する河川の河口にある汽水域で、干潮時に干潟が広がる",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・ラムサール条約湿地／日本の条約湿地）",
+     "url": "https://www.env.go.jp/nature/ramsar/conv/RamsarSites_in_Japan.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4c-031",
+   "name": "高尾山",
+   "region": "関東",
+   "prefectures": [
+    "東京都"
+   ],
+   "categories": [
+    "MOUNTAIN_HIGHLAND"
+   ],
+   "recognition_hook": "東京都八王子市の霊山。日本遺産「霊気満山　高尾山」の構成文化財",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・日本遺産ポータルサイト／構成文化財）",
+     "url": "https://japan-heritage.bunka.go.jp/ja/culturalproperties/result/4897/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w4a-043",
@@ -3975,6 +4465,30 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4c-024",
+   "name": "瓢湖",
+   "region": "中部",
+   "prefectures": [
+    "新潟県"
+   ],
+   "categories": [
+    "LAKE_WETLAND",
+    "RAMSAR_SITE"
+   ],
+   "recognition_hook": "新潟県のラムサール条約湿地。江戸時代に灌漑用ため池として造成され、毎年ハクチョウ類が約 6 千羽渡来する",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・ラムサール条約湿地／日本の条約湿地）",
+     "url": "https://www.env.go.jp/nature/ramsar/conv/RamsarSites_in_Japan.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3f-009",
    "name": "西三川砂金山",
    "region": "中部",
@@ -4046,6 +4560,29 @@ window.GEO_BROAD_SHALLOW = {
    "origin": "WAVE4_STANDARD"
   },
   {
+   "id": "exam-w4c-034",
+   "name": "瑞龍寺",
+   "region": "中部",
+   "prefectures": [
+    "富山県"
+   ],
+   "categories": [
+    "TEMPLE_SHRINE"
+   ],
+   "recognition_hook": "富山県高岡市の加賀前田家ゆかりの寺。建造物は国宝",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・日本遺産ポータルサイト／構成文化財）",
+     "url": "https://japan-heritage.bunka.go.jp/ja/culturalproperties/result/260/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "des-023",
    "name": "白山国立公園",
    "region": "中部",
@@ -4093,6 +4630,30 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4c-025",
+   "name": "立山弥陀ヶ原・大日平",
+   "region": "中部",
+   "prefectures": [
+    "富山県"
+   ],
+   "categories": [
+    "MOUNTAIN_HIGHLAND",
+    "RAMSAR_SITE"
+   ],
+   "recognition_hook": "富山県のラムサール条約湿地。溶岩台地に広がる雪田草原で、落差 350m の称名滝と称名渓谷を含む",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・ラムサール条約湿地／日本の条約湿地）",
+     "url": "https://www.env.go.jp/nature/ramsar/conv/RamsarSites_in_Japan.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3f-045",
    "name": "雨晴海岸",
    "region": "中部",
@@ -4113,6 +4674,29 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://kunishitei.bunka.go.jp/heritage/detail/401/00003842"
     }
    ]
+  },
+  {
+   "id": "exam-w4c-035",
+   "name": "高岡城跡",
+   "region": "中部",
+   "prefectures": [
+    "富山県"
+   ],
+   "categories": [
+    "CASTLE"
+   ],
+   "recognition_hook": "富山県高岡市の前田利長が築いた城の跡。国史跡",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・日本遺産ポータルサイト／構成文化財）",
+     "url": "https://japan-heritage.bunka.go.jp/ja/culturalproperties/result/268/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w4a-024",
@@ -4354,7 +4938,8 @@ window.GEO_BROAD_SHALLOW = {
     "福井県"
    ],
    "categories": [
-    "LAKE_WETLAND"
+    "LAKE_WETLAND",
+    "RAMSAR_SITE"
    ],
    "recognition_hook": "福井県の五つの湖。国の名勝",
    "priority": "C",
@@ -4365,6 +4950,10 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "文化遺産オンライン（文化庁 三方五湖）",
      "url": "https://online.bunka.go.jp/heritages/detail/162641"
+    },
+    {
+     "authority": "環境省（公式・ラムサール条約湿地／日本の条約湿地）",
+     "url": "https://www.env.go.jp/nature/ramsar/conv/RamsarSites_in_Japan.html"
     }
    ]
   },
@@ -4576,6 +5165,35 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://www.env.go.jp/nature/onsen/area/"
     }
    ]
+  },
+  {
+   "id": "exam-w4c-008",
+   "name": "南アルプス国立公園",
+   "region": "中部",
+   "prefectures": [
+    "山梨県",
+    "長野県",
+    "静岡県"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "山梨県・長野県・静岡県の国立公園。日本で 2 番目に高い北岳をはじめ 3,000m 級の高峰が連なる",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国立公園一覧）",
+     "url": "https://www.env.go.jp/park/parks/index.html"
+    },
+    {
+     "authority": "環境省（公式・日本の国立公園／南アルプス国立公園）",
+     "url": "https://www.env.go.jp/nature/nationalparks/list/minamialps/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3f-002",
@@ -5170,6 +5788,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4c-036",
+   "name": "岐阜城跡",
+   "region": "中部",
+   "prefectures": [
+    "岐阜県"
+   ],
+   "categories": [
+    "CASTLE"
+   ],
+   "recognition_hook": "岐阜県岐阜市の織田信長の居城跡。国史跡",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・日本遺産ポータルサイト／構成文化財）",
+     "url": "https://japan-heritage.bunka.go.jp/ja/culturalproperties/result/715/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3f-029",
    "name": "平湯温泉",
    "region": "中部",
@@ -5256,6 +5897,29 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://www.town.yaotsu.lg.jp/sugihara-museum/"
     }
    ]
+  },
+  {
+   "id": "exam-w4c-037",
+   "name": "長良川の鵜飼漁の技術",
+   "region": "中部",
+   "prefectures": [
+    "岐阜県"
+   ],
+   "categories": [
+    "FESTIVAL_CULTURE"
+   ],
+   "recognition_hook": "岐阜県岐阜市の鵜を操って鮎などを捕る漁の技術。国の重要無形民俗文化財",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FESTIVAL",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・日本遺産ポータルサイト／構成文化財）",
+     "url": "https://japan-heritage.bunka.go.jp/ja/culturalproperties/result/721/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3f-046",
@@ -5805,6 +6469,30 @@ window.GEO_BROAD_SHALLOW = {
    "origin": "WAVE4_STANDARD"
   },
   {
+   "id": "exam-w4c-026",
+   "name": "藤前干潟",
+   "region": "中部",
+   "prefectures": [
+    "愛知県"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND",
+    "RAMSAR_SITE"
+   ],
+   "recognition_hook": "愛知県のラムサール条約湿地。庄内川などの河口を中心とする、伊勢湾奥部に残された唯一の大規模な干潟",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・ラムサール条約湿地／日本の条約湿地）",
+     "url": "https://www.env.go.jp/nature/ramsar/conv/RamsarSites_in_Japan.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w4a-003",
    "name": "足助",
    "region": "中部",
@@ -5870,6 +6558,58 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://www.city.iga.lg.jp/0000014170.html"
     }
    ]
+  },
+  {
+   "id": "exam-w4c-009",
+   "name": "吉野熊野国立公園",
+   "region": "近畿",
+   "prefectures": [
+    "三重県",
+    "奈良県",
+    "和歌山県"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "三重県・奈良県・和歌山県の国立公園。紀伊半島の山岳・渓谷・海岸にまたがり、熊野三山や吉野・大峯を含む",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国立公園一覧）",
+     "url": "https://www.env.go.jp/park/parks/index.html"
+    },
+    {
+     "authority": "環境省（公式・日本の国立公園／吉野熊野国立公園）",
+     "url": "https://www.env.go.jp/nature/nationalparks/list/yoshino-kumano/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4c-038",
+   "name": "斎宮跡",
+   "region": "近畿",
+   "prefectures": [
+    "三重県"
+   ],
+   "categories": [
+    "HISTORIC_DISTRICT"
+   ],
+   "recognition_hook": "三重県明和町の斎王が暮らした斎宮の跡。国史跡",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・日本遺産ポータルサイト／構成文化財）",
+     "url": "https://japan-heritage.bunka.go.jp/ja/culturalproperties/result/3/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3e-030",
@@ -6167,7 +6907,8 @@ window.GEO_BROAD_SHALLOW = {
     "滋賀県"
    ],
    "categories": [
-    "LAKE_WETLAND"
+    "LAKE_WETLAND",
+    "RAMSAR_SITE"
    ],
    "recognition_hook": "滋賀県の面積の約6分の1を占める日本最大の湖。約400万年の歴史をもつ古代湖",
    "priority": "B",
@@ -6182,6 +6923,10 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
      "url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E7%90%B5%E7%90%B6%E6%B9%96"
+    },
+    {
+     "authority": "環境省（公式・ラムサール条約湿地／日本の条約湿地）",
+     "url": "https://www.env.go.jp/nature/ramsar/conv/RamsarSites_in_Japan.html"
     }
    ]
   },
@@ -6374,6 +7119,52 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4c-043",
+   "name": "傘松公園",
+   "region": "近畿",
+   "prefectures": [
+    "京都府"
+   ],
+   "categories": [
+    "OTHER"
+   ],
+   "recognition_hook": "京都府宮津市の天橋立の代表的な眺望地。「股のぞき」で知られ、国の特別名勝の区域内にある",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・日本遺産ポータルサイト／構成文化財）",
+     "url": "https://japan-heritage.bunka.go.jp/ja/culturalproperties/result/3075/"
+    }
+   ],
+   "origin": "PAST5_HOLD_RESOLUTION"
+  },
+  {
+   "id": "exam-w4c-042",
+   "name": "天橋立",
+   "region": "近畿",
+   "prefectures": [
+    "京都府"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND"
+   ],
+   "recognition_hook": "京都府宮津市の砂州。国の特別名勝で、丹後地域を象徴する景観地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・日本遺産ポータルサイト／構成文化財）",
+     "url": "https://japan-heritage.bunka.go.jp/ja/culturalproperties/result/3069/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3e-008",
    "name": "天龍寺",
    "region": "近畿",
@@ -6394,6 +7185,35 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://kunishitei.bunka.go.jp/heritage/detail/401/1649"
     }
    ]
+  },
+  {
+   "id": "exam-w4c-010",
+   "name": "山陰海岸国立公園",
+   "region": "近畿",
+   "prefectures": [
+    "京都府",
+    "兵庫県",
+    "鳥取県"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "京都府・兵庫県・鳥取県の国立公園。リアス海岸と鳥取砂丘があり「海岸地形の博物館」とも呼ばれる",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国立公園一覧）",
+     "url": "https://www.env.go.jp/park/parks/index.html"
+    },
+    {
+     "authority": "環境省（公式・日本の国立公園／山陰海岸国立公園）",
+     "url": "https://www.env.go.jp/nature/nationalparks/list/sanin-kaigan/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3e-010",
@@ -7578,6 +8398,31 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4c-027",
+   "name": "中海",
+   "region": "中国",
+   "prefectures": [
+    "鳥取県",
+    "島根県"
+   ],
+   "categories": [
+    "LAKE_WETLAND",
+    "RAMSAR_SITE"
+   ],
+   "recognition_hook": "鳥取県・島根県のラムサール条約湿地。鳥取県と島根県にまたがる汽水湖で、面積は国内 5 番目",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・ラムサール条約湿地／日本の条約湿地）",
+     "url": "https://www.env.go.jp/nature/ramsar/conv/RamsarSites_in_Japan.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w4a-032",
    "name": "因州和紙",
    "region": "中国",
@@ -7742,6 +8587,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4c-041",
+   "name": "鳥取砂丘",
+   "region": "中国",
+   "prefectures": [
+    "鳥取県"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND"
+   ],
+   "recognition_hook": "鳥取県鳥取市の海岸砂丘。国の天然記念物で、風がつくる「風紋」で知られる",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・日本遺産ポータルサイト／構成文化財）",
+     "url": "https://japan-heritage.bunka.go.jp/ja/culturalproperties/result/4468/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3g-012",
    "name": "ローソク島",
    "region": "中国",
@@ -7893,7 +8761,8 @@ window.GEO_BROAD_SHALLOW = {
     "島根県"
    ],
    "categories": [
-    "LAKE_WETLAND"
+    "LAKE_WETLAND",
+    "RAMSAR_SITE"
    ],
    "recognition_hook": "松江市の西に広がる汽水湖。夕日の景観と「宍道湖七珍」で知られる",
    "priority": "A",
@@ -7908,6 +8777,10 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "島根県（公式・ラムサール条約湿地「宍道湖・中海」）",
      "url": "https://www.pref.shimane.lg.jp/infra/kankyo/kankyo/shinjiko_nakaumi/ramsar/"
+    },
+    {
+     "authority": "環境省（公式・ラムサール条約湿地／日本の条約湿地）",
+     "url": "https://www.env.go.jp/nature/ramsar/conv/RamsarSites_in_Japan.html"
     }
    ]
   },
@@ -8218,6 +9091,29 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://kunishitei.bunka.go.jp/heritage/detail/401/2245"
     }
    ]
+  },
+  {
+   "id": "exam-w4c-039",
+   "name": "旧閑谷学校",
+   "region": "中国",
+   "prefectures": [
+    "岡山県"
+   ],
+   "categories": [
+    "HISTORIC_DISTRICT"
+   ],
+   "recognition_hook": "岡山県備前市の江戸時代の庶民のための学校。講堂は国宝で、敷地は特別史跡",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・日本遺産ポータルサイト／構成文化財）",
+     "url": "https://japan-heritage.bunka.go.jp/ja/culturalproperties/result/61/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3-026",
@@ -8922,6 +9818,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4c-040",
+   "name": "善通寺",
+   "region": "四国",
+   "prefectures": [
+    "香川県"
+   ],
+   "categories": [
+    "TEMPLE_SHRINE"
+   ],
+   "recognition_hook": "香川県善通寺市の四国遍路の札所。本堂は国の重要文化財",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・日本遺産ポータルサイト／構成文化財）",
+     "url": "https://japan-heritage.bunka.go.jp/ja/culturalproperties/result/1348/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-017",
    "name": "地中美術館",
    "region": "四国",
@@ -9154,6 +10073,34 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://kyokai.kougeihin.jp/wp/wp-content/uploads/2025/10/shitei-area_20251027.pdf"
     }
    ]
+  },
+  {
+   "id": "exam-w4c-011",
+   "name": "足摺宇和海国立公園",
+   "region": "四国",
+   "prefectures": [
+    "愛媛県",
+    "高知県"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "愛媛県・高知県の国立公園。四国南西部の島嶼を含む海岸部と、内陸の 1,000m 級の山々からなる",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国立公園一覧）",
+     "url": "https://www.env.go.jp/park/parks/index.html"
+    },
+    {
+     "authority": "環境省（公式・日本の国立公園／足摺宇和海国立公園）",
+     "url": "https://www.env.go.jp/nature/nationalparks/list/ashizuri-uwakai/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3e-060",
@@ -9963,6 +10910,33 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4c-012",
+   "name": "西海国立公園",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "長崎県"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "長崎県の国立公園。九十九島・平戸島・五島列島など大小 400 余りの島々による多島海景観",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国立公園一覧）",
+     "url": "https://www.env.go.jp/park/parks/index.html"
+    },
+    {
+     "authority": "環境省（公式・日本の国立公園／西海国立公園）",
+     "url": "https://www.env.go.jp/nature/nationalparks/list/saikai/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3e-015",
    "name": "西海橋",
    "region": "九州・沖縄",
@@ -10128,6 +11102,34 @@ window.GEO_BROAD_SHALLOW = {
    "reading": "つうじゅんきょう"
   },
   {
+   "id": "exam-w4c-013",
+   "name": "阿蘇くじゅう国立公園",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "熊本県",
+    "大分県"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "熊本県・大分県の国立公園。阿蘇山の大カルデラとくじゅう連山、草千里ヶ浜などの草原",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国立公園一覧）",
+     "url": "https://www.env.go.jp/park/parks/index.html"
+    },
+    {
+     "authority": "環境省（公式・日本の国立公園／阿蘇くじゅう国立公園）",
+     "url": "https://www.env.go.jp/nature/nationalparks/list/aso-kuju/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3e-037",
    "name": "黒川温泉",
    "region": "九州・沖縄",
@@ -10148,6 +11150,30 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://www.town.minamioguni.lg.jp/kankou/kurokawa/kurokawa-onsen.html"
     }
    ]
+  },
+  {
+   "id": "exam-w4c-028",
+   "name": "くじゅう坊ガツル・タデ原湿原",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "大分県"
+   ],
+   "categories": [
+    "LAKE_WETLAND",
+    "RAMSAR_SITE"
+   ],
+   "recognition_hook": "大分県のラムサール条約湿地。九重火山群に囲まれた中間湿原で、山岳地の中間湿原としては国内最大級",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・ラムサール条約湿地／日本の条約湿地）",
+     "url": "https://www.env.go.jp/nature/ramsar/conv/RamsarSites_in_Japan.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3f-007",
@@ -10633,6 +11659,30 @@ window.GEO_BROAD_SHALLOW = {
    "reading": "せんがんえん"
   },
   {
+   "id": "exam-w4c-029",
+   "name": "出水ツルの越冬地",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "鹿児島県"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND",
+    "RAMSAR_SITE"
+   ],
+   "recognition_hook": "鹿児島県のラムサール条約湿地。出水扇状地の干拓水田で、ナベヅル・マナヅルの世界最大の越冬地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・ラムサール条約湿地／日本の条約湿地）",
+     "url": "https://www.env.go.jp/nature/ramsar/conv/RamsarSites_in_Japan.html"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3f-023",
    "name": "吹上浜",
    "region": "九州・沖縄",
@@ -10653,6 +11703,33 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://kunishitei.bunka.go.jp/heritage/detail/401/00003525"
     }
    ]
+  },
+  {
+   "id": "exam-w4c-014",
+   "name": "奄美群島国立公園",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "鹿児島県"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "鹿児島県の国立公園。34 番目に指定された亜熱帯の島々で、固有で希少な動植物が多い",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国立公園一覧）",
+     "url": "https://www.env.go.jp/park/parks/index.html"
+    },
+    {
+     "authority": "環境省（公式・日本の国立公園／奄美群島国立公園）",
+     "url": "https://www.env.go.jp/nature/nationalparks/list/amami-gunto/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w2-026",
@@ -11014,6 +12091,33 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4c-015",
+   "name": "西表石垣国立公園",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "沖縄県"
+   ],
+   "categories": [
+    "NATIONAL_PARK"
+   ],
+   "recognition_hook": "沖縄県の国立公園。日本最南端の国立公園で、マングローブ林と石西礁湖のサンゴ礁が広がる",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国立公園一覧）",
+     "url": "https://www.env.go.jp/park/parks/index.html"
+    },
+    {
+     "authority": "環境省（公式・日本の国立公園／西表石垣国立公園）",
+     "url": "https://www.env.go.jp/nature/nationalparks/list/iriomote-ishigaki/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3-035",
    "name": "識名園",
    "region": "九州・沖縄",
@@ -11114,7 +12218,14 @@ window.GEO_BROAD_SHALLOW = {
    "task": "TASK-020B",
    "size": 43,
    "source": "docs/geography/BROAD_SHALLOW_WAVE4B.json"
+  },
+  {
+   "wave": 12,
+   "version": "wave4c-v1",
+   "task": "TASK-020C",
+   "size": 43,
+   "source": "docs/geography/BROAD_SHALLOW_WAVE4C.json"
   }
  ],
- "coverage_note": "この 466 件は試験範囲の全体ではない。内訳は公式過去問 R3〜R7 由来 365 件と、過去問に依らず官公庁の公式一覧から選んだ定番資源 101 件。過去問由来の側は TASK-018I で R3〜R7 の候補 322 件を全件判定済みだが、定番資源の側は公式一覧の一部しか収録していない"
+ "coverage_note": "この 509 件は試験範囲の全体ではない。内訳は公式過去問 R3〜R7 由来 366 件と、過去問に依らず官公庁の公式一覧から選んだ定番資源 143 件。過去問由来の側は TASK-018I で R3〜R7 の候補 322 件を全件判定済みだが、定番資源の側は公式一覧の一部しか収録していない"
 };

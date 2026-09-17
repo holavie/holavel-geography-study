@@ -604,7 +604,8 @@ window.GEO_RESOURCES = {
    ],
    "region": "東北",
    "categories": [
-    "LAKE_WETLAND"
+    "LAKE_WETLAND",
+    "RAMSAR_SITE"
    ],
    "subcategories": [
     "ラムサール条約湿地",
@@ -999,7 +1000,8 @@ window.GEO_RESOURCES = {
    "region": "関東",
    "categories": [
     "LAKE_WETLAND",
-    "MOUNTAIN_HIGHLAND"
+    "MOUNTAIN_HIGHLAND",
+    "RAMSAR_SITE"
    ],
    "subcategories": [
     "高層湿原",
