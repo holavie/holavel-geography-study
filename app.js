@@ -1,4 +1,7 @@
-// Geography Study v0.25.0 — 国内観光地理 DEEP 30 + LIGHTWEIGHT 70+n (no build, local first; Leaflet vendored locally).
+// Geography Study v0.26.0 — 国内観光地理 DEEP 30 + LIGHTWEIGHT 70+n (no build, local first; Leaflet vendored locally).
+// v0.26.0 (TASK-019A): 全国MAP の一番下に「歴史地図・参考」を追加した。外部サイト（TonbiWing）への通常のリンクだけで、
+//   画像・DZI タイル・境界データは取り込まず、iframe / hotlink / proxy も使わない。Holavel 独自の歴史MAP は準備中の表示のみ。
+//   教材データ（DEEP 30 / LIGHTWEIGHT / 実地点 58）は 1 件も変えていない。
 // v0.25.0 (TASK-018G): 高速暗記の答え側に「別名」行を追加した。出すのは正本の verified_aliases（別名関係そのものを
 //   公式資料または公式過去問本文で確認できたもの）だけで、確認できていない候補（alias_pending）は runtime に出さない。
 //   表側（資源名）には別名を出さないので、答えを見る前に答えが漏れることはない。
@@ -141,6 +144,41 @@ function locatorSVG(r){if(!LOC)return '';const res=new Set(prefs(r));const des_=
  const legend=`<div class="mlegend"><span><i class="sw res"></i>主な所在地（${esc(prefs(r).join('・'))}）</span>${des_.size?`<span><i class="sw des"></i>関連指定区域のみ（${esc([...des_].join('・'))}）</span>`:''}</div>`;
  const inset=LOC.inset?`<g class="inset"><rect x="${LOC.inset.x}" y="${LOC.inset.y}" width="${LOC.inset.w}" height="${LOC.inset.h}" rx="4"/><text x="${LOC.inset.x}" y="${(LOC.inset.y+LOC.inset.h+11).toFixed(1)}" font-size="8">${esc(LOC.inset.label||'')}</text></g>`:'';
  return `<div class="locator"><svg viewBox="0 0 ${LOC.width} ${LOC.height}" role="img" aria-label="日本の概略位置図（都道府県タイル）">${inset}${tiles}</svg>${legend}<div class="mnote">概略位置図（海岸線なし・タイルは概ねの位置）。強調は資源データの都道府県から自動生成。</div></div>`}
+// ---- 歴史地図の外部参考リンク（TASK-019A）。
+// TonbiWing は Holavel とは別運営の外部サイト。ここに置くのは「リンク先の URL」と「Holavel が書いた短い紹介文」だけで、
+// 画像・DZI タイル・境界データ・藩の一覧など、先方のコンテンツは一切コピーも埋め込みもしない（iframe / hotlink / proxy も使わない）。
+// 「提携」「公式連携」「Holavel 提供」のような、関係を誤認させる表現は出さない。
+const HISTORICAL_REFS=[
+ {title:'江戸幕府 六十九国・三百藩全図',provider:'TonbiWing',
+  url:'https://tonbiwing.com/map/jpn00-zenkoku/',
+  note:'幕末期の旧国・藩・城などを拡大しながら確認できる復元歴史地図。',kind:'external_reference'},
+ {title:'江戸幕府 全藩図・拡大地図',provider:'TonbiWing',
+  url:'https://tonbiwing.com/ep/dzi/dzi-jpn00-jpn.html',
+  note:'拡大縮小しながら藩・国などを確認できるインタラクティブ歴史地図。',kind:'external_reference'},
+ {title:'TonbiWing デジタル古地図',provider:'TonbiWing',
+  url:'https://tonbiwing.com/map/',
+  note:'江戸時代・平安時代などの復元歴史地図をまとめた外部サイト。',kind:'external_reference'}];
+// Holavel 独自の歴史MAP は設計だけで、実装は入っていない。押せるのに何も起きないボタンは作らない。
+const HISTORICAL_ATLAS={name:'Holavel 歴史MAP',en:'Holavel Historical Atlas',status:'PLANNED',
+ note:'旧国・藩・街道・城を、現在の地図と並べて時代ごとに比べられるようにする予定です。',
+ modes:['MODERN','MEIJI','EDO_DOMAIN','OLD_PROVINCE','GOKI_SHICHIDO']};
+function historicalRefsHTML(){
+ const items=HISTORICAL_REFS.map(x=>`<li class="href">
+   <a href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">${esc(x.title)} <span class="hext" aria-hidden="true">\u2197</span><span class="hsr">（外部サイトを新しいタブで開きます）</span></a>
+   <span class="hprov">${esc(x.provider)} ／ 外部サイト</span>
+   <span class="hnote">${esc(x.note)}</span></li>`).join('');
+ return `<details class="hmref">
+  <summary>歴史地図・参考</summary>
+  <div class="hmbody">
+   <p class="hmlead">Holavel の学習教材ではありません。<b>別の運営者による外部サイト</b>へのリンクです。Holavel とは提携していません。</p>
+   <ul class="hlist">${items}</ul>
+   <div class="hplan" role="note">
+    <span class="hptitle">${esc(HISTORICAL_ATLAS.name)}<span class="hpen">（${esc(HISTORICAL_ATLAS.en)}）</span></span>
+    <span class="hpstate">準備中</span>
+    <span class="hnote">${esc(HISTORICAL_ATLAS.note)}</span>
+   </div>
+  </div></details>`}
+
 // ---- real map (GSI tiles + Leaflet). Points come from visual_locations.js only; Quiz A never reads them.
 const VL=window.GEO_VISUAL_LOCATIONS&&Array.isArray(window.GEO_VISUAL_LOCATIONS.resources)?window.GEO_VISUAL_LOCATIONS:null;
 // Attribution follows 地理院タイル一覧 (https://maps.gsi.go.jp/development/ichiran.html): credit 国土地理院 / 地理院タイル
@@ -745,6 +783,7 @@ function renderNationalMap(){const n=state.nmap;
    </aside>
   </div>
   <details class="nmdist"><summary>県別の教材分布（都道府県単位）</summary><div id="nmDist"></div></details>
+  ${historicalRefsHTML()}
  </div>`;
  const apply=()=>{nmFocus=nmFocusKey();save();
   document.querySelectorAll('.nchip').forEach(b=>{const on=n.genres.includes(b.dataset.g);b.classList.toggle('on',on);b.setAttribute('aria-pressed',on?'true':'false')});
@@ -779,5 +818,5 @@ function renderNationalMap(){const n=state.nmap;
 (function(){const el=$('sub');if(!el)return;
  el.textContent=`国内観光地理 詳細${R.length} + 高速暗記${BSR.length} = 教材${R.length+BSR.length}件（2026-09-24 国内試験対策）`;
  el.title='収録している教材の件数です。試験に出る観光資源を網羅したものではありません';})();
-initFilters();window.geographyStudy={state,R,metrics,retryLine,buildQuiz,render,filtered,quizScope,STATE_KEY:KEY,primaryType,locatorSVG,TYPE_ORDER,TYPE_LABEL,mapPoints,liveMaps,GSI,disposeLiveMaps,photosFor,BSR,rstate,rapidPool,RAPID_STATE_KEY:RKEY,BSCAT,rapidBack,rapidAdvance,BS_PREF_REGION,BS_ALL_PREFS,bsReading,BSTERMS,termsIn,NMALL,NMGENRES,nmapFiltered,nmapCounts,nmapPoints,nmapSummary,nmSelect,nmSync,NM_HOME,get nmMap(){return nmMap},get nmMarkers(){return nmMarkers},get nmCam(){return nmCam},get nmSelRid(){return nmSelRid},get nmSelPid(){return nmSelPid},LOCAL_APPS,examLinkURL,pastExamHTML};render();
+initFilters();window.geographyStudy={state,R,metrics,retryLine,buildQuiz,render,filtered,quizScope,STATE_KEY:KEY,primaryType,locatorSVG,TYPE_ORDER,TYPE_LABEL,mapPoints,liveMaps,GSI,disposeLiveMaps,photosFor,BSR,rstate,rapidPool,RAPID_STATE_KEY:RKEY,BSCAT,rapidBack,rapidAdvance,BS_PREF_REGION,BS_ALL_PREFS,bsReading,BSTERMS,termsIn,NMALL,NMGENRES,nmapFiltered,nmapCounts,nmapPoints,nmapSummary,nmSelect,nmSync,NM_HOME,get nmMap(){return nmMap},get nmMarkers(){return nmMarkers},get nmCam(){return nmCam},get nmSelRid(){return nmSelRid},get nmSelPid(){return nmSelPid},LOCAL_APPS,examLinkURL,pastExamHTML,HISTORICAL_REFS,HISTORICAL_ATLAS};render();
 })();
