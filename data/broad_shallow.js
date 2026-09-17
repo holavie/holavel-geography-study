@@ -14,6 +14,8 @@
 //   WAVE 3-G = docs/geography/BROAD_SHALLOW_WAVE3G.json（TASK-018I。同じ台帳の続き）
 //   WAVE 4-A = docs/geography/BROAD_SHALLOW_WAVE4A.json（TASK-020A。過去5年の出題には無いが、公式一覧に載る
 //            定番資源。origin フィールドで WAVE 1〜3-G（過去問由来）と区別する）
+//   WAVE 4-B = docs/geography/BROAD_SHALLOW_WAVE4B.json（TASK-020B。環境省の国定公園一覧と
+//            文化庁の全国博物館一覧から選んだ定番資源）
 // 旧 WAVE1 / WAVE1_V2 / V3 / V4 candidate pool は KNOWN DEFECTIVE / SUPERSEDED。runtime へは入れない。
 //
 // DEEP（data/resources.js の 30 件）とは役割が違う:
@@ -24,10 +26,10 @@
 // 名称と所在地を確認済み。planning 側の監査フィールド（GSI raw / old_prefectures / second-source diagnostics /
 // exam_* 等）は runtime へ持ち込まず、出典（authority + url）だけを保持する。
 window.GEO_BROAD_SHALLOW = {
- "version": "v3+wave2-v1+wave3-v1+wave3b-v1+wave3c-v1+wave3d-v1+wave3e-v1+wave3f-v1+wave3g-v1+wave4a-v1",
+ "version": "v3+wave2-v1+wave3-v1+wave3b-v1+wave3c-v1+wave3d-v1+wave3e-v1+wave3f-v1+wave3g-v1+wave4a-v1+wave4b-v1",
  "generated_at": "2026-09-17",
- "task": "TASK-020A",
- "source": "docs/geography/BROAD_SHALLOW_WAVE1_V3.json + docs/geography/BROAD_SHALLOW_WAVE2.json + docs/geography/BROAD_SHALLOW_WAVE3.json + docs/geography/BROAD_SHALLOW_WAVE3B.json + docs/geography/BROAD_SHALLOW_WAVE3C.json + docs/geography/BROAD_SHALLOW_WAVE3D.json + docs/geography/BROAD_SHALLOW_WAVE3E.json + docs/geography/BROAD_SHALLOW_WAVE3F.json + docs/geography/BROAD_SHALLOW_WAVE3G.json + docs/geography/BROAD_SHALLOW_WAVE4A.json",
+ "task": "TASK-020B",
+ "source": "docs/geography/BROAD_SHALLOW_WAVE1_V3.json + docs/geography/BROAD_SHALLOW_WAVE2.json + docs/geography/BROAD_SHALLOW_WAVE3.json + docs/geography/BROAD_SHALLOW_WAVE3B.json + docs/geography/BROAD_SHALLOW_WAVE3C.json + docs/geography/BROAD_SHALLOW_WAVE3D.json + docs/geography/BROAD_SHALLOW_WAVE3E.json + docs/geography/BROAD_SHALLOW_WAVE3F.json + docs/geography/BROAD_SHALLOW_WAVE3G.json + docs/geography/BROAD_SHALLOW_WAVE4A.json + docs/geography/BROAD_SHALLOW_WAVE4B.json",
  "coverage_level": "LIGHTWEIGHT",
  "rights": "HOLAVEL_ORIGINAL metadata。公式一次情報で確認した名称・所在都道府県・カテゴリ・短い特徴のみ。市販教材・PRIVATE_REFERENCE・公式試験本文は含まない",
  "regions": [
@@ -157,6 +159,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4b-013",
+   "name": "ニセコ積丹小樽海岸国定公園",
+   "region": "北海道",
+   "prefectures": [
+    "北海道"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "北海道の国定公園。火山連峰と変化に富んだ海岸景観",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3d-003",
    "name": "三愛の丘展望公園",
    "region": "北海道",
@@ -221,6 +246,29 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://www.city.muroran.lg.jp/"
     }
    ]
+  },
+  {
+   "id": "exam-w4b-012",
+   "name": "大沼国定公園",
+   "region": "北海道",
+   "prefectures": [
+    "北海道"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "北海道の国定公園。北海道における内地的な山水の景観",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3-001",
@@ -911,6 +959,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4b-011",
+   "name": "下北半島国定公園",
+   "region": "東北",
+   "prefectures": [
+    "青森県"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "青森県の国定公園。海岸景観とヒバ・ブナ混交林",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3e-004",
    "name": "亀ヶ岡石器時代遺跡",
    "region": "東北",
@@ -1168,6 +1239,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4b-037",
+   "name": "宮沢賢治記念館",
+   "region": "東北",
+   "prefectures": [
+    "岩手県"
+   ],
+   "categories": [
+    "MUSEUM_CULTURAL_FACILITY"
+   ],
+   "recognition_hook": "岩手県花巻市の記念館",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FACILITY",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・全国の博物館／登録博物館一覧）",
+     "url": "https://museum.bunka.go.jp/guide/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-041",
    "name": "岩手山",
    "region": "東北",
@@ -1192,6 +1286,29 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P12-v2_2.html"
     }
    ]
+  },
+  {
+   "id": "exam-w4b-006",
+   "name": "早池峰国定公園",
+   "region": "東北",
+   "prefectures": [
+    "岩手県"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "岩手県の国定公園。早池峰山を中心とする山岳と民俗の地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "des-004",
@@ -1221,6 +1338,32 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://www.bunka.go.jp/seisaku/bunkazai/shokai/sekai_isan/ichiran/"
     }
    ]
+  },
+  {
+   "id": "exam-w4b-008",
+   "name": "栗駒国定公園",
+   "region": "東北",
+   "prefectures": [
+    "岩手県",
+    "宮城県",
+    "秋田県",
+    "山形県"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "岩手県・宮城県・秋田県・山形県の国定公園。焼石岳と栗駒岳を中心に温泉と渓谷美",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w2-013",
@@ -1432,6 +1575,30 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4b-009",
+   "name": "蔵王国定公園",
+   "region": "東北",
+   "prefectures": [
+    "宮城県",
+    "山形県"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "宮城県・山形県の国定公園。火山群峰と火口湖、樹氷",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3g-022",
    "name": "蔵王山",
    "region": "東北",
@@ -1625,6 +1792,52 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4b-007",
+   "name": "男鹿国定公園",
+   "region": "東北",
+   "prefectures": [
+    "秋田県"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "秋田県の国定公園。海食段丘と火山群の海岸景観",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4b-038",
+   "name": "白瀬南極探検隊記念館",
+   "region": "東北",
+   "prefectures": [
+    "秋田県"
+   ],
+   "categories": [
+    "MUSEUM_CULTURAL_FACILITY"
+   ],
+   "recognition_hook": "秋田県にかほ市の記念館",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FACILITY",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・全国の博物館／登録博物館一覧）",
+     "url": "https://museum.bunka.go.jp/guide/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w4a-028",
    "name": "天童将棋駒",
    "region": "東北",
@@ -1715,6 +1928,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4b-036",
+   "name": "致道博物館",
+   "region": "東北",
+   "prefectures": [
+    "山形県"
+   ],
+   "categories": [
+    "MUSEUM_CULTURAL_FACILITY"
+   ],
+   "recognition_hook": "山形県鶴岡市の博物館",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FACILITY",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・全国の博物館／登録博物館一覧）",
+     "url": "https://museum.bunka.go.jp/guide/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w4a-040",
    "name": "芋煮",
    "region": "東北",
@@ -1762,6 +1998,30 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E9%8A%80%E5%B1%B1%E6%B8%A9%E6%B3%89"
     }
    ]
+  },
+  {
+   "id": "exam-w4b-010",
+   "name": "鳥海国定公園",
+   "region": "東北",
+   "prefectures": [
+    "山形県",
+    "秋田県"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "山形県・秋田県の国定公園。日本海に接して屹立する火山",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3c-002",
@@ -2795,6 +3055,29 @@ window.GEO_BROAD_SHALLOW = {
    "origin": "WAVE4_STANDARD"
   },
   {
+   "id": "exam-w4b-030",
+   "name": "鉄道博物館",
+   "region": "関東",
+   "prefectures": [
+    "埼玉県"
+   ],
+   "categories": [
+    "MUSEUM_CULTURAL_FACILITY"
+   ],
+   "recognition_hook": "埼玉県さいたま市の博物館",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FACILITY",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・全国の博物館／登録博物館一覧）",
+     "url": "https://museum.bunka.go.jp/guide/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w4a-037",
    "name": "なめろう",
    "region": "関東",
@@ -2840,6 +3123,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4b-029",
+   "name": "伊能忠敬記念館",
+   "region": "関東",
+   "prefectures": [
+    "千葉県"
+   ],
+   "categories": [
+    "MUSEUM_CULTURAL_FACILITY"
+   ],
+   "recognition_hook": "千葉県香取市の記念館",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FACILITY",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・全国の博物館／登録博物館一覧）",
+     "url": "https://museum.bunka.go.jp/guide/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w4a-013",
    "name": "佐原の山車行事",
    "region": "関東",
@@ -2858,6 +3164,29 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "国指定文化財等データベース（文化庁 佐原の山車行事）",
      "url": "https://kunishitei.bunka.go.jp/heritage/detail/302/767"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4b-001",
+   "name": "南房総国定公園",
+   "region": "関東",
+   "prefectures": [
+    "千葉県"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "千葉県の国定公園。白砂青松の海浜景観",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
     }
    ],
    "origin": "WAVE4_STANDARD"
@@ -2904,6 +3233,30 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "伝統的工芸品産業振興協会（経済産業大臣指定 伝統的工芸品 千葉県）",
      "url": "https://kougeihin.jp/craft_pref/chiba/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4b-002",
+   "name": "水郷筑波国定公園",
+   "region": "関東",
+   "prefectures": [
+    "千葉県",
+    "茨城県"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "千葉県・茨城県の国定公園。日本の代表的な水郷風景と丘陵性の独立山塊",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
     }
    ],
    "origin": "WAVE4_STANDARD"
@@ -3050,6 +3403,29 @@ window.GEO_BROAD_SHALLOW = {
    "origin": "WAVE4_STANDARD"
   },
   {
+   "id": "exam-w4b-003",
+   "name": "明治の森高尾国定公園",
+   "region": "関東",
+   "prefectures": [
+    "東京都"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "東京都の国定公園。東京郊外に残る自然林。明治百年記念公園",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w4a-046",
    "name": "深川めし",
    "region": "関東",
@@ -3118,6 +3494,29 @@ window.GEO_BROAD_SHALLOW = {
    "origin": "WAVE4_STANDARD"
   },
   {
+   "id": "exam-w4b-034",
+   "name": "ポーラ美術館",
+   "region": "関東",
+   "prefectures": [
+    "神奈川県"
+   ],
+   "categories": [
+    "MUSEUM_CULTURAL_FACILITY"
+   ],
+   "recognition_hook": "神奈川県箱根町の美術館",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FACILITY",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・全国の博物館／登録博物館一覧）",
+     "url": "https://museum.bunka.go.jp/guide/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w4a-051",
    "name": "三溪園",
    "region": "関東",
@@ -3141,6 +3540,52 @@ window.GEO_BROAD_SHALLOW = {
    "origin": "WAVE4_STANDARD"
   },
   {
+   "id": "exam-w4b-005",
+   "name": "丹沢大山国定公園",
+   "region": "関東",
+   "prefectures": [
+    "神奈川県"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "神奈川県の国定公園。自然豊かな山岳公園",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4b-043",
+   "name": "八景島",
+   "region": "関東",
+   "prefectures": [
+    "神奈川県"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND"
+   ],
+   "recognition_hook": "神奈川県横浜市の島",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・全国の博物館／登録博物館一覧）",
+     "url": "https://museum.bunka.go.jp/guide/"
+    }
+   ],
+   "origin": "PAST5_HOLD_RESOLUTION"
+  },
+  {
    "id": "exam-w3c-004",
    "name": "小田原城跡",
    "region": "関東",
@@ -3161,6 +3606,29 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://online.bunka.go.jp/heritages/detail/171805"
     }
    ]
+  },
+  {
+   "id": "exam-w4b-033",
+   "name": "彫刻の森美術館",
+   "region": "関東",
+   "prefectures": [
+    "神奈川県"
+   ],
+   "categories": [
+    "MUSEUM_CULTURAL_FACILITY"
+   ],
+   "recognition_hook": "神奈川県箱根町の美術館",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FACILITY",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・全国の博物館／登録博物館一覧）",
+     "url": "https://museum.bunka.go.jp/guide/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3f-015",
@@ -3327,6 +3795,29 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://www.bunka.go.jp/seisaku/bunkazai/shokai/sekai_isan/ichiran/"
     }
    ]
+  },
+  {
+   "id": "exam-w4b-026",
+   "name": "佐渡弥彦米山国定公園",
+   "region": "中部",
+   "prefectures": [
+    "新潟県"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "新潟県の国定公園。日本最大の島と隆起海岸の地形景観",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3-007",
@@ -3810,6 +4301,30 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4b-027",
+   "name": "越前加賀海岸国定公園",
+   "region": "中部",
+   "prefectures": [
+    "石川県",
+    "福井県"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "石川県・福井県の国定公園。延長 108km に及ぶ海食崖の海岸景観",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3c-024",
    "name": "那谷寺",
    "region": "中部",
@@ -3972,6 +4487,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4b-035",
+   "name": "福井県立恐竜博物館",
+   "region": "中部",
+   "prefectures": [
+    "福井県"
+   ],
+   "categories": [
+    "MUSEUM_CULTURAL_FACILITY"
+   ],
+   "recognition_hook": "福井県勝山市の博物館",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FACILITY",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・全国の博物館／登録博物館一覧）",
+     "url": "https://museum.bunka.go.jp/guide/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3e-058",
    "name": "芦原温泉",
    "region": "中部",
@@ -3992,6 +4530,30 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://www.city.awara.lg.jp/mokuteki/industry/kanko/kanko/p012388.html"
     }
    ]
+  },
+  {
+   "id": "exam-w4b-014",
+   "name": "若狭湾国定公園",
+   "region": "中部",
+   "prefectures": [
+    "福井県",
+    "京都府"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "福井県・京都府の国定公園。リアス海岸と海食景観",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3-024",
@@ -4282,6 +4844,31 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://online.bunka.go.jp/heritages/detail/133538"
     }
    ]
+  },
+  {
+   "id": "exam-w4b-016",
+   "name": "天竜奥三河国定公園",
+   "region": "中部",
+   "prefectures": [
+    "長野県",
+    "静岡県",
+    "愛知県"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "長野県・静岡県・愛知県の国定公園。天竜川とその支流の渓谷",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3b-010",
@@ -4936,6 +5523,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4b-017",
+   "name": "三河湾国定公園",
+   "region": "中部",
+   "prefectures": [
+    "愛知県"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "愛知県の国定公園。渥美・知多両半島の海岸と内海の多島景観",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w4a-056",
    "name": "名古屋城二之丸庭園",
    "region": "中部",
@@ -5576,6 +6186,30 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4b-015",
+   "name": "琵琶湖国定公園",
+   "region": "近畿",
+   "prefectures": [
+    "滋賀県",
+    "京都府"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "滋賀県・京都府の国定公園。日本最大の淡水湖と近江八景",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3g-040",
    "name": "琵琶湖大橋",
    "region": "近畿",
@@ -6085,6 +6719,52 @@ window.GEO_BROAD_SHALLOW = {
    "origin": "WAVE4_STANDARD"
   },
   {
+   "id": "exam-w4b-031",
+   "name": "大阪城天守閣",
+   "region": "近畿",
+   "prefectures": [
+    "大阪府"
+   ],
+   "categories": [
+    "MUSEUM_CULTURAL_FACILITY"
+   ],
+   "recognition_hook": "大阪市の博物館。大阪城の天守を博物館として公開している",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FACILITY",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・全国の博物館／登録博物館一覧）",
+     "url": "https://museum.bunka.go.jp/guide/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4b-032",
+   "name": "大阪市立東洋陶磁美術館",
+   "region": "近畿",
+   "prefectures": [
+    "大阪府"
+   ],
+   "categories": [
+    "MUSEUM_CULTURAL_FACILITY"
+   ],
+   "recognition_hook": "大阪市の美術館",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FACILITY",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・全国の博物館／登録博物館一覧）",
+     "url": "https://museum.bunka.go.jp/guide/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w4a-001",
    "name": "富田林寺内町",
    "region": "近畿",
@@ -6131,6 +6811,29 @@ window.GEO_BROAD_SHALLOW = {
    "origin": "WAVE4_STANDARD"
   },
   {
+   "id": "exam-w4b-004",
+   "name": "明治の森箕面国定公園",
+   "region": "近畿",
+   "prefectures": [
+    "大阪府"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "大阪府の国定公園。大阪近郊に残る自然林。明治百年記念公園",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3-009",
    "name": "瀬戸内海国立公園",
    "region": "近畿",
@@ -6165,6 +6868,31 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://chushikoku.env.go.jp/park.html"
     }
    ]
+  },
+  {
+   "id": "exam-w4b-025",
+   "name": "金剛生駒紀泉国定公園",
+   "region": "近畿",
+   "prefectures": [
+    "大阪府",
+    "奈良県",
+    "和歌山県"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "大阪府・奈良県・和歌山県の国定公園。金剛山地・生駒山地・和泉葛城山系からなる山地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3e-045",
@@ -7667,6 +8395,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4b-042",
+   "name": "平山郁夫美術館",
+   "region": "中国",
+   "prefectures": [
+    "広島県"
+   ],
+   "categories": [
+    "MUSEUM_CULTURAL_FACILITY"
+   ],
+   "recognition_hook": "広島県尾道市の美術館",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FACILITY",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・全国の博物館／登録博物館一覧）",
+     "url": "https://museum.bunka.go.jp/guide/"
+    }
+   ],
+   "origin": "PAST5_HOLD_RESOLUTION"
+  },
+  {
    "id": "exam-w3-027",
    "name": "湯来温泉",
    "region": "中国",
@@ -7742,6 +8493,52 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4b-019",
+   "name": "北長門海岸国定公園",
+   "region": "中国",
+   "prefectures": [
+    "山口県"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "山口県の国定公園。変化に富んだ海岸景観",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4b-040",
+   "name": "山口県立萩美術館・浦上記念館",
+   "region": "中国",
+   "prefectures": [
+    "山口県"
+   ],
+   "categories": [
+    "MUSEUM_CULTURAL_FACILITY"
+   ],
+   "recognition_hook": "山口県萩市の美術館",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FACILITY",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・全国の博物館／登録博物館一覧）",
+     "url": "https://museum.bunka.go.jp/guide/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3f-028",
    "name": "川棚温泉",
    "region": "中国",
@@ -7762,6 +8559,29 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://kunishitei.bunka.go.jp/heritage/detail/101/00009537"
     }
    ]
+  },
+  {
+   "id": "exam-w4b-018",
+   "name": "秋吉台国定公園",
+   "region": "中国",
+   "prefectures": [
+    "山口県"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "山口県の国定公園。日本最大級のカルスト台地と秋芳洞",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3b-005",
@@ -7986,6 +8806,30 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4b-028",
+   "name": "室戸阿南海岸国定公園",
+   "region": "四国",
+   "prefectures": [
+    "徳島県",
+    "高知県"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "徳島県・高知県の国定公園。隆起と沈降の海岸と亜熱帯植物の景観",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3f-018",
    "name": "撫養街道",
    "region": "四国",
@@ -8146,6 +8990,29 @@ window.GEO_BROAD_SHALLOW = {
      "url": "https://online.bunka.go.jp/heritages/detail/139394"
     }
    ]
+  },
+  {
+   "id": "exam-w4b-041",
+   "name": "李禹煥美術館",
+   "region": "四国",
+   "prefectures": [
+    "香川県"
+   ],
+   "categories": [
+    "MUSEUM_CULTURAL_FACILITY"
+   ],
+   "recognition_hook": "香川県直島町の美術館",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FACILITY",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・全国の博物館／登録博物館一覧）",
+     "url": "https://museum.bunka.go.jp/guide/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3c-018",
@@ -8494,6 +9361,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4b-039",
+   "name": "高知県立坂本龍馬記念館",
+   "region": "四国",
+   "prefectures": [
+    "高知県"
+   ],
+   "categories": [
+    "MUSEUM_CULTURAL_FACILITY"
+   ],
+   "recognition_hook": "高知県高知市の記念館",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FACILITY",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "文化庁（公式・全国の博物館／登録博物館一覧）",
+     "url": "https://museum.bunka.go.jp/guide/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "des-006",
    "name": "「神宿る島」宗像・沖ノ島と関連遺産群",
    "region": "九州・沖縄",
@@ -8611,6 +9501,31 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4b-020",
+   "name": "玄海国定公園",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "福岡県",
+    "佐賀県",
+    "長崎県"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "福岡県・佐賀県・長崎県の国定公園。白砂青松の松原が連なる海岸と史跡",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w4a-007",
    "name": "秋月",
    "region": "九州・沖縄",
@@ -8629,6 +9544,31 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "国指定文化財等データベース（文化庁 朝倉市秋月）",
      "url": "https://kunishitei.bunka.go.jp/heritage/detail/103/53"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
+   "id": "exam-w4b-021",
+   "name": "耶馬日田英彦山国定公園",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "福岡県",
+    "熊本県",
+    "大分県"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "福岡県・熊本県・大分県の国定公園。火山活動と浸食が生んだ山岳・渓谷",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
     }
    ],
    "origin": "WAVE4_STANDARD"
@@ -8888,6 +9828,29 @@ window.GEO_BROAD_SHALLOW = {
     }
    ],
    "reading": "はらじょうあと"
+  },
+  {
+   "id": "exam-w4b-024",
+   "name": "壱岐対馬国定公園",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "長崎県"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "長崎県の国定公園。玄界灘に浮かぶ壱岐・対馬の島嶼景観と遺跡",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
   },
   {
    "id": "exam-w3f-025",
@@ -9744,6 +10707,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4b-023",
+   "name": "甑島国定公園",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "鹿児島県"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "鹿児島県の国定公園。優れた海岸景観をもつ非火山性の島",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3f-042",
    "name": "薩摩半島",
    "region": "九州・沖縄",
@@ -9983,6 +10969,29 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w4b-022",
+   "name": "沖縄戦跡国定公園",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "沖縄県"
+   ],
+   "categories": [
+    "QUASI_NATIONAL_PARK"
+   ],
+   "recognition_hook": "沖縄県の国定公園。沖縄本島南端部の戦跡と海岸の自然景観",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国定公園一覧）",
+     "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ],
+   "origin": "WAVE4_STANDARD"
+  },
+  {
    "id": "exam-w3g-015",
    "name": "沖縄本島",
    "region": "九州・沖縄",
@@ -10098,7 +11107,14 @@ window.GEO_BROAD_SHALLOW = {
    "task": "TASK-020A",
    "size": 61,
    "source": "docs/geography/BROAD_SHALLOW_WAVE4A.json"
+  },
+  {
+   "wave": 11,
+   "version": "wave4b-v1",
+   "task": "TASK-020B",
+   "size": 43,
+   "source": "docs/geography/BROAD_SHALLOW_WAVE4B.json"
   }
  ],
- "coverage_note": "この 423 件は公式過去問 R3〜R7 に現れた観光資源の一部であって、試験範囲の全体ではない。TASK-018A の母集団監査では候補 461 件のうち未収録が多数残っている"
+ "coverage_note": "この 466 件は試験範囲の全体ではない。内訳は公式過去問 R3〜R7 由来 365 件と、過去問に依らず官公庁の公式一覧から選んだ定番資源 101 件。過去問由来の側は TASK-018I で R3〜R7 の候補 322 件を全件判定済みだが、定番資源の側は公式一覧の一部しか収録していない"
 };
