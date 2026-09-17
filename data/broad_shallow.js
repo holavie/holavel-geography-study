@@ -11,6 +11,7 @@
 //   WAVE 3-D = docs/geography/BROAD_SHALLOW_WAVE3D.json（TASK-018F。同じ台帳の続き）
 //   WAVE 3-E = docs/geography/BROAD_SHALLOW_WAVE3E.json（TASK-018G。同じ台帳の続き）
 //   WAVE 3-F = docs/geography/BROAD_SHALLOW_WAVE3F.json（TASK-018H。同じ台帳の続き）
+//   WAVE 3-G = docs/geography/BROAD_SHALLOW_WAVE3G.json（TASK-018I。同じ台帳の続き）
 // 旧 WAVE1 / WAVE1_V2 / V3 / V4 candidate pool は KNOWN DEFECTIVE / SUPERSEDED。runtime へは入れない。
 //
 // DEEP（data/resources.js の 30 件）とは役割が違う:
@@ -21,10 +22,10 @@
 // 名称と所在地を確認済み。planning 側の監査フィールド（GSI raw / old_prefectures / second-source diagnostics /
 // exam_* 等）は runtime へ持ち込まず、出典（authority + url）だけを保持する。
 window.GEO_BROAD_SHALLOW = {
- "version": "v3+wave2-v1+wave3-v1+wave3b-v1+wave3c-v1+wave3d-v1+wave3e-v1+wave3f-v1",
+ "version": "v3+wave2-v1+wave3-v1+wave3b-v1+wave3c-v1+wave3d-v1+wave3e-v1+wave3f-v1+wave3g-v1",
  "generated_at": "2026-09-17",
- "task": "TASK-018H",
- "source": "docs/geography/BROAD_SHALLOW_WAVE1_V3.json + docs/geography/BROAD_SHALLOW_WAVE2.json + docs/geography/BROAD_SHALLOW_WAVE3.json + docs/geography/BROAD_SHALLOW_WAVE3B.json + docs/geography/BROAD_SHALLOW_WAVE3C.json + docs/geography/BROAD_SHALLOW_WAVE3D.json + docs/geography/BROAD_SHALLOW_WAVE3E.json + docs/geography/BROAD_SHALLOW_WAVE3F.json",
+ "task": "TASK-018I",
+ "source": "docs/geography/BROAD_SHALLOW_WAVE1_V3.json + docs/geography/BROAD_SHALLOW_WAVE2.json + docs/geography/BROAD_SHALLOW_WAVE3.json + docs/geography/BROAD_SHALLOW_WAVE3B.json + docs/geography/BROAD_SHALLOW_WAVE3C.json + docs/geography/BROAD_SHALLOW_WAVE3D.json + docs/geography/BROAD_SHALLOW_WAVE3E.json + docs/geography/BROAD_SHALLOW_WAVE3F.json + docs/geography/BROAD_SHALLOW_WAVE3G.json",
  "coverage_level": "LIGHTWEIGHT",
  "rights": "HOLAVEL_ORIGINAL metadata。公式一次情報で確認した名称・所在都道府県・カテゴリ・短い特徴のみ。市販教材・PRIVATE_REFERENCE・公式試験本文は含まない",
  "regions": [
@@ -172,6 +173,50 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "美瑛町観光協会（公式・三愛の丘展望公園）",
      "url": "https://www.biei-hokkaido.jp/ja/facility/san-ai-no-oka_view-park"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-017",
+   "name": "中山峠",
+   "region": "北海道",
+   "prefectures": [
+    "北海道"
+   ],
+   "categories": [
+    "MOUNTAIN_HIGHLAND"
+   ],
+   "recognition_hook": "北海道喜茂別町の峠",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "喜茂別町（公式・観光）",
+     "url": "https://www.town.kimobetsu.hokkaido.jp/tourism/"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-018",
+   "name": "地球岬",
+   "region": "北海道",
+   "prefectures": [
+    "北海道"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND"
+   ],
+   "recognition_hook": "北海道室蘭市の岬",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "室蘭市（公式）",
+     "url": "https://www.city.muroran.lg.jp/"
     }
    ]
   },
@@ -344,6 +389,28 @@ window.GEO_BROAD_SHALLOW = {
    "reading": "くっしゃろこ"
   },
   {
+   "id": "exam-w3g-004",
+   "name": "川湯温泉",
+   "region": "北海道",
+   "prefectures": [
+    "北海道"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "北海道弟子屈町の温泉地。摩周湖・屈斜路湖とともに町を代表する",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "弟子屈町（公式・摩周湖 屈斜路湖 川湯温泉のまちてしかが）",
+     "url": "https://www.town.teshikaga.hokkaido.jp/"
+    }
+   ]
+  },
+  {
    "id": "exam-022",
    "name": "支笏湖",
    "region": "北海道",
@@ -411,6 +478,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "環境省 北海道地方環境事務所（管内の国立公園）",
      "url": "https://hokkaido.env.go.jp/park.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-016",
+   "name": "朝里川温泉",
+   "region": "北海道",
+   "prefectures": [
+    "北海道"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "北海道小樽市の温泉地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "小樽市（公式）",
+     "url": "https://www.city.otaru.lg.jp/docs/2021032200150/"
     }
    ]
   },
@@ -595,6 +684,50 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3g-019",
+   "name": "積丹半島",
+   "region": "北海道",
+   "prefectures": [
+    "北海道"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND"
+   ],
+   "recognition_hook": "北海道の半島",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "積丹町（公式）",
+     "url": "https://www.town.shakotan.lg.jp/contents/content0032.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-005",
+   "name": "美幌峠",
+   "region": "北海道",
+   "prefectures": [
+    "北海道"
+   ],
+   "categories": [
+    "MOUNTAIN_HIGHLAND"
+   ],
+   "recognition_hook": "北海道美幌町の峠。標高525mで、屈斜路湖を見下ろす",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "美幌町（公式・観光 美幌峠）",
+     "url": "https://www.town.bihoro.hokkaido.jp/site/kanko/1604.html"
+    }
+   ]
+  },
+  {
    "id": "exam-w3e-014",
    "name": "襟裳岬",
    "region": "北海道",
@@ -657,6 +790,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "国指定文化財等データベース（文化庁 北海道元江別１遺跡土墳墓出土品）",
      "url": "https://kunishitei.bunka.go.jp/heritage/detail/201/10116"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-039",
+   "name": "野付湾",
+   "region": "北海道",
+   "prefectures": [
+    "北海道"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND"
+   ],
+   "recognition_hook": "北海道別海町の湾",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "別海町（公式・観光）",
+     "url": "https://betsukai.jp/sightseeing/"
     }
    ]
   },
@@ -941,6 +1096,50 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "文化庁（重要伝統的建造物群保存地区一覧）",
      "url": "https://www.bunka.go.jp/seisaku/bunkazai/shokai/hozonchiku/judenken_ichiran.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-038",
+   "name": "御鼻部山",
+   "region": "東北",
+   "prefectures": [
+    "青森県"
+   ],
+   "categories": [
+    "MOUNTAIN_HIGHLAND"
+   ],
+   "recognition_hook": "青森県十和田市の十和田湖畔の山",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "十和田市（公式・観光 十和田市の景色）",
+     "url": "https://www.city.towada.lg.jp/kanko/photo/keshiki/index.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-020",
+   "name": "浅虫温泉",
+   "region": "東北",
+   "prefectures": [
+    "青森県"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "青森県青森市の温泉地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "青森市（公式・観光）",
+     "url": "https://www.city.aomori.aomori.jp/bunka_sports_kankou/kankou/1005212/1005217.html"
     }
    ]
   },
@@ -1231,6 +1430,33 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3g-022",
+   "name": "蔵王山",
+   "region": "東北",
+   "prefectures": [
+    "宮城県",
+    "山形県"
+   ],
+   "categories": [
+    "MOUNTAIN_HIGHLAND"
+   ],
+   "recognition_hook": "宮城県と山形県にまたがる山",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "蔵王町（公式・蔵王の観光案内）",
+     "url": "https://www.town.zao.miyagi.jp/kankou/guide/index.html"
+    },
+    {
+     "authority": "山形市（公式・施設 観光）",
+     "url": "https://www.city.yamagata-yamagata.lg.jp/shisetsu/kanko/1002590.html"
+    }
+   ]
+  },
+  {
    "id": "exam-w3e-059",
    "name": "遠刈田温泉",
    "region": "東北",
@@ -1345,6 +1571,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "国土地理院（地理院地図 住所検索API 地名・公共施設データ）",
      "url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E5%85%A5%E9%81%93%E5%B4%8E"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-021",
+   "name": "後生掛温泉",
+   "region": "東北",
+   "prefectures": [
+    "秋田県"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "秋田県鹿角市の八幡平にある温泉",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "鹿角市（公式・観光情報）",
+     "url": "https://www.city.kazuno.lg.jp/kanko_bunka_sports/kankojoho/3/14661.html"
     }
    ]
   },
@@ -1470,6 +1718,28 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3g-006",
+   "name": "五色沼",
+   "region": "東北",
+   "prefectures": [
+    "福島県"
+   ],
+   "categories": [
+    "LAKE_WETLAND"
+   ],
+   "recognition_hook": "福島県北塩原村の湖沼群。五色沼自然探勝路で巡る",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "北塩原村（公式・観光サイト 五色沼自然探勝路）",
+     "url": "https://www.vill.kitashiobara.fukushima.jp/site/kanko/9627.html"
+    }
+   ]
+  },
+  {
    "id": "exam-w2-023",
    "name": "大内宿",
    "region": "東北",
@@ -1518,6 +1788,28 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3g-002",
+   "name": "尾瀬沼",
+   "region": "東北",
+   "prefectures": [
+    "福島県"
+   ],
+   "categories": [
+    "LAKE_WETLAND"
+   ],
+   "recognition_hook": "尾瀬沼・尾瀬ヶ原・燧ヶ岳を中心とする尾瀬の湖沼。檜枝岐村にあり、尾瀬は3県にまたがる",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "福島県教育委員会（公式・福島県の文化財 尾瀬）",
+     "url": "https://www.pref.fukushima.lg.jp/site/edu/bunkazai04.html"
+    }
+   ]
+  },
+  {
    "id": "exam-w3e-027",
    "name": "東山温泉",
    "region": "東北",
@@ -1536,6 +1828,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "国指定文化財等データベース（文化庁 会津東山温泉向瀧庭園）",
      "url": "https://kunishitei.bunka.go.jp/heritage/detail/411/00004215"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-003",
+   "name": "燧ヶ岳",
+   "region": "東北",
+   "prefectures": [
+    "福島県"
+   ],
+   "categories": [
+    "MOUNTAIN_HIGHLAND"
+   ],
+   "recognition_hook": "尾瀬の中心をなす山。檜枝岐村にあり、尾瀬は3県にまたがる",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "福島県教育委員会（公式・福島県の文化財 尾瀬）",
+     "url": "https://www.pref.fukushima.lg.jp/site/edu/bunkazai04.html"
     }
    ]
   },
@@ -1580,6 +1894,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "水戸市（公式・観光情報 水戸市内の桜の名所）",
      "url": "https://www.city.mito.lg.jp/site/kankouinfo/116882.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-007",
+   "name": "十二橋",
+   "region": "関東",
+   "prefectures": [
+    "茨城県"
+   ],
+   "categories": [
+    "LEISURE_STRUCTURE_BRIDGE"
+   ],
+   "recognition_hook": "茨城県潮来市の水路に架かる橋。舟で巡る「十二橋めぐり」で知られる",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "潮来市（公式・観光 主な観光スポット）",
+     "url": "https://www.city.itako.lg.jp/kankou/kankou-itakokankou/kankou-spot/kankou-mainspot/"
     }
    ]
   },
@@ -1699,6 +2035,28 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3g-023",
+   "name": "川治温泉",
+   "region": "関東",
+   "prefectures": [
+    "栃木県"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "栃木県日光市の温泉地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "日光市（公式・観光）",
+     "url": "https://www.city.nikko.lg.jp/kanko_bunka_sports/kanko/6556.html"
+    }
+   ]
+  },
+  {
    "id": "exam-w3-033",
    "name": "日光東照宮",
    "region": "関東",
@@ -1744,6 +2102,28 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3g-035",
+   "name": "華厳ノ滝",
+   "region": "関東",
+   "prefectures": [
+    "栃木県"
+   ],
+   "categories": [
+    "VALLEY_WATERFALL"
+   ],
+   "recognition_hook": "栃木県日光市の滝。中禅寺湖の湖畔とともに国の名勝",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "国指定文化財等データベース（文化庁 華厳瀑および中宮祠湖（中禅寺湖）湖畔）",
+     "url": "https://kunishitei.bunka.go.jp/heritage/detail/401/477"
+    }
+   ]
+  },
+  {
    "id": "exam-w2-039",
    "name": "輪王寺",
    "region": "関東",
@@ -1767,6 +2147,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "栃木県（公式・日光山輪王寺）",
      "url": "https://www.pref.tochigi.lg.jp/c05/intro/tochigiken/miryoku/nikko/012.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-008",
+   "name": "霧降高原",
+   "region": "関東",
+   "prefectures": [
+    "栃木県"
+   ],
+   "categories": [
+    "MOUNTAIN_HIGHLAND"
+   ],
+   "recognition_hook": "栃木県日光市の高原",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "日光市（公式・観光 霧降高原）",
+     "url": "https://www.city.nikko.lg.jp/kanko_bunka_sports/public_toilet/5800.html"
     }
    ]
   },
@@ -1972,6 +2374,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "長野県（公式・佐久地域振興局 浅間山登山コース）",
      "url": "https://www.pref.nagano.lg.jp/sakuchi/sakuchi-shokan/kanko/asamacourse1.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-024",
+   "name": "片品川",
+   "region": "関東",
+   "prefectures": [
+    "群馬県"
+   ],
+   "categories": [
+    "OTHER"
+   ],
+   "recognition_hook": "群馬県沼田市を流れる川。中流に吹割の滝がある",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "沼田市（公式・観光 河岸段丘）",
+     "url": "https://www.city.numata.gunma.jp/kanko/dankyu/1001806.html"
     }
    ]
   },
@@ -2811,6 +3235,28 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3g-027",
+   "name": "湯涌温泉",
+   "region": "中部",
+   "prefectures": [
+    "石川県"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "石川県金沢市の温泉地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "金沢市（公式・歴史都市推進課）",
+     "url": "https://www4.city.kanazawa.lg.jp/soshikikarasagasu/rekishitoshisuishinka/gyomuannai/2/1/27300.html"
+    }
+   ]
+  },
+  {
    "id": "exam-w3-012",
    "name": "能登半島国定公園",
    "region": "中部",
@@ -2830,6 +3276,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "環境省（国定公園一覧）",
      "url": "https://www.env.go.jp/nature/nationalparks/about/quasi-national-park/"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-036",
+   "name": "蓬莱島",
+   "region": "中部",
+   "prefectures": [
+    "石川県"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND"
+   ],
+   "recognition_hook": "石川県能登町の九十九湾の中央にある島",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "能登町（公式・観光 九十九湾）",
+     "url": "https://www.town.noto.lg.jp/kanko-bunka-sports/kanko/1/2918.html"
     }
    ]
   },
@@ -2900,6 +3368,28 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3g-028",
+   "name": "九頭竜峡",
+   "region": "中部",
+   "prefectures": [
+    "福井県"
+   ],
+   "categories": [
+    "VALLEY_WATERFALL"
+   ],
+   "recognition_hook": "福井県大野市の峡谷",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "大野市（公式・観光ガイド）",
+     "url": "https://www.city.ono.fukui.jp/kanko/kanko-joho/guide/index.html"
+    }
+   ]
+  },
+  {
    "id": "exam-w3f-011",
    "name": "平泉寺白山神社",
    "region": "中部",
@@ -2948,6 +3438,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "国土地理院／小浜市（公式）",
      "url": "https://www1.city.obama.fukui.jp/kanko-bunka/jisha-shiseki/96.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-009",
+   "name": "永平寺",
+   "region": "中部",
+   "prefectures": [
+    "福井県"
+   ],
+   "categories": [
+    "TEMPLE_SHRINE"
+   ],
+   "recognition_hook": "福井県永平寺町の寺院",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "永平寺町（公式）",
+     "url": "https://www.town.eiheiji.lg.jp/"
     }
    ]
   },
@@ -3382,6 +3894,50 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3g-029",
+   "name": "浅間温泉",
+   "region": "中部",
+   "prefectures": [
+    "長野県"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "長野県松本市の温泉地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "松本市（公式）",
+     "url": "https://www.city.matsumoto.nagano.jp/soshiki/134/51911.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-030",
+   "name": "湯田中温泉",
+   "region": "中部",
+   "prefectures": [
+    "長野県"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "長野県山ノ内町の温泉地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "山ノ内町（公式・観光情報）",
+     "url": "https://www.town.yamanouchi.nagano.jp/kanko_bunka_sports/kanko_joho/1176.html"
+    }
+   ]
+  },
+  {
    "id": "exam-w3f-014",
    "name": "穂高神社",
    "region": "中部",
@@ -3532,6 +4088,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "恵那市（公式・ようこそ恵那市へ 恵那峡）",
      "url": "https://www.city.ena.lg.jp/ena_shokai/5699.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-026",
+   "name": "新穂高温泉",
+   "region": "中部",
+   "prefectures": [
+    "岐阜県"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "岐阜県高山市の温泉地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "高山市（公式・施設案内）",
+     "url": "https://www.city.takayama.lg.jp/shisetsu/1004139/1000028/1003902.html"
     }
    ]
   },
@@ -3801,6 +4379,28 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3g-025",
+   "name": "蓮台寺温泉",
+   "region": "中部",
+   "prefectures": [
+    "静岡県"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "静岡県下田市の温泉地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "下田市（公式・みどころ）",
+     "url": "https://www.city.shimoda.shizuoka.jp/category/100100midokoro/110775.html"
+    }
+   ]
+  },
+  {
    "id": "exam-w3f-027",
    "name": "岡崎城",
    "region": "中部",
@@ -3940,6 +4540,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "環境省 中部地方環境事務所（管内の国立公園）",
      "url": "https://chubu.env.go.jp/park.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-033",
+   "name": "伊賀上野城",
+   "region": "近畿",
+   "prefectures": [
+    "三重県"
+   ],
+   "categories": [
+    "CASTLE"
+   ],
+   "recognition_hook": "三重県伊賀市の城",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "伊賀市（公式）",
+     "url": "https://www.city.iga.lg.jp/0000014170.html"
     }
    ]
   },
@@ -4258,6 +4880,28 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3g-040",
+   "name": "琵琶湖大橋",
+   "region": "近畿",
+   "prefectures": [
+    "滋賀県"
+   ],
+   "categories": [
+    "LEISURE_STRUCTURE_BRIDGE"
+   ],
+   "recognition_hook": "琵琶湖に架かる橋。大津市堅田と守山市今浜を結ぶ",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "守山市（公式・観光）",
+     "url": "https://www.city.moriyama.lg.jp/kanko_event_manabi/kankou/1002774/1002804.html"
+    }
+   ]
+  },
+  {
    "id": "exam-w3f-003",
    "name": "百済寺",
    "region": "近畿",
@@ -4302,6 +4946,29 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "長浜市（公式・長浜市所在指定文化財一覧）",
      "url": "https://www.city.nagahama.lg.jp/cmsfiles/contents/0000014/14176/ichiran.pdf"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-042",
+   "name": "下鴨神社",
+   "region": "近畿",
+   "prefectures": [
+    "京都府"
+   ],
+   "categories": [
+    "TEMPLE_SHRINE",
+    "WORLD_HERITAGE"
+   ],
+   "recognition_hook": "京都市左京区の神社。正式には賀茂御祖神社で、世界文化遺産「古都京都の文化財」の構成資産",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "京都府（公式・世界遺産 古都京都の文化財 一覧）",
+     "url": "https://www.pref.kyoto.jp/isan/index.html"
     }
    ]
   },
@@ -4527,6 +5194,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "亀岡市（公式・亀岡観光トップページ）",
      "url": "https://www.city.kameoka.kyoto.jp/site/kankou/"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-031",
+   "name": "舞鶴湾",
+   "region": "近畿",
+   "prefectures": [
+    "京都府"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND"
+   ],
+   "recognition_hook": "京都府舞鶴市の湾",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "舞鶴市（公式）",
+     "url": "https://www.city.maizuru.kyoto.jp/kurashi/0000009016.html"
     }
    ]
   },
@@ -4804,6 +5493,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "国指定文化財等データベース（文化庁 明石藩舞子台場跡）",
      "url": "https://kunishitei.bunka.go.jp/heritage/detail/401/00003516"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-010",
+   "name": "明石海峡大橋",
+   "region": "近畿",
+   "prefectures": [
+    "兵庫県"
+   ],
+   "categories": [
+    "LEISURE_STRUCTURE_BRIDGE"
+   ],
+   "recognition_hook": "兵庫県神戸市垂水区と淡路市を結ぶ吊橋",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "淡路市（公式・明石海峡大橋十年の軌跡）",
+     "url": "https://www.city.awaji.lg.jp/soshiki/koushitsu/akashikaikyoujyuunennokiseki.html"
     }
    ]
   },
@@ -5139,6 +5850,28 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3g-011",
+   "name": "白浜温泉",
+   "region": "近畿",
+   "prefectures": [
+    "和歌山県"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "和歌山県白浜町の温泉地。海際の露天風呂「崎の湯」がある",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "白浜町（公式・観光 白浜温泉 崎の湯）",
+     "url": "https://www.town.shirahama.wakayama.jp/kanko/onsen/1454046714439.html"
+    }
+   ]
+  },
+  {
    "id": "exam-w3e-023",
    "name": "道成寺",
    "region": "近畿",
@@ -5263,6 +5996,28 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3g-012",
+   "name": "ローソク島",
+   "region": "中国",
+   "prefectures": [
+    "島根県"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND"
+   ],
+   "recognition_hook": "島根県隠岐の島町の岩島",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "隠岐の島町（公式・観光レジャー）",
+     "url": "https://www.town.okinoshima.shimane.jp/kanko-bunka-sports/kanko-leisure/8821.html"
+    }
+   ]
+  },
+  {
    "id": "exam-w3d-008",
    "name": "三瓶山",
    "region": "中国",
@@ -5281,6 +6036,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "文化遺産オンライン（文化庁 三瓶山自然林）",
      "url": "https://online.bunka.go.jp/heritages/detail/139174"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-001",
+   "name": "中ノ島",
+   "region": "中国",
+   "prefectures": [
+    "島根県"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND"
+   ],
+   "recognition_hook": "島根県の隠岐諸島・島前の島。承久の乱で後鳥羽上皇が配流された",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "隠岐の島町（公式・歴史文化財 隠岐の文化財）",
+     "url": "https://www.town.okinoshima.shimane.jp/kanko-bunka-sports/rekishi-bunkazai/bunkazai/5384.html"
     }
    ]
   },
@@ -5601,6 +6378,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "国土交通省（国土数値情報 観光資源データ P12-14）",
      "url": "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P12-v2_2.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-013",
+   "name": "隠岐諸島",
+   "region": "中国",
+   "prefectures": [
+    "島根県"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND"
+   ],
+   "recognition_hook": "島根県の諸島。島前（西ノ島・中ノ島・知夫里島）と島後からなる",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "隠岐の島町（公式・観光 おすすめコース）",
+     "url": "https://www.town.okinoshima.shimane.jp/kanko-bunka-sports/kanko-leisure/osusume_course-plan/4796.html"
     }
    ]
   },
@@ -6045,6 +6844,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "下関市（公式）／北九州市（公式）",
      "url": "https://www.city.shimonoseki.lg.jp/soshiki/73/130442.html"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-034",
+   "name": "吉野川",
+   "region": "四国",
+   "prefectures": [
+    "徳島県"
+   ],
+   "categories": [
+    "OTHER"
+   ],
+   "recognition_hook": "徳島県を流れる川",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "徳島県（公式・観光）",
+     "url": "https://www.pref.tokushima.lg.jp/ippannokata/kyoiku/kanko/7315687/"
     }
    ]
   },
@@ -6726,6 +7547,28 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3g-041",
+   "name": "祐徳稲荷神社",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "佐賀県"
+   ],
+   "categories": [
+    "TEMPLE_SHRINE"
+   ],
+   "recognition_hook": "佐賀県鹿島市の神社",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "佐賀県（公式）",
+     "url": "https://www.pref.saga.lg.jp/kiji0031346/index.html"
+    }
+   ]
+  },
+  {
    "id": "exam-078",
    "name": "原城跡",
    "region": "九州・沖縄",
@@ -6771,6 +7614,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "国指定文化財等データベース（文化庁 温泉岳）",
      "url": "https://kunishitei.bunka.go.jp/heritage/detail/401/2745"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-037",
+   "name": "小浜温泉",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "長崎県"
+   ],
+   "categories": [
+    "HOT_SPRING"
+   ],
+   "recognition_hook": "長崎県雲仙市の温泉地。国民保養温泉地",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "環境省（公式・国民保養温泉地一覧表）",
+     "url": "https://www.env.go.jp/nature/onsen/area/pdf/2-3_p_1.pdf"
     }
    ]
   },
@@ -7072,6 +7937,28 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3g-043",
+   "name": "城島高原",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "大分県"
+   ],
+   "categories": [
+    "MOUNTAIN_HIGHLAND"
+   ],
+   "recognition_hook": "大分県の高原。阿蘇くじゅう国立公園にある",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "大分県（公式・自然公園）",
+     "url": "https://www.pref.oita.jp/soshiki/13070/shizenkoen.html"
+    }
+   ]
+  },
+  {
    "id": "exam-020",
    "name": "宇佐神宮",
    "region": "九州・沖縄",
@@ -7279,6 +8166,28 @@ window.GEO_BROAD_SHALLOW = {
     }
    ],
    "reading": "きりしまきんこうわんこくりつこうえん"
+  },
+  {
+   "id": "exam-w3g-032",
+   "name": "飫肥城歴史資料館",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "宮崎県"
+   ],
+   "categories": [
+    "MUSEUM_CULTURAL_FACILITY"
+   ],
+   "recognition_hook": "宮崎県日南市の資料館",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "FACILITY",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "日南市（公式・施設情報）",
+     "url": "https://www.city.nichinan.lg.jp/kurashi_tetsuzuki/shisetsujoho/3656.html"
+    }
+   ]
   },
   {
    "id": "exam-w3c-016",
@@ -7598,6 +8507,28 @@ window.GEO_BROAD_SHALLOW = {
    ]
   },
   {
+   "id": "exam-w3g-014",
+   "name": "平和祈念公園",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "沖縄県"
+   ],
+   "categories": [
+    "OTHER"
+   ],
+   "recognition_hook": "沖縄本島最南端の糸満市にある公園",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "糸満市（公式・観光ナビ）",
+     "url": "https://www.city.itoman.lg.jp/site/kankou-navi/1833.html"
+    }
+   ]
+  },
+  {
    "id": "exam-w3-034",
    "name": "座喜味城跡",
    "region": "九州・沖縄",
@@ -7639,6 +8570,28 @@ window.GEO_BROAD_SHALLOW = {
     {
      "authority": "国指定文化財等データベース（文化庁 アマミクヌムイ）",
      "url": "https://kunishitei.bunka.go.jp/heritage/detail/401/00003884"
+    }
+   ]
+  },
+  {
+   "id": "exam-w3g-015",
+   "name": "沖縄本島",
+   "region": "九州・沖縄",
+   "prefectures": [
+    "沖縄県"
+   ],
+   "categories": [
+    "COAST_CAPE_ISLAND"
+   ],
+   "recognition_hook": "沖縄県の主島。最南端の糸満市に平和祈念公園がある",
+   "priority": "C",
+   "exam_signal": "EXAM_SIGNAL_LOW",
+   "entity_kind": "AREA_RESOURCE",
+   "coverage_level": "LIGHTWEIGHT",
+   "sources": [
+    {
+     "authority": "糸満市（公式・観光ナビ）",
+     "url": "https://www.city.itoman.lg.jp/site/kankou-navi/1833.html"
     }
    ]
   },
@@ -7722,7 +8675,14 @@ window.GEO_BROAD_SHALLOW = {
    "task": "TASK-018H",
    "size": 58,
    "source": "docs/geography/BROAD_SHALLOW_WAVE3F.json"
+  },
+  {
+   "wave": 9,
+   "version": "wave3g-v1",
+   "task": "TASK-018I",
+   "size": 43,
+   "source": "docs/geography/BROAD_SHALLOW_WAVE3G.json"
   }
  ],
- "coverage_note": "この 319 件は公式過去問 R3〜R7 に現れた観光資源の一部であって、試験範囲の全体ではない。TASK-018A の母集団監査では候補 461 件のうち未収録が多数残っている"
+ "coverage_note": "この 362 件は公式過去問 R3〜R7 に現れた観光資源の一部であって、試験範囲の全体ではない。TASK-018A の母集団監査では候補 461 件のうち未収録が多数残っている"
 };
