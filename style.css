@@ -288,3 +288,32 @@ details.rmapd>.locator{padding:8px 0 0}
 .hpen{font-size:11px;font-weight:400;color:#5a6b78}
 .hpstate{display:inline-block;margin-left:6px;font-size:11px;font-weight:700;color:#5a6b78;
  border:1px solid var(--line);border-radius:999px;padding:1px 8px;background:#fff}
+
+/* v0.27.0 (TASK-021B) 暗記カード。539 資源を「めくって覚える」ための view layer で、
+   高速暗記（.rapid / .rcard）の見た目と操作感をそのまま借りる。新しいカード用データは持たない。 */
+.carddeck .cbar{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:space-between;margin:0 0 8px}
+.carddeck .cdecks{display:flex;flex-wrap:wrap;gap:6px}
+.carddeck .cdeck{appearance:none;border:1px solid var(--line,#d7dde5);background:#fff;color:inherit;border-radius:999px;
+ padding:6px 12px;font:inherit;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.carddeck .cdeck .cn{font-variant-numeric:tabular-nums;color:#5b6675;font-size:12px}
+.carddeck .cdeck.on{background:#1f4e79;border-color:#1f4e79;color:#fff;font-weight:600}
+.carddeck .cdeck.on .cn{color:#dbe7f3}
+.carddeck .cdeck:focus-visible{outline:3px solid #1f4e79;outline-offset:2px}
+.carddeck .ctools{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+.carddeck .btn.sm{padding:5px 10px;font-size:13px}
+/* 表／裏は色だけで区別しない。常に文字でも状態を示す */
+.ccard .cflip{display:block;width:100%;text-align:left;appearance:none;background:#fff;border:1px dashed #9db4cc;
+ border-radius:10px;padding:14px 14px 10px;font:inherit;color:inherit;cursor:pointer}
+.ccard .cflip:focus-visible{outline:3px solid #1f4e79;outline-offset:2px}
+.ccard .cflip[aria-expanded="true"]{border-style:solid;border-color:#1f4e79;background:#f7fbff}
+.ccard .cflip .rname{display:block}
+.ccard .cstate{display:block;margin-top:6px;font-size:12px;color:#5b6675}
+.ccard .ctier{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:999px;font-size:11px;
+ border:1px solid #c3ceda;color:#41505f;background:#f3f6fa}
+.ccard .ctier.t-DEEP{border-color:#1f4e79;color:#1f4e79;background:#eaf2fa}
+.ccard .cback{margin-top:10px}
+@media (max-width:520px){
+ .carddeck .cbar{gap:6px 10px}
+ .carddeck .cdeck{padding:5px 10px;font-size:12px}
+ .ccard .cflip{padding:12px 12px 8px}
+}

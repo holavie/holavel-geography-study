@@ -199,6 +199,9 @@ let mapSeq=0;const liveMaps={};
 // Leaflet が 250ms 後に予約している _onZoomTransitionEnd が、消えた mapPane を触って
 // TypeError: Cannot read properties of undefined (reading '_leaflet_pos') を投げる。
 // Leaflet 側は _animatingZoom が false なら即 return するので、先にその印を下ろしてから remove する。
+// 遅延して呼ぶ invalidateSize は、その間に画面が切り替わって地図が片付けられていることがある。
+// そのまま呼ぶと Leaflet が消えた mapPane を触って落ちるので、まだ生きている同じ地図のときだけ呼ぶ。
+const softInvalidate=(key,m,ms)=>setTimeout(()=>{try{if(liveMaps[key]===m&&m._container)m.invalidateSize()}catch(e){}},ms);
 function disposeLiveMaps(){Object.keys(liveMaps).forEach(k=>{const m=liveMaps[k];try{if(m){if(m._animatingZoom)m._animatingZoom=false;m.off();m.remove()}}catch(e){}delete liveMaps[k]});
  if(typeof nmClearMap==='function')nmClearMap()}
 function mapHTML(r,label){const mp=mapPoints(r);const hasPoints=mp.points.length>0;const libOK=!!window.L;const hasReal=hasPoints&&libOK;const id='m'+(++mapSeq);
@@ -228,9 +231,9 @@ function initRealMap(el){if(!el||el.dataset.ready||!window.L)return;const r=R.fi
    return mk.bindPopup(pop,{closeButton:false}).addTo(m)});
   el._markers=pts;
   if(pts.length===1){m.setView([mp.points[0].lat,mp.points[0].lon],mp.view.zoom||9)}else{m.fitBounds(L.latLngBounds(mp.points.map(p=>[p.lat,p.lon])),{padding:[24,24],maxZoom:mp.view.zoom||11})}
-  el.dataset.ready='1';liveMaps[el.id]=m;setTimeout(()=>m.invalidateSize(),50)}catch(e){const fail=el.parentElement&&el.parentElement.querySelector('.mfail');if(fail)fail.hidden=false}}
+  el.dataset.ready='1';liveMaps[el.id]=m;softInvalidate(el.id,m,50)}catch(e){const fail=el.parentElement&&el.parentElement.querySelector('.mfail');if(fail)fail.hidden=false}}
 function wireMaps(){document.querySelectorAll('details.mapd[data-mid]').forEach(dt=>{const id=dt.dataset.mid;
- const show=(which)=>{dt.querySelectorAll('.mtab').forEach(b=>b.classList.toggle('on',b.dataset.m===which));const rw=dt.querySelector('.realwrap'),lw=dt.querySelector('.locwrap');if(rw)rw.hidden=which!=='real';if(lw)lw.hidden=which==='real';if(which==='real'&&rw){initRealMap(rw.querySelector('.realmap'));const m=liveMaps[id];if(m)setTimeout(()=>m.invalidateSize(),30)}};
+ const show=(which)=>{dt.querySelectorAll('.mtab').forEach(b=>b.classList.toggle('on',b.dataset.m===which));const rw=dt.querySelector('.realwrap'),lw=dt.querySelector('.locwrap');if(rw)rw.hidden=which!=='real';if(lw)lw.hidden=which==='real';if(which==='real'&&rw){initRealMap(rw.querySelector('.realmap'));const m=liveMaps[id];if(m)softInvalidate(id,m,30)}};
  dt.addEventListener('toggle',()=>{if(dt.open){const on=dt.querySelector('.mtab.on');show(on?on.dataset.m:'loc')}});
  dt.querySelectorAll('.mtab').forEach(b=>b.onclick=()=>{if(!b.disabled)show(b.dataset.m)});
  dt.querySelectorAll('.mpt').forEach(b=>b.onclick=()=>{show('real');const el=dt.querySelector('.realmap');const m=liveMaps[id];const mk=el&&el._markers&&el._markers[+b.dataset.i];if(m&&mk){m.panTo(mk.getLatLng(),{animate:false});mk.openPopup()}})})}
@@ -261,10 +264,17 @@ function quizScope(r){const qa=r.quiz_a;if(!qa||typeof qa!=='object'||Array.isAr
 
 // ---- state (own key; Exam Sprint state is never read or written)
 const KEY='holavel_geography_study_v2';const STATE_VERSION=2;
-const fresh=()=>({version:STATE_VERSION,view:'cards',filters:{},events:[],current:null,quiz:null,nmap:{genres:[],region:'',prefecture:'',points:false}});
+const fresh=()=>({version:STATE_VERSION,view:'cards',filters:{},events:[],current:null,quiz:null,nmap:{genres:[],region:'',prefecture:'',points:false},
+ // TASK-021B: 暗記カードの状態。既存 state に無ければ既定（全資源・先頭・シャッフルなし）で足すだけ。
+ card:{deck:'ALL',index:0,seed:0}});
 let state;try{const raw=JSON.parse(localStorage.getItem(KEY)||'{}');state=Object.assign(fresh(),raw&&raw.version===STATE_VERSION?raw:{})}catch(e){state=fresh()}
 state.version=STATE_VERSION;
 if(!Array.isArray(state.events))state.events=[];if(!state.filters||typeof state.filters!=='object')state.filters={};
+// 暗記カードの状態は additive。古い state に無ければ既定を入れ、壊れた値だけを直す（既存キーは変更しない）
+if(!state.card||typeof state.card!=='object'||Array.isArray(state.card))state.card={deck:'ALL',index:0,seed:0};
+if(!['ALL','DEEP','LIGHT','REVIEW'].includes(state.card.deck))state.card.deck='ALL';
+if(!Number.isInteger(state.card.index)||state.card.index<0)state.card.index=0;
+if(!Number.isInteger(state.card.seed)||state.card.seed<0)state.card.seed=0;
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}};
 
 // ---- retry telemetry (derived; same semantics as Exam Sprint v0.6d: interval only when both timestamps are valid and ordered)
@@ -303,7 +313,9 @@ function sanitizeCommonFilters(){
  F.search=typeof F.search==='string'?F.search:''}
 function initFilters(){sanitizeCommonFilters();
  fillSelect('fRegion',REGIONS,F.region||'');fillSelect('fPref',prefOptions(),F.prefecture||'');fillSelect('fCat',Object.keys(CAT),F.category||'');$('fPri').value=F.priority||'';$('fWrong').checked=!!F.wrongOnly;$('fSearch').value=F.search||'';
- const apply=()=>{F.category=$('fCat').value;F.priority=$('fPri').value;F.wrongOnly=$('fWrong').checked;F.search=$('fSearch').value.trim();state.current=null;save();render()};
+ const apply=()=>{F.category=$('fCat').value;F.priority=$('fPri').value;F.wrongOnly=$('fWrong').checked;F.search=$('fSearch').value.trim();state.current=null;
+  // 絞り込みを変えると別のカードが先頭に来る。めくった状態を持ち越すと答えが即見えてしまうので必ず伏せる
+  cFlipped=false;state.card.index=0;save();render()};
  // 都道府県を選んだら都道府県を正として学習分類を合わせる（「すべて」なら学習分類は変えない）
  $('fPref').onchange=()=>{const p=$('fPref').value;F.prefecture=p;if(p)F.region=BS_PREF_REGION[p];apply()};
  // 学習分類を変えたら、選択中の県がその分類外のときだけ県を「すべて」に戻す（「全国」なら県を保持）
@@ -435,7 +447,10 @@ function render(){disposeLiveMaps();document.querySelectorAll('#modes button').f
  if(state.view==='quiz'){renderQuiz(list);wireMaps();return}
  const cur=state.current?R.find(r=>r.resource_id===state.current):null;
  if(cur&&!list.includes(cur)){state.current=null;save()}
- if(cur&&list.includes(cur))renderCard(cur,list);else renderList(list);wireMaps()}
+ // 既存の詳細カード（全国MAP やクイズの「カードを見る」から開く導線）はそのまま。
+ // 何も開いていないときは暗記カードのデッキを出す（TASK-021B）。
+ if(cur&&list.includes(cur)){renderCard(cur,list);wireMaps();return}
+ renderCardDeck();wireMaps()}
 
 // ---- Rapid Study Mode v0.1 (TASK-013H)
 // LIGHTWEIGHT wave 1 (data/broad_shallow.js) only. The DEEP 30 are NOT mixed into this pool in v0.1: the point is to
@@ -474,6 +489,9 @@ const RKEY='holavel_geography_rapid_v1';const RAPID_VERSION=1;
 const rfresh=()=>({version:RAPID_VERSION,filters:{region:'',prefecture:'',priority:'',reviewOnly:false},known:[],review:[],index:0});
 let rstate;try{const raw=JSON.parse(localStorage.getItem(RKEY)||'{}');rstate=(raw&&typeof raw==='object'&&raw.version===RAPID_VERSION)?Object.assign(rfresh(),raw):rfresh()}catch(e){rstate=rfresh()}
 (function sanitizeRapid(){const ids=new Set(BSR.map(r=>r.id));
+ // TASK-021B: 暗記カードは DEEP 30 も同じ 知ってる／要復習 を使う。既存の LIGHTWEIGHT id は落とさず、
+ // DEEP の resource_id を許可 id に足すだけ（id の再発行も、保存済みデータの削除もしない）。
+ R.forEach(r=>ids.add(r.resource_id));
  const clean=a=>Array.isArray(a)?a.filter(x=>typeof x==='string'&&ids.has(x)).filter((x,i,arr)=>arr.indexOf(x)===i):[];
  rstate.version=RAPID_VERSION;rstate.known=clean(rstate.known);rstate.review=clean(rstate.review);
  if(!rstate.filters||typeof rstate.filters!=='object')rstate.filters=rfresh().filters;
@@ -575,6 +593,112 @@ function renderRapid(){
 // 情報の層を 2 つに分け、精度差をラベルで明示する:
 //   LAYER 1 全国分布      … 全資源の prefectures[] を県単位で数える。県庁所在地・県の中心点は作らない
 //   LAYER 2 確認済み実地点 … visual_locations.js の 30 資源 58 点だけ。LIGHTWEIGHT に架空の点を作らない
+// ---- 暗記カード（TASK-021B）
+// 539 資源を「めくって覚える」ための view layer。新しい resource も新しい解説文も作らない:
+//   DEEP 30        = data/resources.js（詳細カードはこれまでどおり別に開ける）
+//   LIGHTWEIGHT509 = data/broad_shallow.js
+// この 2 つを runtime で結合するだけで、card 用のデータファイルへコピーはしない。
+// 件数はすべて実データから数える（固定値を持たない）。
+const cardModel=[].concat(
+ R.map(r=>({id:r.resource_id,tier:'DEEP',name:r.name,reading:r.reading||'',prefs:prefs(r),region:r.region,
+  cats:r.categories||[],hook:r.summary||'',aliases:[],muni:munis(r).join('・'),priority:r.exam_priority||'',
+  sources:r.sources||[],deep:r,hasDeepDetail:true})),
+ BSR.map(r=>({id:r.id,tier:'LIGHT',name:r.name,reading:bsReading(r),prefs:bsPrefs(r),region:r.region,
+  cats:r.categories||[],hook:r.recognition_hook||'',aliases:Array.isArray(r.aliases)?r.aliases:[],
+  muni:typeof r.municipalities==='string'?r.municipalities:'',priority:r.priority||'',
+  sources:r.sources||[],light:r,hasDeepDetail:false})));
+const CARD_ALL=(()=>{const seen=new Set();return cardModel.filter(c=>{if(seen.has(c.id))return false;seen.add(c.id);return true})})();
+const CARD_DEEP=CARD_ALL.filter(c=>c.tier==='DEEP');
+const CARD_LIGHT=CARD_ALL.filter(c=>c.tier==='LIGHT');
+const cardCat=c=>c.cats.map(x=>BSCAT[x]||x).join('・');
+// 知ってる／要復習 は高速暗記と同じ保存領域を使う（同じ資源を 2 か所で別々に覚え直さない）。
+// LIGHTWEIGHT の id はそのまま、DEEP は resource_id をそのまま使うので、id の再発行は無い。
+const cardKnown=id=>rstate.known.includes(id);
+const cardReview=id=>rstate.review.includes(id);
+function cardMatch(c){const q=(F.search||'').toLowerCase();
+ return (F.prefecture?c.prefs.includes(F.prefecture):(!F.region||c.region===F.region))
+  &&(!F.category||c.cats.includes(F.category))
+  &&(!F.priority||c.priority===F.priority)
+  &&(!F.wrongOnly||everWrong(c.id))
+  &&(!q||[c.name,c.reading,c.muni,...c.prefs].join(' ').toLowerCase().includes(q))}
+const CARD_DECKS=[{key:'ALL',label:'全資源'},{key:'DEEP',label:'詳細'},{key:'LIGHT',label:'速習'},{key:'REVIEW',label:'復習'}];
+function cardBase(deck){
+ if(deck==='DEEP')return CARD_DEEP;
+ if(deck==='LIGHT')return CARD_LIGHT;
+ if(deck==='REVIEW')return CARD_ALL.filter(c=>cardReview(c.id));
+ return CARD_ALL}
+const cardDeckCount=deck=>cardBase(deck).filter(cardMatch).length;
+// シャッフルは並び順だけを変える（カードの中身も id も変えない）。seed を保存して同じ並びを再現する
+function cardPool(){const pool=cardBase(state.card.deck).filter(cardMatch);const s=state.card.seed;
+ if(!s)return pool;const rnd=seeded(s);const a=pool.slice();
+ for(let i=a.length-1;i>0;i--){const j=Math.floor(rnd()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+let cFlipped=false;
+function cardBackHTML(c){
+ const loc=locatorSVG(c.tier==='DEEP'?c.deep:c.light);
+ const src=(c.sources||[]).length?`<details class="rsrc"><summary>出典（${c.sources.length}）</summary><ul>${c.sources.map(x=>`<li>${esc(x.authority||'')}　${x.url?`<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.title||x.url)}</a>`:esc(x.title||'')}</li>`).join('')}</ul></details>`:'';
+ return `<div class="cback">
+  ${c.reading?`<div class="rrow"><span class="rl">読み</span><span class="rv rruby">${esc(c.reading)}</span></div>`:''}
+  <div class="rrow"><span class="rl">都道府県</span><span class="lv">${c.prefs.map(p=>`<span class="pref">${esc(p)}</span>`).join('')}${(c.prefs.length===1&&c.prefs[0]===c.region)?'':`<span class="rreg" title="学習分類">${esc(c.region)}</span>`}</span></div>
+  ${loc?`<details class="rmapd"><summary>全国のどこか（都道府県の俯瞰）</summary>${loc}</details>`:''}
+  <div class="rrow"><span class="rl">カテゴリ</span><span class="rv">${esc(cardCat(c))}</span></div>
+  ${c.hook?`<div class="rrow"><span class="rl">${c.tier==='DEEP'?'要点':'一言特徴'}</span><span class="rv">${esc(c.hook)}</span></div>`:''}
+  ${c.aliases.length?`<div class="rrow"><span class="rl">別名</span><span class="rv">${c.aliases.map(a=>esc(a)).join('・')}</span></div>`:''}
+  ${(c.tier==='DEEP'&&c.deep.memory_hook)?`<div class="rrow"><span class="rl">覚え方</span><span class="rv">${esc(c.deep.memory_hook)}</span></div>`:''}
+  ${c.muni?`<div class="rrow"><span class="rl">所在</span><span class="rv rd">${esc(c.muni)}</span></div>`:''}
+  ${src}
+ </div>`}
+function renderCardDeck(){
+ const deck=state.card.deck;const pool=cardPool();
+ if(state.card.index>=pool.length)state.card.index=0;
+ const kn=pool.filter(c=>cardKnown(c.id)).length,rv=pool.filter(c=>cardReview(c.id)).length;
+ const tabs=CARD_DECKS.map(d=>`<button type="button" class="cdeck${deck===d.key?' on':''}" data-deck="${esc(d.key)}" aria-pressed="${deck===d.key?'true':'false'}">${esc(d.label)} <span class="cn">${cardDeckCount(d.key)}</span></button>`).join('');
+ const bar=`<div class="cbar">
+   <div class="cdecks" role="group" aria-label="カードの範囲">${tabs}</div>
+   <div class="ctools">
+    <button type="button" class="btn sm" id="cShuffle" aria-pressed="${state.card.seed?'true':'false'}">${state.card.seed?'シャッフル中':'シャッフル'}</button>
+    ${state.card.seed?'<button type="button" class="btn sm" id="cOrder">元の順</button>':''}
+    <span class="rprog" id="cProg">${pool.length?`${state.card.index+1} / ${pool.length}`:'0 / 0'}　<span class="rd">知ってる ${kn}　要復習 ${rv}</span></span>
+   </div>
+  </div>
+  <div class="rbarwrap"><div class="rbarline" role="progressbar" aria-valuemin="0" aria-valuemax="${pool.length}" aria-valuenow="${pool.length?state.card.index+1:0}" aria-label="学習の進捗"><span style="width:${pool.length?Math.round((state.card.index+1)/pool.length*100):0}%"></span></div></div>`;
+ let body;
+ if(!pool.length){
+  body=`<div class="msg">${deck==='REVIEW'?'復習対象はありません。カードで「要復習」を押すとここに入ります。':'該当するカードがありません。地域・都道府県・カテゴリ・検索条件を変えてください。'}</div>`;
+ }else{
+  const c=pool[state.card.index];
+  const mark=cardKnown(c.id)?'<span class="rmk known">知ってる</span>':(cardReview(c.id)?'<span class="rmk review">要復習</span>':'');
+  body=`<div class="rcard ccard">
+   <div class="rhead"><span class="rlabel">暗記カード　資源名 → 都道府県・分類・特徴</span><span class="ctier t-${esc(c.tier)}">${c.tier==='DEEP'?'詳細':'速習'}</span>${mark}</div>
+   <button type="button" class="cflip" id="cFlip" aria-expanded="${cFlipped?'true':'false'}">
+    <span class="rname">${esc(c.name)}</span>
+    <span class="cstate">${cFlipped?'答えを表示中（もう一度押すと隠す）':'表を表示中（押す・Enter・Space でめくる）'}</span>
+   </button>
+   ${cFlipped?cardBackHTML(c):'<p class="rhide rd">めくるまで、都道府県・カテゴリ・特徴は非表示です。</p>'}
+   <div class="bar rbar">${cFlipped
+     ? `<div class="grp"><button class="btn nav" id="cPrev" aria-label="前のカードへ">← 前へ</button><button class="btn ok" id="cKnown">知ってる</button><button class="btn warn" id="cReviewBtn">要復習</button></div><div class="grp">${c.hasDeepDetail?'<button class="btn" id="cDetail">詳細カードを開く</button>':''}<button class="btn nav" id="cNext" aria-label="次のカードへ">次へ →</button></div>`
+     : `<div class="grp"><button class="btn nav" id="cPrev" aria-label="前のカードへ">← 前へ</button><button class="btn primary" id="cShow">めくる</button></div><div class="grp"><button class="btn nav" id="cNext" aria-label="次のカードへ">次へ →</button></div>`}</div>
+  </div>`;
+ }
+ $('view').innerHTML=`<div class="rapid carddeck">${bar}${body}</div>`;
+ // 件数表示は詳細 30 件ではなく、いま学習しているデッキの件数にそろえる（実データから数える）
+ $('count').textContent=`${pool.length} 件`;
+ const move=(d)=>{if(!pool.length)return;cFlipped=false;
+  if(d>0){if(state.card.index>=pool.length-1){state.card.index=0;toast('1周しました')}else{state.card.index++}}
+  else{if(state.card.index<=0){state.card.index=pool.length-1;toast('最後へ戻りました')}else{state.card.index--}}
+  save();render()};
+ document.querySelectorAll('.cdeck').forEach(b=>b.onclick=()=>{state.card.deck=b.dataset.deck;state.card.index=0;cFlipped=false;save();render()});
+ if($('cShuffle'))$('cShuffle').onclick=()=>{state.card.seed=(Date.now()%100000)||1;state.card.index=0;cFlipped=false;save();render();toast('シャッフルしました')};
+ if($('cOrder'))$('cOrder').onclick=()=>{state.card.seed=0;state.card.index=0;cFlipped=false;save();render();toast('元の順に戻しました')};
+ if($('cFlip'))$('cFlip').onclick=()=>{cFlipped=!cFlipped;render()};
+ if($('cShow'))$('cShow').onclick=()=>{cFlipped=true;render()};
+ if($('cNext'))$('cNext').onclick=()=>move(1);
+ if($('cPrev'))$('cPrev').onclick=()=>move(-1);
+ if($('cKnown'))$('cKnown').onclick=()=>{const c=pool[state.card.index];rapidMark(c.id,'known');rsave();move(1)};
+ if($('cReviewBtn'))$('cReviewBtn').onclick=()=>{const c=pool[state.card.index];rapidMark(c.id,'review');rsave();
+  if(state.card.deck==='REVIEW'){cFlipped=false;save();render()}else{move(1)}};
+ if($('cDetail'))$('cDetail').onclick=()=>{const c=pool[state.card.index];state.current=c.id;save();render()};
+}
+
 const NMALL=[].concat(
  R.map(r=>({id:r.resource_id,name:r.name,cats:r.categories||[],prefs:prefs(r),region:r.region,layer:'DEEP',pts:mapPoints(r).points.length,exam:(r.past_exam_links||[]).length})),
  BSR.map(r=>({id:r.id,name:r.name,cats:r.categories||[],prefs:bsPrefs(r),region:r.region,layer:'LIGHT',pts:0,exam:0})));
@@ -628,7 +752,7 @@ function nmMount(el){if(!el||!window.L)return null;
   const c=nmCam&&nmCam.center?nmCam:NM_HOME;m.setView(c.center,c.zoom);
   const remember=()=>{try{const ce=m.getCenter();nmCam={center:[ce.lat,ce.lng],zoom:m.getZoom()}}catch(e){}};
   m.on('moveend',remember);m.on('zoomend',()=>{remember();nmLabels()});
-  el.dataset.ready='1';nmMap=m;nmMapEl=el;liveMaps[el.id]=m;setTimeout(()=>m.invalidateSize(),50);return m}
+  el.dataset.ready='1';nmMap=m;nmMapEl=el;liveMaps[el.id]=m;softInvalidate(el.id,m,50);return m}
  catch(e){const fail=el.parentElement&&el.parentElement.querySelector('.mfail');if(fail)fail.hidden=false;return null}}
 // ラベルは既存 Leaflet の tooltip だけで出す。位置は動かさず、混雑するときは出す数を間引く。
 // 少数なら広域でも名前を出す。多いときは拡大したときだけ出し、混雑する場所では出す数を間引く
@@ -818,5 +942,5 @@ function renderNationalMap(){const n=state.nmap;
 (function(){const el=$('sub');if(!el)return;
  el.textContent=`国内観光地理 詳細${R.length} + 高速暗記${BSR.length} = 教材${R.length+BSR.length}件（2026-09-24 国内試験対策）`;
  el.title='収録している教材の件数です。試験に出る観光資源を網羅したものではありません';})();
-initFilters();window.geographyStudy={state,R,metrics,retryLine,buildQuiz,render,filtered,quizScope,STATE_KEY:KEY,primaryType,locatorSVG,TYPE_ORDER,TYPE_LABEL,mapPoints,liveMaps,GSI,disposeLiveMaps,photosFor,BSR,rstate,rapidPool,RAPID_STATE_KEY:RKEY,BSCAT,rapidBack,rapidAdvance,BS_PREF_REGION,BS_ALL_PREFS,bsReading,BSTERMS,termsIn,NMALL,NMGENRES,nmapFiltered,nmapCounts,nmapPoints,nmapSummary,nmSelect,nmSync,NM_HOME,get nmMap(){return nmMap},get nmMarkers(){return nmMarkers},get nmCam(){return nmCam},get nmSelRid(){return nmSelRid},get nmSelPid(){return nmSelPid},LOCAL_APPS,examLinkURL,pastExamHTML,HISTORICAL_REFS,HISTORICAL_ATLAS};render();
+initFilters();window.geographyStudy={state,R,metrics,retryLine,buildQuiz,render,filtered,quizScope,STATE_KEY:KEY,primaryType,locatorSVG,TYPE_ORDER,TYPE_LABEL,mapPoints,liveMaps,GSI,disposeLiveMaps,photosFor,BSR,rstate,rapidPool,RAPID_STATE_KEY:RKEY,BSCAT,rapidBack,rapidAdvance,BS_PREF_REGION,BS_ALL_PREFS,bsReading,BSTERMS,termsIn,CARD_ALL,CARD_DEEP,CARD_LIGHT,cardPool,cardBase,cardDeckCount,CARD_DECKS,get cardFlipped(){return cFlipped},NMALL,NMGENRES,nmapFiltered,nmapCounts,nmapPoints,nmapSummary,nmSelect,nmSync,NM_HOME,get nmMap(){return nmMap},get nmMarkers(){return nmMarkers},get nmCam(){return nmCam},get nmSelRid(){return nmSelRid},get nmSelPid(){return nmSelPid},LOCAL_APPS,examLinkURL,pastExamHTML,HISTORICAL_REFS,HISTORICAL_ATLAS};render();
 })();
